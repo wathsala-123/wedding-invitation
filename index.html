@@ -23,13 +23,15 @@
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
         .tap-text { margin-top: 15px; color: #d4af37; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cinzel', serif; }
 
-        /* Walking Couple Animation Layer */
-        .walking-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center; flex-direction: column; }
-        .walking-couple { width: 220px; animation: walkIn 2.5s forwards ease-in-out; }
-        @keyframes walkIn {
-            0% { transform: scale(0.4) translateY(100px); opacity: 0; }
-            60% { transform: scale(1) translateY(0); opacity: 1; }
-            90% { transform: scale(1) translateY(0); opacity: 1; }
+        /* Beautiful Couple Animation Overlay */
+        .couple-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; justify-content: center; align-items: center; }
+        .couple-img-box { width: 85%; max-width: 330px; border-radius: 15px; overflow: hidden; border: 2px solid #d4af37; box-shadow: 0 0 30px rgba(212,175,55,0.5); animation: romanticAppear 2.8s forwards ease-in-out; }
+        .couple-img-box img { width: 100%; display: block; object-fit: cover; }
+
+        @keyframes romanticAppear {
+            0% { transform: scale(0.7) translateY(40px); opacity: 0; }
+            40% { transform: scale(1) translateY(0); opacity: 1; }
+            80% { transform: scale(1.03) translateY(0); opacity: 1; }
             100% { transform: scale(1.1) translateY(-20px); opacity: 0; }
         }
 
@@ -51,7 +53,7 @@
 
         .couple-names { font-family: 'Great Vibes', cursive; font-size: 42px; color: #5c430e; margin: 10px 0 18px 0; text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.8); }
 
-        /* Grid for Event Details - Matching Original Card Columns */
+        /* 3 Column Details matching original card layout */
         .details-row { display: flex; justify-content: space-between; align-items: flex-start; text-align: center; border-top: 1px dashed #aa802c; border-bottom: 1px dashed #aa802c; padding: 12px 0; margin: 10px 0; font-size: 10px; color: #3a2e0c; font-weight: 700; }
         .col-item { flex: 1; padding: 0 4px; }
         .col-item:not(:last-child) { border-right: 1px solid #aa802c; }
@@ -68,24 +70,21 @@
 
     <div id="petal-container"></div>
 
-    <div class="envelope-wrapper" id="envelope" onclick="startWalkingAnimation()">
+    <!-- Envelope Cover -->
+    <div class="envelope-wrapper" id="envelope" onclick="openAnimation()">
         <div class="envelope-seal">WA</div>
         <div class="tap-text">Tap to Open Invitation</div>
     </div>
 
-    <div class="walking-container" id="walkingOverlay">
-        <svg class="walking-couple" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 90 Q50 60 70 60 Q90 60 90 90 L90 220 L50 220 Z" fill="#ffffff" stroke="#c5a059" stroke-width="2"/>
-            <circle cx="70" cy="45" r="18" fill="#f5c096"/>
-            <rect x="58" y="25" width="24" height="8" fill="#1c1912" rx="2"/>
-            <path d="M50 110 L90 110" stroke="#d4af37" stroke-width="4"/>
-            <path d="M110 90 Q110 60 130 60 Q150 60 150 90 L165 240 L95 240 Z" fill="#fbf9f5" stroke="#c5a059" stroke-width="2"/>
-            <circle cx="130" cy="48" r="16" fill="#f5c096"/>
-            <path d="M120 32 Q130 25 140 32" stroke="#d4af37" stroke-width="3" fill="none"/>
-            <path d="M100 120 Q130 140 160 120" stroke="#d4af37" stroke-width="3" fill="none"/>
-        </svg>
+    <!-- Couple Image Animation Overlay -->
+    <div class="couple-overlay" id="coupleOverlay">
+        <div class="couple-img-box">
+            <!-- Exact image provided by user -->
+            <img src="https://raw.githubusercontent.com/wathsala-123/wedding-invitation/main/1000116124.png" alt="Police Groom & Osariya Bride" id="coupleImg">
+        </div>
     </div>
 
+    <!-- Card Replica -->
     <div class="card-container" id="weddingCard">
         <div class="monogram">WA</div>
         
@@ -101,6 +100,7 @@
 
         <div class="couple-names">Wathsala & Anuruddha</div>
 
+        <!-- 3 Columns details matching original card -->
         <div class="details-row">
             <div class="col-item">
                 <span>ON FRIDAY</span>
@@ -136,10 +136,10 @@
             document.getElementById('guest').innerText = decodeURIComponent(guestName);
         }
 
-        // Animation Sequence: Tap -> Walking Couple -> Card & Flower Petals
-        function startWalkingAnimation() {
+        // Open Animation Sequence
+        function openAnimation() {
             const env = document.getElementById('envelope');
-            const overlay = document.getElementById('walkingOverlay');
+            const overlay = document.getElementById('coupleOverlay');
             const card = document.getElementById('weddingCard');
 
             env.style.display = 'none';
@@ -149,7 +149,7 @@
                 overlay.style.display = 'none';
                 card.classList.add('show');
                 createPetals();
-            }, 2500);
+            }, 2800);
         }
 
         // Falling Petals Generator
@@ -168,4 +168,3 @@
         }
     </script>
 </body>
-</html>
