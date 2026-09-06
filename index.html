@@ -3,93 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wathsala & Anuruddha Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Wathsala & Anuruddha Wedding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0b0b0b; color: #4a3b10; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; padding: 15px; }
+        body { background: #0a0a0a; color: #4a3b10; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; padding: 15px; }
 
-        /* Falling Petals Canvas */
+        /* Falling Petals */
         #petal-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
-        .petal { position: absolute; background: linear-gradient(135deg, #ffd700, #ffb700); border-radius: 15px 0 15px 0; opacity: 0.7; animation: fall linear infinite; }
+        .petal { position: absolute; background: linear-gradient(135deg, #ffd700, #b8860b); border-radius: 12px 0 12px 0; opacity: 0.8; animation: fall linear infinite; }
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Envelope Screen */
-        .envelope-wrapper { position: relative; width: 100%; max-width: 420px; height: 300px; background: #1c1912; border-radius: 10px; border: 2px solid #c5a059; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.8); transition: transform 0.6s ease, opacity 0.6s ease; z-index: 10; }
-        .envelope-seal { width: 70px; height: 70px; background: linear-gradient(135deg, #d4af37, #aa7c11); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #1c1912; font-family: 'Cinzel', serif; font-size: 22px; font-weight: bold; border: 2px solid #fff; box-shadow: 0 0 15px rgba(212,175,55,0.6); animation: pulse 1.8s infinite; }
+        /* Envelope Cover Screen */
+        .envelope-wrapper { position: relative; width: 100%; max-width: 400px; height: 260px; background: #16140f; border-radius: 10px; border: 2px solid #d4af37; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.9); z-index: 10; transition: all 0.5s ease; }
+        .envelope-seal { width: 75px; height: 75px; background: linear-gradient(135deg, #d4af37, #aa7c11); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #1c1912; font-family: 'Cinzel', serif; font-size: 24px; font-weight: bold; border: 2px solid #fff; box-shadow: 0 0 15px rgba(212,175,55,0.6); animation: pulse 1.8s infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-        .tap-text { margin-top: 15px; color: #d4af37; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cinzel', serif; }
+        .tap-text { margin-top: 15px; color: #d4af37; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cinzel', serif; }
 
-        /* Card Container */
-        .card-container { display: none; width: 100%; max-width: 430px; background: linear-gradient(180deg, #e8dfca 0%, #c5b388 100%); border-radius: 12px; padding: 25px 20px; border: 3px solid #b89243; box-shadow: 0 0 30px rgba(212,175,55,0.3); text-align: center; position: relative; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        /* Walking Couple Animation Layer */
+        .walking-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center; flex-direction: column; }
+        .walking-couple { width: 220px; animation: walkIn 2.5s forwards ease-in-out; }
+        @keyframes walkIn {
+            0% { transform: scale(0.4) translateY(100px); opacity: 0; }
+            60% { transform: scale(1) translateY(0); opacity: 1; }
+            90% { transform: scale(1) translateY(0); opacity: 1; }
+            100% { transform: scale(1.1) translateY(-20px); opacity: 0; }
+        }
+
+        /* Real Physical Card Replica Frame */
+        .card-container { display: none; width: 100%; max-width: 420px; background: linear-gradient(180deg, #ece3cf 0%, #d8c39d 100%); border-radius: 8px; padding: 30px 20px; border: 2px solid #b89243; box-shadow: 0 0 25px rgba(212,175,55,0.3); text-align: center; position: relative; opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
         .card-container.show { display: block; opacity: 1; transform: translateY(0); }
 
-        .monogram { font-family: 'Cinzel', serif; font-size: 32px; color: #7a5c1e; border: 1.5px solid #7a5c1e; width: 65px; height: 65px; line-height: 62px; border-radius: 50%; margin: 0 auto 10px auto; }
-        .parents { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.8px; line-height: 1.6; color: #5a4517; font-weight: 600; text-transform: uppercase; }
-        .request-text { font-size: 9.5px; letter-spacing: 1.2px; margin: 12px 0 8px 0; color: #6b521d; text-transform: uppercase; }
+        /* Card Content Exact Replication */
+        .monogram { font-family: 'Cinzel', serif; font-size: 28px; color: #7a5c1e; border: 1.5px solid #7a5c1e; width: 60px; height: 60px; line-height: 56px; border-radius: 50%; margin: 0 auto 12px auto; font-weight: bold; }
         
-        .guest-box { background: rgba(122, 92, 30, 0.12); border: 1px solid #7a5c1e; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; color: #4a3b10; display: inline-block; margin: 6px 0; font-family: 'Montserrat', sans-serif; }
+        .text-parents { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: #5a4517; letter-spacing: 0.5px; line-height: 1.6; text-transform: uppercase; }
+        .text-together { font-size: 9px; font-weight: 600; color: #7a5c1e; margin: 4px 0; letter-spacing: 1px; }
+        
+        .text-request { font-size: 8.5px; font-weight: 700; color: #5a4517; letter-spacing: 1px; margin: 12px 0 6px 0; text-transform: uppercase; }
+        
+        .guest-box { background: rgba(122, 92, 30, 0.15); border: 1px solid #7a5c1e; padding: 6px 14px; border-radius: 4px; font-size: 13px; font-weight: 700; color: #3a2e0c; display: inline-block; margin: 4px 0; }
 
-        .couple-names { font-family: 'Great Vibes', cursive; font-size: 38px; color: #5c430e; margin: 10px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.6); }
+        .text-grace { font-size: 8.5px; font-weight: 700; color: #5a4517; letter-spacing: 0.8px; margin: 10px 0 12px 0; text-transform: uppercase; line-height: 1.5; }
 
-        /* Animated Couple Art Placeholder */
-        .couple-art-box { width: 100%; border-radius: 8px; border: 1px solid #aa802c; overflow: hidden; margin: 12px 0; background: #222; }
-        .couple-art-box img { width: 100%; display: block; }
+        .couple-names { font-family: 'Great Vibes', cursive; font-size: 42px; color: #5c430e; margin: 10px 0 18px 0; text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.8); }
 
-        .details-grid { text-align: left; background: rgba(255, 255, 255, 0.35); padding: 15px; border-radius: 8px; border-left: 3px solid #7a5c1e; font-size: 12px; line-height: 1.8; color: #3a2e0c; margin-top: 10px; }
-        .details-grid span { font-weight: bold; color: #6b521d; font-family: 'Cinzel', serif; }
+        /* Grid for Event Details - Matching Original Card Columns */
+        .details-row { display: flex; justify-content: space-between; align-items: flex-start; text-align: center; border-top: 1px dashed #aa802c; border-bottom: 1px dashed #aa802c; padding: 12px 0; margin: 10px 0; font-size: 10px; color: #3a2e0c; font-weight: 700; }
+        .col-item { flex: 1; padding: 0 4px; }
+        .col-item:not(:last-child) { border-right: 1px solid #aa802c; }
+        .col-item span { display: block; color: #6b521d; font-size: 9px; margin-bottom: 2px; }
+        .col-item strong { font-size: 13px; color: #5c430e; font-family: 'Cinzel', serif; }
 
-        .rsvp { margin-top: 12px; font-size: 11px; font-weight: 600; color: #5a4517; font-family: 'Cinzel', serif; }
-        .btn-whatsapp { display: inline-block; margin-top: 15px; width: 100%; padding: 12px; background: #7a5c1e; color: #fff8e7; text-decoration: none; font-weight: 600; font-size: 13px; border-radius: 25px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: background 0.3s; }
-        .btn-whatsapp:hover { background: #5c430e; }
+        .poruwa-text { font-size: 9px; font-weight: 700; color: #5a4517; margin: 10px 0; text-transform: uppercase; }
+        .rsvp-text { font-size: 9px; font-weight: 700; color: #5a4517; text-transform: uppercase; line-height: 1.4; }
+
+        .btn-whatsapp { display: inline-block; margin-top: 18px; width: 100%; padding: 11px; background: #7a5c1e; color: #fff8e7; text-decoration: none; font-weight: 700; font-size: 12px; border-radius: 4px; letter-spacing: 1px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
     <div id="petal-container"></div>
 
-    <!-- Clickable Envelope -->
-    <div class="envelope-wrapper" id="envelope" onclick="openEnvelope()">
+    <div class="envelope-wrapper" id="envelope" onclick="startWalkingAnimation()">
         <div class="envelope-seal">WA</div>
         <div class="tap-text">Tap to Open Invitation</div>
     </div>
 
-    <!-- Real Luxury Card -->
+    <div class="walking-container" id="walkingOverlay">
+        <svg class="walking-couple" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 90 Q50 60 70 60 Q90 60 90 90 L90 220 L50 220 Z" fill="#ffffff" stroke="#c5a059" stroke-width="2"/>
+            <circle cx="70" cy="45" r="18" fill="#f5c096"/>
+            <rect x="58" y="25" width="24" height="8" fill="#1c1912" rx="2"/>
+            <path d="M50 110 L90 110" stroke="#d4af37" stroke-width="4"/>
+            <path d="M110 90 Q110 60 130 60 Q150 60 150 90 L165 240 L95 240 Z" fill="#fbf9f5" stroke="#c5a059" stroke-width="2"/>
+            <circle cx="130" cy="48" r="16" fill="#f5c096"/>
+            <path d="M120 32 Q130 25 140 32" stroke="#d4af37" stroke-width="3" fill="none"/>
+            <path d="M100 120 Q130 140 160 120" stroke="#d4af37" stroke-width="3" fill="none"/>
+        </svg>
+    </div>
+
     <div class="card-container" id="weddingCard">
         <div class="monogram">WA</div>
         
-        <div class="parents">
-            MR. & MRS. SARATH SENANAYAKE<br>
-            <span style="font-size: 9px; opacity: 0.8;">TOGETHER WITH</span><br>
-            MR. & MRS. AMARADASA VITHANAGE
-        </div>
+        <div class="text-parents">MR. & MRS. SARATH SENANAYAKE</div>
+        <div class="text-together">TOGETHER WITH</div>
+        <div class="text-parents">MR. & MRS. AMARADASA VITHANAGE</div>
 
-        <div class="request-text">WARMLY REQUEST THE HONOUR OF THE PRESENCE OF</div>
+        <div class="text-request">REQUEST THE HONOUR OF THE PRESENCE OF</div>
         
         <div class="guest-box" id="guest">MR. & MRS. / MISS. / FAMILY</div>
         
-        <div class="request-text">TO GRACE THE OCCASION OF THE MARRIAGE OF THEIR BELOVED CHILDREN</div>
+        <div class="text-grace">TO GRACE THE OCCASION OF THE MARRIAGE OF<br>THEIR BELOVED CHILDREN</div>
 
         <div class="couple-names">Wathsala & Anuruddha</div>
 
-        <!-- Couple Art Image -->
-        <div class="couple-art-box">
-            <img src="https://showcase-image.s3.amazonaws.com/wedding_couple.png" alt="Police Groom & Osariya Bride" onerror="this.style.display='none'">
+        <div class="details-row">
+            <div class="col-item">
+                <span>ON FRIDAY</span>
+                <strong>04TH</strong><br>
+                DECEMBER 2026
+            </div>
+            <div class="col-item">
+                <span>AT</span>
+                SAMINRO GRAND PALACE<br>
+                <span style="font-size: 7.5px;">MAKOLA NORTH, MAKOLA</span>
+            </div>
+            <div class="col-item">
+                <span>TIME</span>
+                FROM <strong>09.00 A.M.</strong><br>TO <strong>4.00 P.M.</strong>
+            </div>
         </div>
 
-        <div class="details-grid">
-            <p><span>ON FRIDAY:</span> 04TH DECEMBER 2026</p>
-            <p><span>AT:</span> SAMINRO GRAND PALACE, MAKOLA</p>
-            <p><span>TIME:</span> FROM 09.00 A.M. TO 4.00 P.M.</p>
-            <p><span>PORUWA CEREMONY:</span> AT 10.05 A.M.</p>
+        <div class="poruwa-text">(PORUWA CEREMONY AT 10.05 A.M.)</div>
+
+        <div class="rsvp-text">
+            RSVP (REGRETS ONLY)<br>
+            ANURUDDHA : 0702661909
         </div>
 
-        <div class="rsvp">RSVP (REGRETS ONLY): ANURUDDHA - 0702661909</div>
-
-        <a href="https://wa.me/94702661909" class="btn-whatsapp">CONFIRM ATTENDANCE VIA WHATSAPP</a>
+        <a href="https://wa.me/94702661909" class="btn-whatsapp">CONFIRM VIA WHATSAPP</a>
     </div>
 
     <script>
@@ -100,31 +136,32 @@
             document.getElementById('guest').innerText = decodeURIComponent(guestName);
         }
 
-        // Open Envelope Animation
-        function openEnvelope() {
+        // Animation Sequence: Tap -> Walking Couple -> Card & Flower Petals
+        function startWalkingAnimation() {
             const env = document.getElementById('envelope');
+            const overlay = document.getElementById('walkingOverlay');
             const card = document.getElementById('weddingCard');
-            
-            env.style.transform = 'scale(0.8)';
-            env.style.opacity = '0';
-            
+
+            env.style.display = 'none';
+            overlay.style.display = 'flex';
+
             setTimeout(() => {
-                env.style.display = 'none';
+                overlay.style.display = 'none';
                 card.classList.add('show');
                 createPetals();
-            }, 500);
+            }, 2500);
         }
 
         // Falling Petals Generator
         function createPetals() {
             const container = document.getElementById('petal-container');
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 30; i++) {
                 let petal = document.createElement('div');
                 petal.className = 'petal';
                 petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.width = (Math.random() * 10 + 8) + 'px';
-                petal.style.height = (Math.random() * 12 + 10) + 'px';
-                petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                petal.style.width = (Math.random() * 8 + 8) + 'px';
+                petal.style.height = (Math.random() * 10 + 10) + 'px';
+                petal.style.animationDuration = (Math.random() * 3 + 3) + 's';
                 petal.style.animationDelay = (Math.random() * 2) + 's';
                 container.appendChild(petal);
             }
