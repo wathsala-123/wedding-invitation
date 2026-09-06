@@ -4,45 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wathsala & Anuruddha Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Georgia', serif; background-color: #0f0f0f; color: #f4e8c1; text-align: center; padding: 20px; margin: 0; }
-        .card { max-width: 450px; margin: 20px auto; background: linear-gradient(145deg, #1e1e1e, #2a2a2a); border: 2px solid #d4af37; padding: 25px; border-radius: 15px; box-shadow: 0 0 25px rgba(212,175,55,0.4); }
-        .monogram { font-size: 36px; color: #d4af37; border: 2px solid #d4af37; border-radius: 50%; width: 70px; height: 70px; line-height: 70px; margin: 0 auto 15px auto; font-weight: bold; }
-        h1 { color: #d4af37; font-size: 26px; margin: 15px 0; }
-        .guest-box { background: #d4af37; color: #000; padding: 8px 15px; font-weight: bold; border-radius: 20px; display: inline-block; margin: 15px 0; font-size: 16px; }
-        .details { font-size: 14px; line-height: 1.8; color: #e0e0e0; text-align: left; background: #141414; padding: 15px; border-radius: 10px; border-left: 3px solid #d4af37; margin-top: 15px; }
-        .gold { color: #d4af37; font-weight: bold; }
-        .btn { display: inline-block; margin-top: 20px; padding: 12px 25px; background: #d4af37; color: #000; text-decoration: none; font-weight: bold; border-radius: 25px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0b0b0b; color: #4a3b10; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; padding: 15px; }
+
+        /* Falling Petals Canvas */
+        #petal-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
+        .petal { position: absolute; background: linear-gradient(135deg, #ffd700, #ffb700); border-radius: 15px 0 15px 0; opacity: 0.7; animation: fall linear infinite; }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Envelope Screen */
+        .envelope-wrapper { position: relative; width: 100%; max-width: 420px; height: 300px; background: #1c1912; border-radius: 10px; border: 2px solid #c5a059; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.8); transition: transform 0.6s ease, opacity 0.6s ease; z-index: 10; }
+        .envelope-seal { width: 70px; height: 70px; background: linear-gradient(135deg, #d4af37, #aa7c11); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #1c1912; font-family: 'Cinzel', serif; font-size: 22px; font-weight: bold; border: 2px solid #fff; box-shadow: 0 0 15px rgba(212,175,55,0.6); animation: pulse 1.8s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        .tap-text { margin-top: 15px; color: #d4af37; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cinzel', serif; }
+
+        /* Card Container */
+        .card-container { display: none; width: 100%; max-width: 430px; background: linear-gradient(180deg, #e8dfca 0%, #c5b388 100%); border-radius: 12px; padding: 25px 20px; border: 3px solid #b89243; box-shadow: 0 0 30px rgba(212,175,55,0.3); text-align: center; position: relative; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .card-container.show { display: block; opacity: 1; transform: translateY(0); }
+
+        .monogram { font-family: 'Cinzel', serif; font-size: 32px; color: #7a5c1e; border: 1.5px solid #7a5c1e; width: 65px; height: 65px; line-height: 62px; border-radius: 50%; margin: 0 auto 10px auto; }
+        .parents { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.8px; line-height: 1.6; color: #5a4517; font-weight: 600; text-transform: uppercase; }
+        .request-text { font-size: 9.5px; letter-spacing: 1.2px; margin: 12px 0 8px 0; color: #6b521d; text-transform: uppercase; }
+        
+        .guest-box { background: rgba(122, 92, 30, 0.12); border: 1px solid #7a5c1e; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; color: #4a3b10; display: inline-block; margin: 6px 0; font-family: 'Montserrat', sans-serif; }
+
+        .couple-names { font-family: 'Great Vibes', cursive; font-size: 38px; color: #5c430e; margin: 10px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.6); }
+
+        /* Animated Couple Art Placeholder */
+        .couple-art-box { width: 100%; border-radius: 8px; border: 1px solid #aa802c; overflow: hidden; margin: 12px 0; background: #222; }
+        .couple-art-box img { width: 100%; display: block; }
+
+        .details-grid { text-align: left; background: rgba(255, 255, 255, 0.35); padding: 15px; border-radius: 8px; border-left: 3px solid #7a5c1e; font-size: 12px; line-height: 1.8; color: #3a2e0c; margin-top: 10px; }
+        .details-grid span { font-weight: bold; color: #6b521d; font-family: 'Cinzel', serif; }
+
+        .rsvp { margin-top: 12px; font-size: 11px; font-weight: 600; color: #5a4517; font-family: 'Cinzel', serif; }
+        .btn-whatsapp { display: inline-block; margin-top: 15px; width: 100%; padding: 12px; background: #7a5c1e; color: #fff8e7; text-decoration: none; font-weight: 600; font-size: 13px; border-radius: 25px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: background 0.3s; }
+        .btn-whatsapp:hover { background: #5c430e; }
     </style>
 </head>
 <body>
-    <div class="card">
+
+    <div id="petal-container"></div>
+
+    <!-- Clickable Envelope -->
+    <div class="envelope-wrapper" id="envelope" onclick="openEnvelope()">
+        <div class="envelope-seal">WA</div>
+        <div class="tap-text">Tap to Open Invitation</div>
+    </div>
+
+    <!-- Real Luxury Card -->
+    <div class="card-container" id="weddingCard">
         <div class="monogram">WA</div>
-        <p style="font-size: 12px; letter-spacing: 1px;">MR. & MRS. SARATH SENANAYAKE<br>TOGETHER WITH<br>MR. & MRS. AMARADASA VITHANAGE</p>
-        <p style="font-size: 11px;">WARMLY REQUEST THE HONOUR OF THE PRESENCE OF</p>
+        
+        <div class="parents">
+            MR. & MRS. SARATH SENANAYAKE<br>
+            <span style="font-size: 9px; opacity: 0.8;">TOGETHER WITH</span><br>
+            MR. & MRS. AMARADASA VITHANAGE
+        </div>
+
+        <div class="request-text">WARMLY REQUEST THE HONOUR OF THE PRESENCE OF</div>
         
         <div class="guest-box" id="guest">MR. & MRS. / MISS. / FAMILY</div>
         
-        <p style="font-size: 11px;">TO GRACE THE OCCASION OF THE MARRIAGE OF THEIR BELOVED CHILDREN</p>
-        
-        <h1>Wathsala & Anuruddha</h1>
+        <div class="request-text">TO GRACE THE OCCASION OF THE MARRIAGE OF THEIR BELOVED CHILDREN</div>
 
-        <div class="details">
-            <p><span class="gold">ON FRIDAY:</span> 04TH DECEMBER 2026</p>
-            <p><span class="gold">AT:</span> SAMINRO GRAND PALACE, MAKOLA NORTH, MAKOLA</p>
-            <p><span class="gold">TIME:</span> FROM 09.00 A.M. TO 4.00 P.M.</p>
-            <p><span class="gold">PORUWA CEREMONY:</span> AT 10.05 A.M.</p>
-            <p><span class="gold">RSVP:</span> ANURUDDHA - 0702661909</p>
+        <div class="couple-names">Wathsala & Anuruddha</div>
+
+        <!-- Couple Art Image -->
+        <div class="couple-art-box">
+            <img src="https://showcase-image.s3.amazonaws.com/wedding_couple.png" alt="Police Groom & Osariya Bride" onerror="this.style.display='none'">
         </div>
 
-        <a href="https://wa.me/94702661909" class="btn">CONFIRM VIA WHATSAPP</a>
+        <div class="details-grid">
+            <p><span>ON FRIDAY:</span> 04TH DECEMBER 2026</p>
+            <p><span>AT:</span> SAMINRO GRAND PALACE, MAKOLA</p>
+            <p><span>TIME:</span> FROM 09.00 A.M. TO 4.00 P.M.</p>
+            <p><span>PORUWA CEREMONY:</span> AT 10.05 A.M.</p>
+        </div>
+
+        <div class="rsvp">RSVP (REGRETS ONLY): ANURUDDHA - 0702661909</div>
+
+        <a href="https://wa.me/94702661909" class="btn-whatsapp">CONFIRM ATTENDANCE VIA WHATSAPP</a>
     </div>
 
     <script>
+        // Guest Name handling
         const urlParams = new URLSearchParams(window.location.search);
         const guestName = urlParams.get('name');
         if (guestName) {
             document.getElementById('guest').innerText = decodeURIComponent(guestName);
+        }
+
+        // Open Envelope Animation
+        function openEnvelope() {
+            const env = document.getElementById('envelope');
+            const card = document.getElementById('weddingCard');
+            
+            env.style.transform = 'scale(0.8)';
+            env.style.opacity = '0';
+            
+            setTimeout(() => {
+                env.style.display = 'none';
+                card.classList.add('show');
+                createPetals();
+            }, 500);
+        }
+
+        // Falling Petals Generator
+        function createPetals() {
+            const container = document.getElementById('petal-container');
+            for (let i = 0; i < 25; i++) {
+                let petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.width = (Math.random() * 10 + 8) + 'px';
+                petal.style.height = (Math.random() * 12 + 10) + 'px';
+                petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                petal.style.animationDelay = (Math.random() * 2) + 's';
+                container.appendChild(petal);
+            }
         }
     </script>
 </body>
