@@ -1,37 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Wedding Invitation | Wathsala & Anuruddha</title>
+
+  <!-- WHATSAPP & SOCIAL MEDIA LINK PREVIEW META TAGS -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="💌 WEDDING INVITATION | Wathsala & Anuruddha">
   <meta property="og:description" content="We warmly invite you to celebrate our wedding! Tap to open your invitation.">
-  
-  <!-- මෙන්න මේ කොටස විතරක් Bold කර ඇති පරිදි වෙනස් කරන්න -->
-  **<meta property="og:image" content="https://wathsala-1.github.io/Logo.jpg">**
-  **<meta property="og:image:type" content="image/jpeg">**
-  **<meta property="og:image:width" content="300">**
-  **<meta property="og:image:height" content="300">**
+  <meta property="og:image" content="https://wathsala-1.github.io/Logo.jpg">
+  <meta property="og:image:secure_url" content="https://wathsala-1.github.io/Logo.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="300">
+  <meta property="og:image:height" content="300">
 
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- WHATSAPP LINK PREVIEW META TAGS -->
-  <title>Wedding Invitation | Wathsala & Anuruddha</title>
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="💌 Wedding Invitation | Wathsala & Anuruddha">
-  <meta property="og:description" content="We warmly invite you to celebrate our wedding! Tap to open your invitation.">
-  <meta property="og:image" content="1788794486275.png">
-
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- html2canvas for Save Card Functionality -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
@@ -51,7 +36,7 @@
 
     audio { display: none; }
 
-    /* BACKGROUND BLURRED IMAGE */
+    /* BACKGROUND BLURRED OVERLAY */
     .bg-fixed-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -68,15 +53,15 @@
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(245, 242, 235, 0.82);
+      background: rgba(245, 242, 235, 0.85);
       z-index: -1;
     }
 
-    /* CONTINUOUS PETALS */
+    /* CONTINUOUS PETALS FALL */
     .petal {
       position: fixed;
       top: -15px;
-      background: rgba(212, 175, 55, 0.6);
+      background: rgba(212, 175, 55, 0.65);
       border-radius: 8px 0 8px 0;
       pointer-events: none;
       animation: fall linear infinite;
@@ -87,7 +72,7 @@
       100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
     }
 
-    /* STEP 1: INITIAL CURTAIN & LARGE WA MONOGRAM */
+    /* CURTAIN REVEAL OVERLAY */
     .reveal-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -130,10 +115,10 @@
     .large-wa-text { font-family: 'Great Vibes', cursive; font-size: 58px; color: #b8860b; line-height: 1; }
     .tap-text { font-size: 9px; letter-spacing: 2px; font-weight: 700; color: #555; margin-top: 4px; }
 
-    /* MAIN CONTAINER */
+    /* MAIN WRAPPER */
     .main-container { width: 100%; max-width: 460px; padding: 20px 15px; z-index: 10; display: flex; flex-direction: column; align-items: center; }
 
-    /* STEP 2: HORIZONTAL SPLIT MERGE COVER IMAGE */
+    /* MERGE COVER CARD */
     .cover-card {
       width: 100%; background: rgba(255, 255, 255, 0.94);
       border-radius: 16px; padding: 15px; text-align: center;
@@ -156,16 +141,18 @@
     .cover-card.merged .cover-half-left,
     .cover-card.merged .cover-half-right { transform: translateX(0); }
 
-    /* STEP 3: INVITATION CARD (PARTICLE FADE IN) */
+    /* PARTICLE GRID ASSEMBLE CARD ANIMATION */
     .invitation-card {
       width: 100%; background: #fffdf9;
       border: 1px solid rgba(212, 175, 55, 0.5); border-radius: 16px;
       padding: 35px 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-      margin-bottom: 20px; position: relative;
-      opacity: 0; transform: scale(0.92); filter: blur(8px);
-      transition: opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease;
+      margin-bottom: 25px; position: relative;
+      opacity: 0; transform: scale(0.85); clip-path: circle(0% at 50% 50%);
+      transition: all 1.4s cubic-bezier(0.19, 1, 0.22, 1);
     }
-    .invitation-card.reveal-active { opacity: 1; transform: scale(1); filter: blur(0); }
+    .invitation-card.reveal-active {
+      opacity: 1; transform: scale(1); clip-path: circle(150% at 50% 50%);
+    }
 
     /* GOLD CORNER FLORALS */
     .corner-floral-top { position: absolute; top: 10px; right: 10px; width: 75px; opacity: 0.85; }
@@ -175,7 +162,6 @@
       width: 70px; height: 70px; border: 2px solid #b8860b; border-radius: 50%;
       margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center;
       font-family: 'Great Vibes', cursive; font-size: 36px; color: #b8860b;
-      box-shadow: inset 0 0 10px rgba(184, 134, 11, 0.1);
     }
 
     .parents-text { font-size: 10px; letter-spacing: 1.2px; font-weight: 600; color: #444; line-height: 1.6; }
@@ -198,35 +184,41 @@
       cursor: pointer; text-align: center; margin-bottom: 25px;
     }
 
-    /* TIMELINE SECTION WITH CENTER CONNECTING LINE */
+    /* FULL-PAGE TIMELINE SECTION */
     .timeline-card, .rsvp-card, .location-card, .timer-card {
-      width: 100%; background: rgba(255, 255, 255, 0.94);
-      border-radius: 16px; padding: 22px; margin-bottom: 25px;
+      width: 100%; background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px; padding: 25px 18px; margin-bottom: 25px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.08); backdrop-filter: blur(6px); text-align: center;
     }
-    .section-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; color: #b8860b; margin-bottom: 18px; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; color: #b8860b; margin-bottom: 22px; }
 
-    .timeline-wrapper { position: relative; padding: 10px 0; }
+    .timeline-wrapper { position: relative; padding: 20px 0; min-height: 280px; }
     .timeline-line {
       position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #d4af37;
       transform: scaleY(0); transform-origin: top; transition: transform 1.2s ease;
     }
     .timeline-wrapper.active .timeline-line { transform: scaleY(1); }
 
-    .timeline-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; opacity: 0; transform: translateY(15px); transition: 0.8s ease; }
-    .timeline-wrapper.active .timeline-item { opacity: 1; transform: translateY(0); }
+    .timeline-item {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 32px; opacity: 0; transition: all 0.8s ease;
+    }
+    .timeline-item:nth-child(odd) { transform: translateX(-40px); }
+    .timeline-item:nth-child(even) { transform: translateX(40px); }
 
-    .timeline-left { width: 45%; text-align: right; font-size: 11px; font-weight: 700; color: #b8860b; }
-    .timeline-right { width: 45%; text-align: left; font-size: 11.5px; color: #333; }
-    .timeline-dot { width: 10px; height: 10px; background: #b8860b; border-radius: 50%; z-index: 2; }
+    .timeline-wrapper.active .timeline-item { opacity: 1; transform: translateX(0); }
+
+    .timeline-left { width: 44%; text-align: right; font-size: 12px; font-weight: 700; color: #b8860b; }
+    .timeline-right { width: 44%; text-align: left; font-size: 12px; color: #333; font-weight: 500; }
+    .timeline-dot { width: 12px; height: 12px; background: #b8860b; border-radius: 50%; z-index: 2; border: 2px solid #fff; }
 
     /* LOCATION & RSVP */
     .location-img { width: 100%; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
-    .rsvp-field { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 12px; }
+    .rsvp-field { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 12px; }
 
     /* TIMER */
     .timer-flex { display: flex; justify-content: space-around; }
-    .timer-unit span { font-size: 20px; font-weight: 700; color: #222; display: block; }
+    .timer-unit span { font-size: 22px; font-weight: 700; color: #222; display: block; }
     .timer-unit label { font-size: 8.5px; letter-spacing: 1px; color: #8b6508; text-transform: uppercase; }
   </style>
 </head>
@@ -249,7 +241,7 @@
 
   <div class="main-container">
 
-    <!-- STEP 2: COVER WITH HORIZONTAL SPLIT MERGE ANIMATION -->
+    <!-- STEP 2: COVER WITH MERGE ANIMATION -->
     <div class="cover-card" id="coverCard">
       <div class="cover-split-wrapper">
         <div class="cover-half-left"></div>
@@ -259,7 +251,7 @@
       <div style="font-size: 10px; letter-spacing: 3px; font-weight: 600; color: #555;">SAVE THE DATE • 04.12.2026</div>
     </div>
 
-    <!-- STEP 3: EXACT INVITATION CARD DESIGN -->
+    <!-- STEP 3: EXACT INVITATION CARD -->
     <div class="invitation-card" id="invitationCard">
       <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#b8860b"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
       <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#b8860b"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
@@ -307,7 +299,7 @@
       </div>
     </div>
 
-    <!-- INTERACTIVE TIMELINE -->
+    <!-- FULL PAGE TIMELINE -->
     <div class="timeline-card">
       <div class="section-title">WEDDING TIMELINE</div>
       <div class="timeline-wrapper" id="timelineWrapper">
@@ -335,7 +327,7 @@
       </div>
     </div>
 
-    <!-- LOCATION SECTION WITH UNNAMED IMAGE -->
+    <!-- LOCATION SECTION -->
     <div class="location-card">
       <div class="section-title">WEDDING VENUE</div>
       <img src="unnamed (1).jpg" alt="Saminro Grand Palace" class="location-img">
@@ -344,18 +336,22 @@
       </a>
     </div>
 
-    <!-- RSVP EMAIL FORM -->
+    <!-- RSVP FORM WITH AJAX EMAIL SUBMIT -->
     <div class="rsvp-card">
       <div class="section-title">ATTENDANCE CONFIRMATION</div>
-      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+      <!-- මෙතන YOUR_FORMSPREE_ID වෙනුවට ඔබේ Formspree ID එක දමන්න -->
+      <form id="rsvpForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="submitRSVP(event)">
         <input type="text" name="Guest Name" id="rsvpInputName" class="rsvp-field" placeholder="Your Name" required>
         <select name="Attendance Status" class="rsvp-field" required>
           <option value="Attending">Will Attend</option>
           <option value="Not Attending">Sorry, Cannot Attend</option>
         </select>
         <input type="number" name="Guests Count" class="rsvp-field" placeholder="Number of Guests" min="1" max="5">
-        <button type="submit" class="btn-action" style="margin-top:10px; margin-bottom:0;">CONFIRM & SEND RSVP</button>
+        <button type="submit" id="rsvpBtn" class="btn-action" style="margin-top:10px; margin-bottom:0;">CONFIRM & SEND RSVP</button>
       </form>
+      <div id="rsvpStatus" style="display:none; margin-top:12px; font-size:12px; font-weight:600; color:#b8860b;">
+        🎉 Thank you! Your response has been sent to Wathsala & Anuruddha.
+      </div>
     </div>
 
   </div>
@@ -406,15 +402,15 @@
       }, 450);
     }
 
-    // 4. SCROLL REVEAL (PARTICLE FADE IN & TIMELINE)
+    // 4. SCROLL REVEAL (GRID ASSEMBLE CARD & TIMELINE)
     window.addEventListener('scroll', () => {
       const card = document.getElementById('invitationCard');
       const timeline = document.getElementById('timelineWrapper');
 
-      if(card.getBoundingClientRect().top < window.innerHeight / 1.2) {
+      if(card.getBoundingClientRect().top < window.innerHeight / 1.15) {
         card.classList.add('reveal-active');
       }
-      if(timeline.getBoundingClientRect().top < window.innerHeight / 1.2) {
+      if(timeline.getBoundingClientRect().top < window.innerHeight / 1.15) {
         timeline.classList.add('active');
       }
     });
@@ -430,7 +426,37 @@
       });
     }
 
-    // 6. COUNTDOWN CLOCK
+    // 6. RSVP EMAIL SUBMISSION WITHOUT REFRESH
+    function submitRSVP(event) {
+      event.preventDefault();
+      const form = document.getElementById('rsvpForm');
+      const btn = document.getElementById('rsvpBtn');
+      const status = document.getElementById('rsvpStatus');
+
+      btn.innerText = "SENDING...";
+      btn.disabled = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          status.style.display = 'block';
+        } else {
+          alert("Oops! There was a problem submitting your RSVP.");
+          btn.innerText = "CONFIRM & SEND RSVP";
+          btn.disabled = false;
+        }
+      }).catch(error => {
+        alert("Submission failed. Please check your connection.");
+        btn.innerText = "CONFIRM & SEND RSVP";
+        btn.disabled = false;
+      });
+    }
+
+    // 7. COUNTDOWN CLOCK
     const weddingDate = new Date("Dec 4, 2026 09:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
