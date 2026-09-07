@@ -4,96 +4,212 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- WHATSAPP & SOCIAL MEDIA LINK PREVIEW META TAGS -->
+  <!-- WHATSAPP LINK PREVIEW META TAGS -->
   <title>Wedding Invitation | Wathsala & Anuruddha</title>
   <meta property="og:type" content="website">
   <meta property="og:title" content="💌 Wedding Invitation | Wathsala & Anuruddha">
   <meta property="og:description" content="We warmly invite you to celebrate our wedding! Tap to open your invitation.">
-  <!-- ඔබේ Monogram Logo eka Link preview එකට පෙනීමට image link එක මෙතැනට යොදන්න -->
-  <meta property="og:image" content="https://wathsala-123.github.io/logo.png"> 
+  <meta property="og:image" content="1788794486275.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   
+  <!-- html2canvas for Save Card Functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #0d0d0d; color: #2b2b2b; font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; position: relative; }
+    
+    body {
+      background-color: #0d0d0d;
+      color: #2b2b2b;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
     audio { display: none; }
 
-    /* Fixed Soft Blurred Background */
-    .bg-fixed-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('1788794486275.png'); background-size: cover; background-position: center; filter: blur(12px) brightness(0.7); transform: scale(1.08); z-index: -2; }
-    .bg-dark-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(245, 242, 235, 0.85); z-index: -1; }
+    /* BACKGROUND BLURRED IMAGE */
+    .bg-fixed-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-image: url('1788794486275.png');
+      background-size: cover;
+      background-position: center;
+      filter: blur(14px) brightness(0.65);
+      transform: scale(1.1);
+      z-index: -2;
+    }
 
-    /* CURTAIN SPLIT REVEAL */
-    .reveal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1000; display: flex; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease, visibility 0.8s ease; }
-    .curtain-top, .curtain-bottom { width: 100%; height: 50vh; background: #faf8f5; display: flex; justify-content: center; align-items: center; transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); position: relative; overflow: hidden; }
-    .curtain-top { align-items: flex-end; border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
-    .curtain-bottom { align-items: flex-start; border-top: 1px solid rgba(212, 175, 55, 0.3); }
+    .bg-dark-layer {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(245, 242, 235, 0.82);
+      z-index: -1;
+    }
 
-    .reveal-overlay.open .curtain-top { transform: translateY(-100%); }
-    .reveal-overlay.open .curtain-bottom { transform: translateY(100%); }
+    /* CONTINUOUS PETALS */
+    .petal {
+      position: fixed;
+      top: -15px;
+      background: rgba(212, 175, 55, 0.6);
+      border-radius: 8px 0 8px 0;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 99;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+    }
 
-    .seal-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 110px; height: 110px; background: #faf8f5; border: 2px solid #d4af37; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1001; box-shadow: 0 10px 25px rgba(0,0,0,0.15); transition: opacity 0.5s ease; }
-    .seal-monogram { font-family: 'Great Vibes', cursive; font-size: 42px; color: #b8860b; line-height: 1; }
-    .seal-text { font-size: 8px; letter-spacing: 2px; font-weight: 600; color: #666; margin-top: 4px; text-transform: uppercase; }
+    /* STEP 1: INITIAL CURTAIN & LARGE WA MONOGRAM */
+    .reveal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #faf8f5;
+      cursor: pointer;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
 
-    .guest-reveal-tag { position: absolute; bottom: 25px; text-align: center; width: 100%; }
-    .guest-reveal-label { font-size: 9px; letter-spacing: 2px; color: #8b6508; font-weight: 600; text-transform: uppercase; }
-    .guest-reveal-name { font-family: 'Great Vibes', cursive; font-size: 28px; color: #2b2b2b; margin-top: 2px; }
+    .split-curtain-left, .split-curtain-right {
+      position: absolute;
+      top: 0; width: 50vw; height: 100vh;
+      background: #faf8f5;
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .split-curtain-left { left: 0; border-right: 1px solid rgba(212, 175, 55, 0.3); }
+    .split-curtain-right { right: 0; border-left: 1px solid rgba(212, 175, 55, 0.3); }
 
-    /* Minimal Soft Petals */
-    .petal { position: fixed; top: -10px; background: rgba(212, 175, 55, 0.6); border-radius: 8px 0 8px 0; pointer-events: none; animation: fall linear infinite; z-index: 99; }
-    @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(105vh) rotate(180deg); opacity: 0; } }
+    .reveal-overlay.open .split-curtain-left { transform: translateX(-100%); }
+    .reveal-overlay.open .split-curtain-right { transform: translateX(100%); }
 
-    /* MAIN LAYOUT */
-    .main-container { width: 100%; max-width: 460px; display: flex; flex-direction: column; align-items: center; padding: 20px 15px; z-index: 10; }
+    .large-wa-seal {
+      position: relative;
+      z-index: 1001;
+      width: 140px; height: 140px;
+      background: #faf8f5;
+      border: 3px solid #b8860b;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: opacity 0.5s ease;
+    }
+    .large-wa-text { font-family: 'Great Vibes', cursive; font-size: 58px; color: #b8860b; line-height: 1; }
+    .tap-text { font-size: 9px; letter-spacing: 2px; font-weight: 700; color: #555; margin-top: 4px; }
 
-    .cover-card { width: 100%; background: rgba(255, 255, 255, 0.92); border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 25px; backdrop-filter: blur(5px); overflow: hidden; }
-    .cover-img { width: 100%; border-radius: 10px; display: block; }
+    /* MAIN CONTAINER */
+    .main-container { width: 100%; max-width: 460px; padding: 20px 15px; z-index: 10; display: flex; flex-direction: column; align-items: center; }
 
-    .split-title-container { position: relative; margin-top: 18px; display: flex; justify-content: center; overflow: hidden; }
-    .split-title-left, .split-title-right { font-family: 'Great Vibes', cursive; font-size: 38px; color: #b8860b; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease; }
-    .split-title-left { transform: translateX(-60px); opacity: 0; }
-    .split-title-right { transform: translateX(60px); opacity: 0; }
+    /* STEP 2: HORIZONTAL SPLIT MERGE COVER IMAGE */
+    .cover-card {
+      width: 100%; background: rgba(255, 255, 255, 0.94);
+      border-radius: 16px; padding: 15px; text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08); margin-bottom: 25px;
+      overflow: hidden; backdrop-filter: blur(5px);
+    }
 
-    .cover-card.merged .split-title-left, .cover-card.merged .split-title-right { transform: translateX(0); opacity: 1; }
-    .save-date-subtitle { font-size: 11px; letter-spacing: 3px; font-weight: 600; color: #555; margin-top: 6px; text-transform: uppercase; }
+    .cover-split-wrapper {
+      position: relative; width: 100%; height: 260px;
+      overflow: hidden; border-radius: 10px;
+    }
+    .cover-half-left, .cover-half-right {
+      position: absolute; top: 0; width: 50%; height: 100%;
+      background-image: url('1788794486275.png'); background-size: 200% 100%;
+      transition: transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .cover-half-left { left: 0; background-position: left center; transform: translateX(-100%); }
+    .cover-half-right { right: 0; background-position: right center; transform: translateX(100%); }
 
-    /* INVITATION CARD */
-    .invitation-card { width: 100%; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 16px; padding: 35px 22px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 25px; position: relative; backdrop-filter: blur(8px); opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
-    .invitation-card.reveal-active { opacity: 1; transform: translateY(0); }
+    .cover-card.merged .cover-half-left,
+    .cover-card.merged .cover-half-right { transform: translateX(0); }
 
-    .vine-left, .vine-right { position: absolute; width: 65px; opacity: 0.75; pointer-events: none; }
-    .vine-left { top: 10px; left: 5px; }
-    .vine-right { bottom: 10px; right: 5px; transform: rotate(180deg); }
+    /* STEP 3: INVITATION CARD (PARTICLE FADE IN) */
+    .invitation-card {
+      width: 100%; background: #fffdf9;
+      border: 1px solid rgba(212, 175, 55, 0.5); border-radius: 16px;
+      padding: 35px 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+      margin-bottom: 20px; position: relative;
+      opacity: 0; transform: scale(0.92); filter: blur(8px);
+      transition: opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease;
+    }
+    .invitation-card.reveal-active { opacity: 1; transform: scale(1); filter: blur(0); }
 
-    .monogram-small { font-family: 'Great Vibes', cursive; font-size: 32px; color: #b8860b; margin-bottom: 12px; }
-    .parents-header { font-size: 10px; letter-spacing: 1.5px; font-weight: 600; color: #555; line-height: 1.6; }
-    .invited-guest-display { margin: 18px 0; padding: 10px 5px; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
-    .guest-label-text { font-size: 9px; letter-spacing: 2px; color: #8b6508; font-weight: 600; }
-    .guest-dynamic-name { font-family: 'Great Vibes', cursive; font-size: 32px; color: #1a1a1a; margin-top: 2px; }
+    /* GOLD CORNER FLORALS */
+    .corner-floral-top { position: absolute; top: 10px; right: 10px; width: 75px; opacity: 0.85; }
+    .corner-floral-bottom { position: absolute; bottom: 10px; left: 10px; width: 75px; opacity: 0.85; transform: rotate(180deg); }
 
-    .couple-main-names { font-family: 'Great Vibes', cursive; font-size: 46px; color: #b8860b; margin: 15px 0; }
+    .card-wa-wreath {
+      width: 70px; height: 70px; border: 2px solid #b8860b; border-radius: 50%;
+      margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center;
+      font-family: 'Great Vibes', cursive; font-size: 36px; color: #b8860b;
+      box-shadow: inset 0 0 10px rgba(184, 134, 11, 0.1);
+    }
 
-    .event-details-flex { display: flex; justify-content: space-between; margin: 20px 0; padding: 12px 0; border-top: 1px dashed #d4af37; border-bottom: 1px dashed #d4af37; }
-    .detail-col { flex: 1; font-size: 10px; color: #444; }
-    .detail-col:not(:last-child) { border-right: 1px solid #eee; }
-    .detail-col strong { color: #b8860b; display: block; margin-bottom: 3px; font-size: 11px; }
+    .parents-text { font-size: 10px; letter-spacing: 1.2px; font-weight: 600; color: #444; line-height: 1.6; }
+    .guest-section { margin: 15px 0; padding: 10px 0; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+    .guest-label { font-size: 9px; letter-spacing: 2px; color: #8b6508; font-weight: 600; }
+    .guest-name { font-family: 'Great Vibes', cursive; font-size: 32px; color: #111; margin-top: 2px; }
 
-    /* CARDS */
-    .timeline-card, .rsvp-card, .timer-card { width: 100%; background: rgba(255, 255, 255, 0.93); border-radius: 16px; padding: 22px; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); backdrop-filter: blur(6px); text-align: center; }
-    .section-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; color: #b8860b; margin-bottom: 15px; }
+    .couple-names { font-family: 'Great Vibes', cursive; font-size: 42px; color: #b8860b; margin: 12px 0; }
 
-    .timer-flex { display: flex; justify-content: space-around; margin-top: 10px; }
-    .timer-unit span { font-size: 22px; font-weight: 700; color: #2b2b2b; display: block; }
-    .timer-unit label { font-size: 9px; letter-spacing: 1px; color: #8b6508; text-transform: uppercase; }
+    .details-grid { display: flex; justify-content: space-between; margin: 18px 0; padding: 10px 0; border-top: 1px dashed #d4af37; border-bottom: 1px dashed #d4af37; }
+    .details-col { flex: 1; font-size: 9.5px; color: #333; }
+    .details-col:not(:last-child) { border-right: 1px solid #ddd; }
+    .details-col strong { color: #b8860b; display: block; margin-bottom: 3px; font-size: 10px; }
 
-    .timeline-node { display: flex; text-align: left; margin-bottom: 14px; align-items: center; }
-    .timeline-time { width: 85px; font-size: 11px; font-weight: 700; color: #b8860b; }
-    .timeline-info { font-size: 12px; color: #444; }
+    .btn-action {
+      width: 100%; background: linear-gradient(135deg, #b8860b, #d4af37);
+      color: white; border: none; padding: 12px; border-radius: 25px;
+      font-weight: 600; font-size: 12px; letter-spacing: 1px;
+      text-decoration: none; display: block; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      cursor: pointer; text-align: center; margin-bottom: 25px;
+    }
 
-    .btn-action { width: 100%; background: linear-gradient(135deg, #b8860b, #d4af37); color: white; border: none; padding: 12px; border-radius: 25px; font-weight: 600; font-size: 12px; letter-spacing: 1px; text-decoration: none; display: block; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); cursor: pointer; }
+    /* TIMELINE SECTION WITH CENTER CONNECTING LINE */
+    .timeline-card, .rsvp-card, .location-card, .timer-card {
+      width: 100%; background: rgba(255, 255, 255, 0.94);
+      border-radius: 16px; padding: 22px; margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08); backdrop-filter: blur(6px); text-align: center;
+    }
+    .section-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; color: #b8860b; margin-bottom: 18px; }
 
-    .rsvp-field { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 12px; outline: none; }
+    .timeline-wrapper { position: relative; padding: 10px 0; }
+    .timeline-line {
+      position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #d4af37;
+      transform: scaleY(0); transform-origin: top; transition: transform 1.2s ease;
+    }
+    .timeline-wrapper.active .timeline-line { transform: scaleY(1); }
+
+    .timeline-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; opacity: 0; transform: translateY(15px); transition: 0.8s ease; }
+    .timeline-wrapper.active .timeline-item { opacity: 1; transform: translateY(0); }
+
+    .timeline-left { width: 45%; text-align: right; font-size: 11px; font-weight: 700; color: #b8860b; }
+    .timeline-right { width: 45%; text-align: left; font-size: 11.5px; color: #333; }
+    .timeline-dot { width: 10px; height: 10px; background: #b8860b; border-radius: 50%; z-index: 2; }
+
+    /* LOCATION & RSVP */
+    .location-img { width: 100%; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
+    .rsvp-field { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 12px; }
+
+    /* TIMER */
+    .timer-flex { display: flex; justify-content: space-around; }
+    .timer-unit span { font-size: 20px; font-weight: 700; color: #222; display: block; }
+    .timer-unit label { font-size: 8.5px; letter-spacing: 1px; color: #8b6508; text-transform: uppercase; }
   </style>
 </head>
 <body>
@@ -103,67 +219,66 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- OVERLAY REVEAL -->
+  <!-- STEP 1: INITIAL LARGE WA OVERLAY -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
-    <div class="curtain-top"></div>
-    <div class="seal-circle" id="sealCircle">
-      <div class="seal-monogram">WA</div>
-      <div class="seal-text">TAP TO REVEAL</div>
-    </div>
-    <div class="curtain-bottom">
-      <div class="guest-reveal-tag">
-        <div class="guest-reveal-label">KINDLY INVITED:</div>
-        <div class="guest-reveal-name" id="guestNameReveal">Guest Name</div>
-      </div>
+    <div class="split-curtain-left"></div>
+    <div class="split-curtain-right"></div>
+    <div class="large-wa-seal" id="waSeal">
+      <div class="large-wa-text">WA</div>
+      <div class="tap-text">TAP TO REVEAL</div>
     </div>
   </div>
 
   <div class="main-container">
 
-    <!-- COVER -->
+    <!-- STEP 2: COVER WITH HORIZONTAL SPLIT MERGE ANIMATION -->
     <div class="cover-card" id="coverCard">
-      <img src="1788794486275.png" alt="Wedding Cover" class="cover-img">
-      <div class="split-title-container">
-        <div class="split-title-left">Wathsala &nbsp;</div>
-        <div class="split-title-right">& Anuruddha</div>
+      <div class="cover-split-wrapper">
+        <div class="cover-half-left"></div>
+        <div class="cover-half-right"></div>
       </div>
-      <div class="save-date-subtitle">SAVE THE DATE • 04.12.2026</div>
+      <div style="font-family: 'Great Vibes', cursive; font-size: 36px; color: #b8860b; margin-top: 10px;">Wathsala & Anuruddha</div>
+      <div style="font-size: 10px; letter-spacing: 3px; font-weight: 600; color: #555;">SAVE THE DATE • 04.12.2026</div>
     </div>
 
-    <!-- INVITATION CARD -->
+    <!-- STEP 3: EXACT INVITATION CARD DESIGN -->
     <div class="invitation-card" id="invitationCard">
-      <svg class="vine-left" viewBox="0 0 100 200" fill="none" stroke="#b8860b" stroke-width="2"><path d="M10 10 Q 50 80 20 150 T 80 190 M 30 50 Q 70 40 50 70 M 20 110 Q 60 100 45 130"/></svg>
-      <svg class="vine-right" viewBox="0 0 100 200" fill="none" stroke="#b8860b" stroke-width="2"><path d="M10 10 Q 50 80 20 150 T 80 190 M 30 50 Q 70 40 50 70 M 20 110 Q 60 100 45 130"/></svg>
+      <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#b8860b"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
+      <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#b8860b"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
 
-      <div class="monogram-small">WA</div>
-      <div class="parents-header">
+      <div class="card-wa-wreath">WA</div>
+
+      <div class="parents-text">
         MR. & MRS. SARATH SENANAYAKE<br>
-        <span style="font-size: 8px; color: #888;">TOGETHER WITH</span><br>
+        <span style="font-size: 8px; color: #777;">TOGETHER WITH</span><br>
         MR. & MRS. AMARADASA VITHANAGE
       </div>
 
-      <p style="font-size: 9px; letter-spacing: 1px; color: #666; margin-top: 12px;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
+      <p style="font-size: 8.5px; letter-spacing: 1px; color: #666; margin-top: 10px;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
 
-      <div class="invited-guest-display">
-        <div class="guest-label-text">KINDLY INVITED</div>
-        <div class="guest-dynamic-name" id="guestNameMain">Guest Name</div>
+      <div class="guest-section">
+        <div class="guest-label">KINDLY INVITED</div>
+        <div class="guest-name" id="guestNameMain">Guest Name</div>
       </div>
 
-      <p style="font-size: 9px; letter-spacing: 1px; color: #666;">TO CELEBRATE THE WEDDING OF THEIR BELOVED CHILDREN</p>
-      <div class="couple-main-names">Wathsala & Anuruddha</div>
+      <p style="font-size: 8.5px; letter-spacing: 1px; color: #666;">TO CELEBRATE THE WEDDING OF THEIR BELOVED CHILDREN</p>
 
-      <div class="event-details-flex">
-        <div class="detail-col"><strong>DATE</strong>FRIDAY<br>04TH DEC 2026</div>
-        <div class="detail-col"><strong>VENUE</strong>SAMINRO PALACE<br>MAKOLA</div>
-        <div class="detail-col"><strong>TIME</strong>09.00 AM - 04.00 PM<br>(PORUWA 10.05 AM)</div>
+      <div class="couple-names">Wathsala & Anuruddha</div>
+
+      <div class="details-grid">
+        <div class="details-col"><strong>ON FRIDAY</strong>04TH DEC 2026</div>
+        <div class="details-col"><strong>AT VENUE</strong>SAMINRO GRAND PALACE<br>MAKOLA</div>
+        <div class="details-col"><strong>TIME</strong>09.00 AM TO 4.00 PM</div>
       </div>
 
-      <div style="font-size: 10px; font-weight: 600; color: #8b6508; margin-top: 8px;">
-        RSVP: ANURUDDHA - 0702661909
-      </div>
+      <p style="font-size: 9px; font-weight: 600; color: #b8860b;">(PORUWA CEREMONY AT 10.05 A.M.)</p>
+      <p style="font-size: 9px; color: #555; margin-top: 4px;">RSVP: ANURUDDHA - 0702661909</p>
     </div>
 
-    <!-- TIMER -->
+    <!-- SAVE CARD BUTTON -->
+    <button class="btn-action" onclick="saveCardAsImage()">💾 SAVE INVITATION CARD</button>
+
+    <!-- COUNTDOWN CLOCK -->
     <div class="timer-card">
       <div class="section-title">COUNTDOWN TO OUR BIG DAY</div>
       <div class="timer-flex">
@@ -174,51 +289,73 @@
       </div>
     </div>
 
-    <!-- TIMELINE -->
+    <!-- INTERACTIVE TIMELINE -->
     <div class="timeline-card">
       <div class="section-title">WEDDING TIMELINE</div>
-      <div class="timeline-node"><div class="timeline-time">09:00 AM</div><div class="timeline-info">Arrival of Guests</div></div>
-      <div class="timeline-node"><div class="timeline-time">10:05 AM</div><div class="timeline-info">Poruwa Ceremony</div></div>
-      <div class="timeline-node"><div class="timeline-time">12:30 PM</div><div class="timeline-info">Lunch & Celebrations</div></div>
-      <div class="timeline-node"><div class="timeline-time">04:00 PM</div><div class="timeline-info">Farewell</div></div>
+      <div class="timeline-wrapper" id="timelineWrapper">
+        <div class="timeline-line"></div>
+        <div class="timeline-item">
+          <div class="timeline-left">09:00 AM</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-right">Arrival of Guests</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">10:05 AM</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-right">Poruwa Ceremony</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">12:30 PM</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-right">Lunch & Celebrations</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">04:00 PM</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-right">Farewell</div>
+        </div>
+      </div>
     </div>
 
-    <!-- LOCATION MAP -->
-    <a href="https://maps.google.com/?q=Saminro+Grand+Palace+Makola" target="_blank" class="btn-action" style="margin-bottom: 25px;">
-      📍 VIEW LOCATION ON GOOGLE MAPS
-    </a>
+    <!-- LOCATION SECTION WITH UNNAMED IMAGE -->
+    <div class="location-card">
+      <div class="section-title">WEDDING VENUE</div>
+      <img src="unnamed (1).jpg" alt="Saminro Grand Palace" class="location-img">
+      <a href="https://maps.google.com/?q=Saminro+Grand+Palace+Makola" target="_blank" class="btn-action" style="margin-bottom:0;">
+        📍 OPEN IN GOOGLE MAPS
+      </a>
+    </div>
 
-    <!-- RSVP EMAIL FORM (FORMSPREE INTEGRATED) -->
+    <!-- RSVP EMAIL FORM -->
     <div class="rsvp-card">
       <div class="section-title">ATTENDANCE CONFIRMATION</div>
-      <!-- Formspree Endpoint එක පහත action="" එකට දමන්න -->
       <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
         <input type="text" name="Guest Name" id="rsvpInputName" class="rsvp-field" placeholder="Your Name" required>
         <select name="Attendance Status" class="rsvp-field" required>
           <option value="Attending">Will Attend</option>
           <option value="Not Attending">Sorry, Cannot Attend</option>
         </select>
-        <input type="number" name="Number of Guests" class="rsvp-field" placeholder="Number of Guests attending" min="1" max="5">
-        <button type="submit" class="btn-action" style="margin-top: 10px;">CONFIRM & SEND RSVP</button>
+        <input type="number" name="Guests Count" class="rsvp-field" placeholder="Number of Guests" min="1" max="5">
+        <button type="submit" class="btn-action" style="margin-top:10px; margin-bottom:0;">CONFIRM & SEND RSVP</button>
       </form>
     </div>
 
   </div>
 
   <script>
+    // 1. DYNAMIC GUEST NAME FROM URL
     function setGuestName() {
       const urlParams = new URLSearchParams(window.location.search);
       let guestName = urlParams.get('name');
       if (!guestName) { guestName = "Honoured Guest"; }
-
-      document.getElementById('guestNameReveal').innerText = guestName;
       document.getElementById('guestNameMain').innerText = guestName;
       document.getElementById('rsvpInputName').value = guestName;
     }
 
+    // 2. TRIGGER REVEAL & MUSIC
     function triggerReveal() {
       const overlay = document.getElementById('revealOverlay');
-      const seal = document.getElementById('sealCircle');
+      const seal = document.getElementById('waSeal');
       const cover = document.getElementById('coverCard');
       const music = document.getElementById('bgMusic');
 
@@ -231,33 +368,51 @@
         setTimeout(() => {
           overlay.style.visibility = 'hidden';
           cover.classList.add('merged');
-          startSoftPetals();
+          startContinuousPetals();
         }, 600);
       }, 600);
     }
 
-    function startSoftPetals() {
-      for (let i = 0; i < 12; i++) {
-        setTimeout(() => {
-          const petal = document.createElement('div');
-          petal.classList.add('petal');
-          petal.style.left = Math.random() * 100 + 'vw';
-          petal.style.width = Math.random() * 6 + 6 + 'px';
-          petal.style.height = Math.random() * 8 + 8 + 'px';
-          petal.style.animationDuration = Math.random() * 4 + 4 + 's';
-          document.body.appendChild(petal);
-          setTimeout(() => { petal.remove(); }, 8000);
-        }, i * 400);
-      }
+    // 3. CONTINUOUS SOFT PETALS FALLING
+    function startContinuousPetals() {
+      setInterval(() => {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.width = Math.random() * 6 + 6 + 'px';
+        petal.style.height = Math.random() * 8 + 8 + 'px';
+        petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+        document.body.appendChild(petal);
+
+        setTimeout(() => { petal.remove(); }, 7000);
+      }, 450);
     }
 
+    // 4. SCROLL REVEAL (PARTICLE FADE IN & TIMELINE)
     window.addEventListener('scroll', () => {
       const card = document.getElementById('invitationCard');
-      const cardPos = card.getBoundingClientRect().top;
-      const screenPos = window.innerHeight / 1.2;
-      if(cardPos < screenPos) { card.classList.add('reveal-active'); }
+      const timeline = document.getElementById('timelineWrapper');
+
+      if(card.getBoundingClientRect().top < window.innerHeight / 1.2) {
+        card.classList.add('reveal-active');
+      }
+      if(timeline.getBoundingClientRect().top < window.innerHeight / 1.2) {
+        timeline.classList.add('active');
+      }
     });
 
+    // 5. SAVE CARD AS IMAGE
+    function saveCardAsImage() {
+      const card = document.getElementById('invitationCard');
+      html2canvas(card).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'Wathsala_Anuruddha_Wedding_Card.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+
+    // 6. COUNTDOWN CLOCK
     const weddingDate = new Date("Dec 4, 2026 09:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
