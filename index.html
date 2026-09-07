@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
-  <!-- Elegant Cursive Font for Names -->
+  <title>Wedding Invitation - Wathsala & Anuruddha</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -14,214 +13,211 @@
     }
 
     body {
-      background: #111;
+      background: #0f0d0a;
+      color: #333;
       font-family: 'Montserrat', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
-      padding: 20px;
     }
 
-    /* STEP 1: Gold Envelope */
-    .envelope-container {
+    /* Background Audio Controls */
+    audio { display: none; }
+
+    /* --- STEP 1: ENVELOPE ANIMATION --- */
+    .envelope-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .envelope {
       position: relative;
       width: 320px;
       height: 220px;
       background: linear-gradient(135deg, #d4af37, #f3e5ab, #aa7c11);
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      border-radius: 8px;
+      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
       cursor: pointer;
-      z-index: 10;
-      transition: transform 0.5s ease;
+      perspective: 1000px;
     }
 
-    .envelope-container:hover {
-      transform: scale(1.03);
+    /* Flap Opening Upwards */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 120px solid #b8860b;
+      transform-origin: top;
+      transition: transform 0.8s ease;
+      z-index: 3;
     }
 
-    /* Wax Stamp */
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
     .wax-stamp {
+      position: absolute;
+      top: 55px;
+      left: 122px;
       width: 75px;
       height: 75px;
       background: radial-gradient(circle, #b30000, #660000);
       border-radius: 50%;
       border: 3px ridge #d4af37;
-      box-shadow: inset 0 0 8px #000, 0 4px 12px rgba(0,0,0,0.6);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       color: #ffd700;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 26px;
-      font-weight: bold;
       font-family: 'Great Vibes', cursive;
-      text-shadow: 1px 1px 2px #000;
+      z-index: 4;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
+      50% { transform: scale(1.06); }
       100% { transform: scale(1); }
     }
 
-    .click-text {
-      margin-top: 15px;
-      font-size: 13px;
-      color: #333;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    /* STEP 2: First Image View */
-    .image-view-container {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      max-width: 480px;
+    .envelope-text {
+      position: absolute;
+      bottom: 20px;
       width: 100%;
-      background: #faf8f5;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      border: 2px solid #d4af37;
       text-align: center;
-      animation: fadeIn 0.8s ease forwards;
-    }
-
-    .preview-img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
-
-    .see-invitation-btn {
-      background: linear-gradient(135deg, #b8860b, #d4af37);
-      color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-      transition: transform 0.3s ease, background 0.3s ease;
-      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
       letter-spacing: 1px;
     }
 
-    .see-invitation-btn:hover {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, #d4af37, #b8860b);
-    }
-
-    /* STEP 3: Final Invitation Card */
-    .card-container {
-      display: none;
-      position: relative;
+    /* --- MAIN CONTENT CONTAINER --- */
+    .main-container {
       width: 100%;
       max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px;
+    }
+
+    /* --- STEP 2: COVER PHOTO & SAVE THE DATE --- */
+    .cover-section {
+      width: 100%;
       background: #faf8f5;
-      padding: 40px 25px;
+      border: 2px solid #d4af37;
       border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-      border: 3px solid #d4af37;
+      padding: 20px;
       text-align: center;
-      color: #333;
-      animation: fadeIn 1s ease forwards;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .cover-img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .save-the-date-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 38px;
+      color: #b8860b;
+      margin-top: 15px;
+    }
+
+    .sub-save-text {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .scroll-btn {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #b8860b, #d4af37);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    /* --- STEP 3: MAIN INVITATION CARD --- */
+    .card-section {
+      position: relative;
+      width: 100%;
+      background: #faf8f5;
+      border: 3px solid #d4af37;
+      border-radius: 12px;
+      padding: 35px 20px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
       overflow: hidden;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Side Bloom Flowers Animation */
-    .flower-bloom-left, .flower-bloom-right {
+    /* Blooming Floral Side Animations */
+    .flower-left, .flower-right {
       position: absolute;
-      width: 100px;
+      width: 90px;
       opacity: 0;
-      transition: all 1.5s ease;
+      transition: all 1.8s ease;
       pointer-events: none;
     }
 
-    .flower-bloom-left {
-      top: 10px;
-      left: -50px;
-    }
+    .flower-left { top: 10px; left: -40px; }
+    .flower-right { bottom: 10px; right: -40px; }
 
-    .flower-bloom-right {
-      bottom: 10px;
-      right: -50px;
-    }
-
-    .card-container.active .flower-bloom-left {
-      opacity: 0.8;
-      left: -10px;
-    }
-
-    .card-container.active .flower-bloom-right {
-      opacity: 0.8;
-      right: -10px;
-    }
-
-    /* Logo WA */
-    .logo-container {
-      margin-bottom: 20px;
-    }
+    .card-section.visible .flower-left { opacity: 0.85; left: -5px; }
+    .card-section.visible .flower-right { opacity: 0.85; right: -5px; }
 
     .logo-wa {
       font-family: 'Great Vibes', cursive;
-      font-size: 45px;
+      font-size: 40px;
       color: #b8860b;
       border: 2px solid #b8860b;
       border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      line-height: 75px;
-      margin: 0 auto;
-      box-shadow: 0 0 10px rgba(184, 134, 11, 0.2);
+      width: 70px;
+      height: 70px;
+      line-height: 65px;
+      margin: 0 auto 15px auto;
     }
 
-    /* Text Formatting */
     .parents-text {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      color: #555;
-      letter-spacing: 1px;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-    }
-
-    .sub-text {
-      font-size: 11px;
-      color: #777;
-      margin-bottom: 15px;
+      color: #444;
       letter-spacing: 1px;
     }
 
-    /* Guest Name Section */
-    .guest-section {
-      margin: 20px 0;
+    .guest-box {
+      margin: 15px 0;
       padding: 10px;
       background: #f3efe6;
-      border-radius: 6px;
       border: 1px dashed #d4af37;
-    }
-
-    .guest-title {
-      font-size: 11px;
-      font-weight: bold;
-      color: #8b6508;
-      letter-spacing: 1px;
+      border-radius: 6px;
     }
 
     .guest-input {
@@ -229,95 +225,136 @@
       border-bottom: 2px solid #b8860b;
       background: transparent;
       text-align: center;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
-      color: #222;
-      width: 80%;
-      padding: 5px;
-      margin-top: 5px;
+      width: 85%;
       outline: none;
-      font-family: 'Montserrat', sans-serif;
     }
 
-    /* Couple Names in Gold Cursive */
     .couple-names {
       font-family: 'Great Vibes', cursive;
-      font-size: 48px;
+      font-size: 46px;
       color: #b8860b;
-      margin: 25px 0 15px 0;
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+      margin: 20px 0;
     }
 
-    /* Details Grid */
     .details-grid {
       display: flex;
       justify-content: space-around;
-      align-items: center;
       border-top: 1px solid #ddd;
       border-bottom: 1px solid #ddd;
-      padding: 15px 0;
-      margin: 20px 0;
-      font-size: 12px;
+      padding: 12px 0;
+      margin: 15px 0;
+      font-size: 11px;
     }
 
-    .details-col {
-      flex: 1;
-      padding: 0 5px;
+    .details-col { flex: 1; }
+    .details-col:not(:last-child) { border-right: 1px solid #ddd; }
+
+    /* --- STEP 4: COUNTDOWN CLOCK --- */
+    .timer-section {
+      width: 100%;
+      background: #1a1713;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .details-col:not(:last-child) {
-      border-right: 1px solid #ddd;
+    .timer-grid {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
     }
 
-    .detail-head {
+    .timer-block span {
+      font-size: 22px;
       font-weight: bold;
-      color: #8b6508;
-      margin-bottom: 3px;
+      display: block;
+      color: #fff;
     }
 
-    .venue-name {
-      font-weight: bold;
-      font-size: 13px;
-      color: #222;
+    .timer-block label { font-size: 10px; text-transform: uppercase; }
+
+    /* --- STEP 5: WEDDING TIMELINE --- */
+    .timeline-section {
+      width: 100%;
+      background: #faf8f5;
+      border-radius: 12px;
+      padding: 25px;
+      border: 2px solid #d4af37;
+      margin-bottom: 30px;
     }
 
-    /* QR & Footer */
-    .qr-placeholder {
-      width: 70px;
-      height: 70px;
-      background: #eee;
-      margin: 10px auto;
-      border: 1px solid #ccc;
+    .timeline-title {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      color: #b8860b;
+      margin-bottom: 20px;
+    }
+
+    .timeline-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: #666;
+      margin-bottom: 15px;
     }
 
-    .footer-text {
-      font-size: 11px;
-      color: #555;
-      margin-top: 10px;
-    }
-
-    .rsvp-text {
-      font-size: 11px;
+    .timeline-time {
       font-weight: bold;
-      color: #8b6508;
-      margin-top: 5px;
+      color: #b8860b;
+      width: 90px;
+      font-size: 13px;
     }
 
-    /* Falling Yellow Petals */
+    .timeline-desc {
+      font-size: 13px;
+      color: #444;
+    }
+
+    /* --- STEP 6: LOCATION & RSVP --- */
+    .location-btn {
+      width: 100%;
+      background: #b8860b;
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .rsvp-section {
+      width: 100%;
+      background: #faf8f5;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .rsvp-input, .rsvp-select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Falling Yellow Petals Effect */
     .petal {
       position: fixed;
       top: -10px;
       background-color: #ffd700;
-      border-radius: 12px 0 12px 0;
+      border-radius: 10px 0 10px 0;
       opacity: 0.8;
       pointer-events: none;
       animation: fall linear infinite;
-      z-index: 100;
+      z-index: 999;
     }
 
     @keyframes fall {
@@ -328,108 +365,158 @@
 </head>
 <body>
 
+  <!-- Audio Linked to your MP3 file -->
+  <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
+
   <!-- STEP 1: Gold Envelope -->
-  <div class="envelope-container" id="envelope" onclick="showImageStep()">
-    <div class="wax-stamp">WA</div>
-    <div class="click-text">CLICK THE STAMP TO OPEN</div>
+  <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+      <div class="envelope-flap"></div>
+      <div class="wax-stamp">WA</div>
+      <div class="envelope-text">CLICK TO OPEN INVITATION</div>
+    </div>
   </div>
 
-  <!-- STEP 2: Show Image with 'See the Invitation' Button -->
-  <div class="image-view-container" id="imageView">
-    <img src="1788720805080.png" alt="Wedding Cover Image" class="preview-img">
-    <button class="see-invitation-btn" onclick="showCardStep()">SEE THE INVITATION</button>
-  </div>
+  <!-- MAIN SCROLLABLE CONTENT -->
+  <div class="main-container">
 
-  <!-- STEP 3: Final Invitation Card -->
-  <div class="card-container" id="card">
-    
-    <!-- Side Blooming Flowers -->
-    <svg class="flower-bloom-left" viewBox="0 0 100 100" fill="#d4af37">
-      <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
-    </svg>
-    <svg class="flower-bloom-right" viewBox="0 0 100 100" fill="#d4af37">
-      <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
-    </svg>
+    <!-- STEP 2: Cover Image Linked to your new PNG -->
+    <div class="cover-section">
+      <img src="1788794486275.png" alt="Wedding Cover" class="cover-img">
+      <div class="save-the-date-title">Wathsala & Anuruddha</div>
+      <div class="sub-save-text">SAVE THE DATE</div>
+      <p style="font-size: 13px; color: #777; margin-top: 5px;">DECEMBER 04, 2026</p>
+      <button class="scroll-btn" onclick="scrollToCard()">SEE THE INVITATION</button>
+    </div>
 
-    <!-- Logo -->
-    <div class="logo-container">
+    <!-- STEP 3: Main Invitation Card -->
+    <div class="card-section" id="invitationCard">
+      <!-- Side Bloom Flowers -->
+      <svg class="flower-left" viewBox="0 0 100 100" fill="#d4af37">
+        <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
+      </svg>
+      <svg class="flower-right" viewBox="0 0 100 100" fill="#d4af37">
+        <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
+      </svg>
+
       <div class="logo-wa">WA</div>
-    </div>
 
-    <!-- Invitation Details -->
-    <div class="parents-text">MR. & MRS. SARATH SENANAYAKE</div>
-    <div class="sub-text">TOGETHER WITH</div>
-    <div class="parents-text">MR. & MRS. AMARADASA VITHANAGE</div>
+      <div class="parents-text">MR. & MRS. SARATH SENANAYAKE</div>
+      <div style="font-size: 10px; color: #777; margin: 3px 0;">TOGETHER WITH</div>
+      <div class="parents-text">MR. & MRS. AMARADASA VITHANAGE</div>
 
-    <p style="font-size: 11px; margin: 15px 0 5px 0; color: #555;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
+      <p style="font-size: 10px; margin-top: 12px; color: #666;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
 
-    <!-- Guest Name Input (Dynamic) -->
-    <div class="guest-section">
-      <div class="guest-title">MR. & MRS. / MISS. / FAMILY</div>
-      <input type="text" class="guest-input" placeholder="Type Guest Name Here..." id="guestName">
-    </div>
-
-    <p style="font-size: 11px; color: #555; margin-top: 15px;">TO GRACE THE OCCASION OF THE MARRIAGE OF THEIR BELOVED CHILDREN</p>
-
-    <!-- Couple Names in Gold Cursive -->
-    <div class="couple-names">Wathsala & Anuruddha</div>
-
-    <!-- Date, Venue, Time -->
-    <div class="details-grid">
-      <div class="details-col">
-        <div class="detail-head">ON</div>
-        <div style="font-weight: bold; font-size: 13px;">FRIDAY</div>
-        <div style="font-size: 18px; font-weight: bold; color: #b8860b;">04TH</div>
-        <div style="font-size: 10px;">DECEMBER 2026</div>
-      </div>
-      
-      <div class="details-col">
-        <div class="detail-head">AT</div>
-        <div class="venue-name">SAMINRO GRAND PALACE</div>
-        <div style="font-size: 10px; color: #666;">MAKOLA NORTH, MAKOLA</div>
+      <div class="guest-box">
+        <div style="font-size: 10px; font-weight: bold; color: #8b6508;">MR. & MRS. / MISS. / FAMILY</div>
+        <input type="text" class="guest-input" placeholder="Guest Name Here">
       </div>
 
-      <div class="details-col">
-        <div class="detail-head">FROM</div>
-        <div style="font-weight: bold;">09.00 A.M.</div>
-        <div class="detail-head" style="margin-top: 5px;">TO</div>
-        <div style="font-weight: bold;">4.00 P.M.</div>
+      <p style="font-size: 10px; color: #666;">TO GRACE THE OCCASION OF THE MARRIAGE OF THEIR BELOVED CHILDREN</p>
+
+      <div class="couple-names">Wathsala & Anuruddha</div>
+
+      <div class="details-grid">
+        <div class="details-col">
+          <div style="color: #8b6508; font-weight: bold;">ON</div>
+          <div>FRIDAY</div>
+          <div style="font-size: 16px; font-weight: bold; color: #b8860b;">04TH</div>
+          <div>DECEMBER 2026</div>
+        </div>
+        <div class="details-col">
+          <div style="color: #8b6508; font-weight: bold;">AT</div>
+          <div style="font-weight: bold;">SAMINRO GRAND PALACE</div>
+          <div style="font-size: 9px; color: #666;">MAKOLA NORTH, MAKOLA</div>
+        </div>
+        <div class="details-col">
+          <div style="color: #8b6508; font-weight: bold;">FROM</div>
+          <div>09.00 A.M.</div>
+          <div style="color: #8b6508; font-weight: bold;">TO</div>
+          <div>4.00 P.M.</div>
+        </div>
+      </div>
+
+      <div style="font-size: 10px; color: #555; margin-top: 10px;">(PORUWA CEREMONY AT 10.05 A.M.)</div>
+      <div style="font-size: 11px; font-weight: bold; color: #8b6508; margin-top: 5px;">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
+    </div>
+
+    <!-- STEP 4: Live Countdown Clock -->
+    <div class="timer-section">
+      <div style="font-family: 'Cinzel', serif; font-size: 16px;">COUNTDOWN TO OUR BIG DAY</div>
+      <div class="timer-grid">
+        <div class="timer-block"><span id="days">00</span><label>Days</label></div>
+        <div class="timer-block"><span id="hours">00</span><label>Hours</label></div>
+        <div class="timer-block"><span id="minutes">00</span><label>Mins</label></div>
+        <div class="timer-block"><span id="seconds">00</span><label>Secs</label></div>
       </div>
     </div>
 
-    <!-- QR Placeholder & Footer -->
-    <div class="qr-placeholder">
-      [ QR CODE ]
+    <!-- STEP 5: Wedding Timeline -->
+    <div class="timeline-section">
+      <div class="timeline-title">WEDDING PROGRAM</div>
+      <div class="timeline-item">
+        <div class="timeline-time">09.00 AM</div>
+        <div class="timeline-desc">Arrival of Guests</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10.05 AM</div>
+        <div class="timeline-desc">Poruwa Ceremony</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12.30 PM</div>
+        <div class="timeline-desc">Lunch & Celebrations</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">04.00 PM</div>
+        <div class="timeline-desc">Farewell</div>
+      </div>
     </div>
 
-    <div class="footer-text">(PORUWA CEREMONY AT 10.05 A.M.)</div>
-    <div class="rsvp-text">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
+    <!-- STEP 6: Hotel Location Link -->
+    <a href="https://maps.google.com/?q=Saminro+Grand+Palace+Makola" target="_blank" class="location-btn">
+      📍 VIEW HOTEL LOCATION ON GOOGLE MAPS
+    </a>
+
+    <!-- STEP 7: RSVP Attendance Form -->
+    <div class="rsvp-section">
+      <div style="font-family: 'Cinzel', serif; font-size: 16px; color: #b8860b; margin-bottom: 10px;">ATTENDANCE CONFIRMATION</div>
+      <input type="text" class="rsvp-input" placeholder="Your Name">
+      <select class="rsvp-select">
+        <option>Will Attend</option>
+        <option>Sorry, Cannot Attend</option>
+      </select>
+      <button class="scroll-btn" style="width: 100%; margin-top: 10px;" onclick="alert('Thank you for confirming!')">SUBMIT</button>
+    </div>
 
   </div>
 
   <script>
-    // Step 1 -> Step 2
-    function showImageStep() {
-      document.getElementById('envelope').style.display = 'none';
-      document.getElementById('imageView').style.display = 'flex';
-    }
+    // Open Envelope & Play Music Action
+    function openEnvelope() {
+      const env = document.getElementById('envelope');
+      env.classList.add('open');
+      
+      const audio = document.getElementById('bgMusic');
+      if(audio) { audio.play().catch(()=>{}); }
 
-    // Step 2 -> Step 3
-    function showCardStep() {
-      document.getElementById('imageView').style.display = 'none';
-      const card = document.getElementById('card');
-      card.style.display = 'block';
       setTimeout(() => {
-        card.classList.add('active');
-      }, 100);
-
-      // Start falling yellow petals animation
-      createPetals();
+        document.getElementById('envelopeWrapper').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('envelopeWrapper').style.visibility = 'hidden';
+          document.getElementById('invitationCard').classList.add('visible');
+          startPetals();
+        }, 800);
+      }, 700);
     }
 
-    // Falling Yellow Petals Logic
-    function createPetals() {
-      for (let i = 0; i < 30; i++) {
+    // Scroll to Card
+    function scrollToCard() {
+      document.getElementById('invitationCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Falling Yellow Petals Animation
+    function startPetals() {
+      for (let i = 0; i < 25; i++) {
         setTimeout(() => {
           const petal = document.createElement('div');
           petal.classList.add('petal');
@@ -442,8 +529,22 @@
           setTimeout(() => { petal.remove(); }, 6000);
         }, i * 200);
       }
-      setInterval(createPetals, 6000);
+      setInterval(startPetals, 6000);
     }
+
+    // Live Countdown Timer
+    const weddingDate = new Date("Dec 4, 2026 09:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance > 0) {
+        document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+      }
+    }, 1000);
   </script>
 
 </body>
