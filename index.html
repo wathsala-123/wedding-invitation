@@ -13,7 +13,7 @@
     }
 
     body {
-      background: #0f0d0a;
+      background: #fbf9f5;
       color: #333;
       font-family: 'Montserrat', sans-serif;
       display: flex;
@@ -23,7 +23,6 @@
       overflow-x: hidden;
     }
 
-    /* Background Audio Controls */
     audio { display: none; }
 
     /* --- STEP 1: ENVELOPE ANIMATION --- */
@@ -49,10 +48,8 @@
       border-radius: 8px;
       box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
       cursor: pointer;
-      perspective: 1000px;
     }
 
-    /* Flap Opening Upwards */
     .envelope-flap {
       position: absolute;
       top: 0;
@@ -88,13 +85,6 @@
       font-size: 26px;
       font-family: 'Great Vibes', cursive;
       z-index: 4;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-      100% { transform: scale(1); }
     }
 
     .envelope-text {
@@ -108,7 +98,7 @@
       letter-spacing: 1px;
     }
 
-    /* --- MAIN CONTENT CONTAINER --- */
+    /* --- MAIN CONTAINER WITH SOFT BACKGROUND --- */
     .main-container {
       width: 100%;
       max-width: 500px;
@@ -116,25 +106,25 @@
       flex-direction: column;
       align-items: center;
       padding: 20px 15px;
+      position: relative;
     }
 
-    /* --- STEP 2: COVER PHOTO & SAVE THE DATE --- */
+    /* --- STEP 2: COVER PHOTO --- */
     .cover-section {
       width: 100%;
-      background: #faf8f5;
+      background: rgba(255, 255, 255, 0.95);
       border: 2px solid #d4af37;
       border-radius: 12px;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
       margin-bottom: 30px;
-      position: relative;
     }
 
     .cover-img {
       width: 100%;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .save-the-date-title {
@@ -164,49 +154,49 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     }
 
-    /* --- STEP 3: MAIN INVITATION CARD --- */
+    /* --- STEP 3: MAIN INVITATION CARD (CLEAN & HD) --- */
     .card-section {
       position: relative;
       width: 100%;
-      background: #faf8f5;
+      background: rgba(255, 255, 255, 0.98);
       border: 3px solid #d4af37;
       border-radius: 12px;
       padding: 35px 20px;
       text-align: center;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
       margin-bottom: 30px;
       overflow: hidden;
     }
 
-    /* Blooming Floral Side Animations */
+    /* Blooming Floral Side Animations (Subtle & Clean) */
     .flower-left, .flower-right {
       position: absolute;
-      width: 90px;
+      width: 70px;
       opacity: 0;
-      transition: all 1.8s ease;
+      transition: all 1.5s ease;
       pointer-events: none;
     }
 
-    .flower-left { top: 10px; left: -40px; }
-    .flower-right { bottom: 10px; right: -40px; }
+    .flower-left { top: 15px; left: -50px; transform: rotate(-20deg); }
+    .flower-right { bottom: 15px; right: -50px; transform: rotate(160deg); }
 
-    .card-section.visible .flower-left { opacity: 0.85; left: -5px; }
-    .card-section.visible .flower-right { opacity: 0.85; right: -5px; }
+    .card-section.visible .flower-left { opacity: 0.9; left: -10px; }
+    .card-section.visible .flower-right { opacity: 0.9; right: -10px; }
 
     .logo-wa {
       font-family: 'Great Vibes', cursive;
-      font-size: 40px;
+      font-size: 36px;
       color: #b8860b;
       border: 2px solid #b8860b;
       border-radius: 50%;
-      width: 70px;
-      height: 70px;
-      line-height: 65px;
+      width: 65px;
+      height: 65px;
+      line-height: 60px;
       margin: 0 auto 15px auto;
     }
 
     .parents-text {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: #444;
       letter-spacing: 1px;
@@ -215,7 +205,7 @@
     .guest-box {
       margin: 15px 0;
       padding: 10px;
-      background: #f3efe6;
+      background: #fbf9f5;
       border: 1px dashed #d4af37;
       border-radius: 6px;
     }
@@ -233,23 +223,23 @@
 
     .couple-names {
       font-family: 'Great Vibes', cursive;
-      font-size: 46px;
+      font-size: 44px;
       color: #b8860b;
-      margin: 20px 0;
+      margin: 15px 0;
     }
 
     .details-grid {
       display: flex;
       justify-content: space-around;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
       padding: 12px 0;
       margin: 15px 0;
       font-size: 11px;
     }
 
     .details-col { flex: 1; }
-    .details-col:not(:last-child) { border-right: 1px solid #ddd; }
+    .details-col:not(:last-child) { border-right: 1px solid #eee; }
 
     /* --- STEP 4: COUNTDOWN CLOCK --- */
     .timer-section {
@@ -261,6 +251,7 @@
       padding: 20px;
       text-align: center;
       margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     .timer-grid {
@@ -281,11 +272,12 @@
     /* --- STEP 5: WEDDING TIMELINE --- */
     .timeline-section {
       width: 100%;
-      background: #faf8f5;
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 12px;
       padding: 25px;
       border: 2px solid #d4af37;
       margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     .timeline-title {
@@ -329,12 +321,13 @@
 
     .rsvp-section {
       width: 100%;
-      background: #faf8f5;
+      background: rgba(255, 255, 255, 0.95);
       border: 2px solid #d4af37;
       border-radius: 12px;
       padding: 20px;
       text-align: center;
       margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     .rsvp-input, .rsvp-select {
@@ -344,31 +337,14 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-
-    /* Falling Yellow Petals Effect */
-    .petal {
-      position: fixed;
-      top: -10px;
-      background-color: #ffd700;
-      border-radius: 10px 0 10px 0;
-      opacity: 0.8;
-      pointer-events: none;
-      animation: fall linear infinite;
-      z-index: 999;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
-      100% { transform: translateY(105vh) rotate(360deg); opacity: 0.1; }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Audio Linked to your MP3 file -->
+  <!-- Audio -->
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- STEP 1: Gold Envelope -->
+  <!-- Envelope -->
   <div class="envelope-wrapper" id="envelopeWrapper">
     <div class="envelope" id="envelope" onclick="openEnvelope()">
       <div class="envelope-flap"></div>
@@ -377,10 +353,10 @@
     </div>
   </div>
 
-  <!-- MAIN SCROLLABLE CONTENT -->
+  <!-- Main Container -->
   <div class="main-container">
 
-    <!-- STEP 2: Cover Image Linked to your new PNG -->
+    <!-- Cover Section -->
     <div class="cover-section">
       <img src="1788794486275.png" alt="Wedding Cover" class="cover-img">
       <div class="save-the-date-title">Wathsala & Anuruddha</div>
@@ -389,9 +365,9 @@
       <button class="scroll-btn" onclick="scrollToCard()">SEE THE INVITATION</button>
     </div>
 
-    <!-- STEP 3: Main Invitation Card -->
+    <!-- Main Card -->
     <div class="card-section" id="invitationCard">
-      <!-- Side Bloom Flowers -->
+      <!-- Clean Side Blooming Flowers -->
       <svg class="flower-left" viewBox="0 0 100 100" fill="#d4af37">
         <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
       </svg>
@@ -420,7 +396,7 @@
         <div class="details-col">
           <div style="color: #8b6508; font-weight: bold;">ON</div>
           <div>FRIDAY</div>
-          <div style="font-size: 16px; font-weight: bold; color: #b8860b;">04TH</div>
+          <div style="font-size: 15px; font-weight: bold; color: #b8860b;">04TH</div>
           <div>DECEMBER 2026</div>
         </div>
         <div class="details-col">
@@ -440,9 +416,9 @@
       <div style="font-size: 11px; font-weight: bold; color: #8b6508; margin-top: 5px;">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
     </div>
 
-    <!-- STEP 4: Live Countdown Clock -->
+    <!-- Countdown -->
     <div class="timer-section">
-      <div style="font-family: 'Cinzel', serif; font-size: 16px;">COUNTDOWN TO OUR BIG DAY</div>
+      <div style="font-family: 'Cinzel', serif; font-size: 15px;">COUNTDOWN TO OUR BIG DAY</div>
       <div class="timer-grid">
         <div class="timer-block"><span id="days">00</span><label>Days</label></div>
         <div class="timer-block"><span id="hours">00</span><label>Hours</label></div>
@@ -451,7 +427,7 @@
       </div>
     </div>
 
-    <!-- STEP 5: Wedding Timeline -->
+    <!-- Timeline -->
     <div class="timeline-section">
       <div class="timeline-title">WEDDING PROGRAM</div>
       <div class="timeline-item">
@@ -472,14 +448,14 @@
       </div>
     </div>
 
-    <!-- STEP 6: Hotel Location Link -->
+    <!-- Location -->
     <a href="https://maps.google.com/?q=Saminro+Grand+Palace+Makola" target="_blank" class="location-btn">
       📍 VIEW HOTEL LOCATION ON GOOGLE MAPS
     </a>
 
-    <!-- STEP 7: RSVP Attendance Form -->
+    <!-- RSVP -->
     <div class="rsvp-section">
-      <div style="font-family: 'Cinzel', serif; font-size: 16px; color: #b8860b; margin-bottom: 10px;">ATTENDANCE CONFIRMATION</div>
+      <div style="font-family: 'Cinzel', serif; font-size: 15px; color: #b8860b; margin-bottom: 10px;">ATTENDANCE CONFIRMATION</div>
       <input type="text" class="rsvp-input" placeholder="Your Name">
       <select class="rsvp-select">
         <option>Will Attend</option>
@@ -491,7 +467,6 @@
   </div>
 
   <script>
-    // Open Envelope & Play Music Action
     function openEnvelope() {
       const env = document.getElementById('envelope');
       env.classList.add('open');
@@ -504,35 +479,14 @@
         setTimeout(() => {
           document.getElementById('envelopeWrapper').style.visibility = 'hidden';
           document.getElementById('invitationCard').classList.add('visible');
-          startPetals();
         }, 800);
       }, 700);
     }
 
-    // Scroll to Card
     function scrollToCard() {
       document.getElementById('invitationCard').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Falling Yellow Petals Animation
-    function startPetals() {
-      for (let i = 0; i < 25; i++) {
-        setTimeout(() => {
-          const petal = document.createElement('div');
-          petal.classList.add('petal');
-          petal.style.left = Math.random() * 100 + 'vw';
-          petal.style.width = Math.random() * 8 + 8 + 'px';
-          petal.style.height = Math.random() * 10 + 12 + 'px';
-          petal.style.animationDuration = Math.random() * 3 + 3 + 's';
-          document.body.appendChild(petal);
-
-          setTimeout(() => { petal.remove(); }, 6000);
-        }, i * 200);
-      }
-      setInterval(startPetals, 6000);
-    }
-
-    // Live Countdown Timer
     const weddingDate = new Date("Dec 4, 2026 09:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
