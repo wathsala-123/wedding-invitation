@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="si">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Invitation</title>
+  <!-- Elegant Cursive Font for Names -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -12,122 +14,306 @@
     }
 
     body {
-      background: #fdfbf7;
-      font-family: 'Georgia', serif;
+      background: #111;
+      font-family: 'Montserrat', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
+      padding: 20px;
     }
 
-    /* Envelope Styling */
+    /* STEP 1: Gold Envelope */
     .envelope-container {
       position: relative;
       width: 320px;
       height: 220px;
       background: linear-gradient(135deg, #d4af37, #f3e5ab, #aa7c11);
       border-radius: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: transform 0.5s ease, opacity 0.5s ease;
       z-index: 10;
+      transition: transform 0.5s ease;
     }
 
-    /* Wax Stamp Styling */
+    .envelope-container:hover {
+      transform: scale(1.03);
+    }
+
+    /* Wax Stamp */
     .wax-stamp {
-      width: 70px;
-      height: 70px;
-      background: radial-gradient(circle, #b30000, #800000);
+      width: 75px;
+      height: 75px;
+      background: radial-gradient(circle, #b30000, #660000);
       border-radius: 50%;
       border: 3px ridge #d4af37;
-      box-shadow: inset 0 0 8px #000, 0 4px 10px rgba(0,0,0,0.5);
+      box-shadow: inset 0 0 8px #000, 0 4px 12px rgba(0,0,0,0.6);
       color: #ffd700;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
-      font-family: 'Times New Roman', serif;
-      letter-spacing: 2px;
+      font-family: 'Great Vibes', cursive;
       text-shadow: 1px 1px 2px #000;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      50% { transform: scale(1.08); }
       100% { transform: scale(1); }
     }
 
-    .click-instruction {
-      position: absolute;
-      bottom: -30px;
-      font-size: 14px;
-      color: #555;
+    .click-text {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #333;
+      font-weight: 600;
       letter-spacing: 1px;
     }
 
-    /* Card Content Container */
-    .card-container {
+    /* STEP 2: First Image View */
+    .image-view-container {
       display: none;
       flex-direction: column;
       align-items: center;
-      max-width: 600px;
-      width: 90%;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      border: 2px solid #d4af37;
-      position: relative;
-      animation: fadeIn 1s forwards;
-      z-index: 5;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Uploaded Image */
-    .invitation-img {
+      max-width: 480px;
       width: 100%;
-      max-width: 450px;
+      background: #faf8f5;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 2px solid #d4af37;
+      text-align: center;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .preview-img {
+      width: 100%;
       height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       margin-bottom: 20px;
     }
 
-    /* Side Floral Bloom Animations */
-    .floral-left, .floral-right {
+    .see-invitation-btn {
+      background: linear-gradient(135deg, #b8860b, #d4af37);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .see-invitation-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+    }
+
+    /* STEP 3: Final Invitation Card */
+    .card-container {
+      display: none;
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      background: #faf8f5;
+      padding: 40px 25px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      border: 3px solid #d4af37;
+      text-align: center;
+      color: #333;
+      animation: fadeIn 1s ease forwards;
+      overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Side Bloom Flowers Animation */
+    .flower-bloom-left, .flower-bloom-right {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%) scale(0);
-      font-size: 40px;
-      transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+      width: 100px;
+      opacity: 0;
+      transition: all 1.5s ease;
       pointer-events: none;
     }
 
-    .floral-left { left: -30px; }
-    .floral-right { right: -30px; }
+    .flower-bloom-left {
+      top: 10px;
+      left: -50px;
+    }
 
-    .card-container.active .floral-left,
-    .card-container.active .floral-right {
-      transform: translateY(-50%) scale(1);
+    .flower-bloom-right {
+      bottom: 10px;
+      right: -50px;
+    }
+
+    .card-container.active .flower-bloom-left {
+      opacity: 0.8;
+      left: -10px;
+    }
+
+    .card-container.active .flower-bloom-right {
+      opacity: 0.8;
+      right: -10px;
+    }
+
+    /* Logo WA */
+    .logo-container {
+      margin-bottom: 20px;
+    }
+
+    .logo-wa {
+      font-family: 'Great Vibes', cursive;
+      font-size: 45px;
+      color: #b8860b;
+      border: 2px solid #b8860b;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      line-height: 75px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(184, 134, 11, 0.2);
+    }
+
+    /* Text Formatting */
+    .parents-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .sub-text {
+      font-size: 11px;
+      color: #777;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    /* Guest Name Section */
+    .guest-section {
+      margin: 20px 0;
+      padding: 10px;
+      background: #f3efe6;
+      border-radius: 6px;
+      border: 1px dashed #d4af37;
+    }
+
+    .guest-title {
+      font-size: 11px;
+      font-weight: bold;
+      color: #8b6508;
+      letter-spacing: 1px;
+    }
+
+    .guest-input {
+      border: none;
+      border-bottom: 2px solid #b8860b;
+      background: transparent;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: #222;
+      width: 80%;
+      padding: 5px;
+      margin-top: 5px;
+      outline: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Couple Names in Gold Cursive */
+    .couple-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: #b8860b;
+      margin: 25px 0 15px 0;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    }
+
+    /* Details Grid */
+    .details-grid {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      margin: 20px 0;
+      font-size: 12px;
+    }
+
+    .details-col {
+      flex: 1;
+      padding: 0 5px;
+    }
+
+    .details-col:not(:last-child) {
+      border-right: 1px solid #ddd;
+    }
+
+    .detail-head {
+      font-weight: bold;
+      color: #8b6508;
+      margin-bottom: 3px;
+    }
+
+    .venue-name {
+      font-weight: bold;
+      font-size: 13px;
+      color: #222;
+    }
+
+    /* QR & Footer */
+    .qr-placeholder {
+      width: 70px;
+      height: 70px;
+      background: #eee;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #666;
+    }
+
+    .footer-text {
+      font-size: 11px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .rsvp-text {
+      font-size: 11px;
+      font-weight: bold;
+      color: #8b6508;
+      margin-top: 5px;
     }
 
     /* Falling Yellow Petals */
     .petal {
       position: fixed;
       top: -10px;
-      background-color: #ffe135;
-      border-radius: 15px 0 15px 0;
+      background-color: #ffd700;
+      border-radius: 12px 0 12px 0;
       opacity: 0.8;
       pointer-events: none;
       animation: fall linear infinite;
@@ -135,70 +321,127 @@
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.9;
-      }
-      100% {
-        transform: translateY(105vh) rotate(360deg);
-        opacity: 0.2;
-      }
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(105vh) rotate(360deg); opacity: 0.1; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Envelope with Wax Stamp -->
-  <div class="envelope-container" id="envelope" onclick="openInvitation()">
+  <!-- STEP 1: Gold Envelope -->
+  <div class="envelope-container" id="envelope" onclick="showImageStep()">
     <div class="wax-stamp">WA</div>
-    <div class="click-instruction">Click the stamp to open</div>
+    <div class="click-text">CLICK THE STAMP TO OPEN</div>
   </div>
 
-  <!-- Main Card Section -->
+  <!-- STEP 2: Show Image with 'See the Invitation' Button -->
+  <div class="image-view-container" id="imageView">
+    <img src="1788720805080.png" alt="Wedding Cover Image" class="preview-img">
+    <button class="see-invitation-btn" onclick="showCardStep()">SEE THE INVITATION</button>
+  </div>
+
+  <!-- STEP 3: Final Invitation Card -->
   <div class="card-container" id="card">
-    <div class="floral-left">🌸🌿</div>
-    <div class="floral-right">🌿🌸</div>
+    
+    <!-- Side Blooming Flowers -->
+    <svg class="flower-bloom-left" viewBox="0 0 100 100" fill="#d4af37">
+      <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
+    </svg>
+    <svg class="flower-bloom-right" viewBox="0 0 100 100" fill="#d4af37">
+      <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
+    </svg>
 
-    <!-- Image Uploaded on GitHub -->
-    <img src="1788720805080.png" alt="Wedding Image" class="invitation-img">
+    <!-- Logo -->
+    <div class="logo-container">
+      <div class="logo-wa">WA</div>
+    </div>
 
-    <h2 style="color: #b30000; margin-top: 10px;">See the Invitation</h2>
-    <p style="color: #666; font-size: 14px; margin-top: 5px;">We warmly invite you to join our special day!</p>
+    <!-- Invitation Details -->
+    <div class="parents-text">MR. & MRS. SARATH SENANAYAKE</div>
+    <div class="sub-text">TOGETHER WITH</div>
+    <div class="parents-text">MR. & MRS. AMARADASA VITHANAGE</div>
+
+    <p style="font-size: 11px; margin: 15px 0 5px 0; color: #555;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
+
+    <!-- Guest Name Input (Dynamic) -->
+    <div class="guest-section">
+      <div class="guest-title">MR. & MRS. / MISS. / FAMILY</div>
+      <input type="text" class="guest-input" placeholder="Type Guest Name Here..." id="guestName">
+    </div>
+
+    <p style="font-size: 11px; color: #555; margin-top: 15px;">TO GRACE THE OCCASION OF THE MARRIAGE OF THEIR BELOVED CHILDREN</p>
+
+    <!-- Couple Names in Gold Cursive -->
+    <div class="couple-names">Wathsala & Anuruddha</div>
+
+    <!-- Date, Venue, Time -->
+    <div class="details-grid">
+      <div class="details-col">
+        <div class="detail-head">ON</div>
+        <div style="font-weight: bold; font-size: 13px;">FRIDAY</div>
+        <div style="font-size: 18px; font-weight: bold; color: #b8860b;">04TH</div>
+        <div style="font-size: 10px;">DECEMBER 2026</div>
+      </div>
+      
+      <div class="details-col">
+        <div class="detail-head">AT</div>
+        <div class="venue-name">SAMINRO GRAND PALACE</div>
+        <div style="font-size: 10px; color: #666;">MAKOLA NORTH, MAKOLA</div>
+      </div>
+
+      <div class="details-col">
+        <div class="detail-head">FROM</div>
+        <div style="font-weight: bold;">09.00 A.M.</div>
+        <div class="detail-head" style="margin-top: 5px;">TO</div>
+        <div style="font-weight: bold;">4.00 P.M.</div>
+      </div>
+    </div>
+
+    <!-- QR Placeholder & Footer -->
+    <div class="qr-placeholder">
+      [ QR CODE ]
+    </div>
+
+    <div class="footer-text">(PORUWA CEREMONY AT 10.05 A.M.)</div>
+    <div class="rsvp-text">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
+
   </div>
 
   <script>
-    function openInvitation() {
-      // Hide envelope
+    // Step 1 -> Step 2
+    function showImageStep() {
       document.getElementById('envelope').style.display = 'none';
-      
-      // Show card and trigger floral animation
+      document.getElementById('imageView').style.display = 'flex';
+    }
+
+    // Step 2 -> Step 3
+    function showCardStep() {
+      document.getElementById('imageView').style.display = 'none';
       const card = document.getElementById('card');
-      card.style.display = 'flex';
+      card.style.display = 'block';
       setTimeout(() => {
         card.classList.add('active');
       }, 100);
 
-      // Start yellow petals falling effect
+      // Start falling yellow petals animation
       createPetals();
     }
 
+    // Falling Yellow Petals Logic
     function createPetals() {
       for (let i = 0; i < 30; i++) {
         setTimeout(() => {
           const petal = document.createElement('div');
           petal.classList.add('petal');
           petal.style.left = Math.random() * 100 + 'vw';
-          petal.style.width = Math.random() * 10 + 10 + 'px';
-          petal.style.height = Math.random() * 10 + 15 + 'px';
+          petal.style.width = Math.random() * 8 + 8 + 'px';
+          petal.style.height = Math.random() * 10 + 12 + 'px';
           petal.style.animationDuration = Math.random() * 3 + 3 + 's';
           document.body.appendChild(petal);
 
-          setTimeout(() => {
-            petal.remove();
-          }, 6000);
+          setTimeout(() => { petal.remove(); }, 6000);
         }, i * 200);
       }
-      // Keep generating petals continuously
       setInterval(createPetals, 6000);
     }
   </script>
