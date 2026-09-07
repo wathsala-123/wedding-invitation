@@ -3,495 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation - Wathsala & Anuruddha</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- WHATSAPP & SOCIAL MEDIA LINK PREVIEW META TAGS -->
+  <title>Wedding Invitation | Wathsala & Anuruddha</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="💌 Wedding Invitation | Wathsala & Anuruddha">
+  <meta property="og:description" content="We warmly invite you to celebrate our wedding! Tap to open your invitation.">
+  <!-- ඔබේ Monogram Logo eka Link preview එකට පෙනීමට image link එක මෙතැනට යොදන්න -->
+  <meta property="og:image" content="https://wathsala-123.github.io/logo.png"> 
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: #fbf9f5;
-      color: #333;
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #0d0d0d; color: #2b2b2b; font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; position: relative; }
     audio { display: none; }
 
-    /* --- STEP 1: ENVELOPE ANIMATION --- */
-    .envelope-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: opacity 1s ease, visibility 1s ease;
-    }
+    /* Fixed Soft Blurred Background */
+    .bg-fixed-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('1788794486275.png'); background-size: cover; background-position: center; filter: blur(12px) brightness(0.7); transform: scale(1.08); z-index: -2; }
+    .bg-dark-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(245, 242, 235, 0.85); z-index: -1; }
 
-    .envelope {
-      position: relative;
-      width: 320px;
-      height: 220px;
-      background: linear-gradient(135deg, #d4af37, #f3e5ab, #aa7c11);
-      border-radius: 8px;
-      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
-      cursor: pointer;
-    }
+    /* CURTAIN SPLIT REVEAL */
+    .reveal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1000; display: flex; flex-direction: column; cursor: pointer; transition: opacity 0.8s ease, visibility 0.8s ease; }
+    .curtain-top, .curtain-bottom { width: 100%; height: 50vh; background: #faf8f5; display: flex; justify-content: center; align-items: center; transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); position: relative; overflow: hidden; }
+    .curtain-top { align-items: flex-end; border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+    .curtain-bottom { align-items: flex-start; border-top: 1px solid rgba(212, 175, 55, 0.3); }
 
-    .envelope-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-top: 120px solid #b8860b;
-      transform-origin: top;
-      transition: transform 0.8s ease;
-      z-index: 3;
-    }
+    .reveal-overlay.open .curtain-top { transform: translateY(-100%); }
+    .reveal-overlay.open .curtain-bottom { transform: translateY(100%); }
 
-    .envelope.open .envelope-flap {
-      transform: rotateX(180deg);
-    }
+    .seal-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 110px; height: 110px; background: #faf8f5; border: 2px solid #d4af37; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1001; box-shadow: 0 10px 25px rgba(0,0,0,0.15); transition: opacity 0.5s ease; }
+    .seal-monogram { font-family: 'Great Vibes', cursive; font-size: 42px; color: #b8860b; line-height: 1; }
+    .seal-text { font-size: 8px; letter-spacing: 2px; font-weight: 600; color: #666; margin-top: 4px; text-transform: uppercase; }
 
-    .wax-stamp {
-      position: absolute;
-      top: 55px;
-      left: 122px;
-      width: 75px;
-      height: 75px;
-      background: radial-gradient(circle, #b30000, #660000);
-      border-radius: 50%;
-      border: 3px ridge #d4af37;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      color: #ffd700;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 26px;
-      font-family: 'Great Vibes', cursive;
-      z-index: 4;
-    }
+    .guest-reveal-tag { position: absolute; bottom: 25px; text-align: center; width: 100%; }
+    .guest-reveal-label { font-size: 9px; letter-spacing: 2px; color: #8b6508; font-weight: 600; text-transform: uppercase; }
+    .guest-reveal-name { font-family: 'Great Vibes', cursive; font-size: 28px; color: #2b2b2b; margin-top: 2px; }
 
-    .envelope-text {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: #333;
-      letter-spacing: 1px;
-    }
+    /* Minimal Soft Petals */
+    .petal { position: fixed; top: -10px; background: rgba(212, 175, 55, 0.6); border-radius: 8px 0 8px 0; pointer-events: none; animation: fall linear infinite; z-index: 99; }
+    @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(105vh) rotate(180deg); opacity: 0; } }
 
-    /* --- MAIN CONTAINER WITH SOFT BACKGROUND --- */
-    .main-container {
-      width: 100%;
-      max-width: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 15px;
-      position: relative;
-    }
+    /* MAIN LAYOUT */
+    .main-container { width: 100%; max-width: 460px; display: flex; flex-direction: column; align-items: center; padding: 20px 15px; z-index: 10; }
 
-    /* --- STEP 2: COVER PHOTO --- */
-    .cover-section {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      margin-bottom: 30px;
-    }
+    .cover-card { width: 100%; background: rgba(255, 255, 255, 0.92); border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 25px; backdrop-filter: blur(5px); overflow: hidden; }
+    .cover-img { width: 100%; border-radius: 10px; display: block; }
 
-    .cover-img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+    .split-title-container { position: relative; margin-top: 18px; display: flex; justify-content: center; overflow: hidden; }
+    .split-title-left, .split-title-right { font-family: 'Great Vibes', cursive; font-size: 38px; color: #b8860b; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease; }
+    .split-title-left { transform: translateX(-60px); opacity: 0; }
+    .split-title-right { transform: translateX(60px); opacity: 0; }
 
-    .save-the-date-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 38px;
-      color: #b8860b;
-      margin-top: 15px;
-    }
+    .cover-card.merged .split-title-left, .cover-card.merged .split-title-right { transform: translateX(0); opacity: 1; }
+    .save-date-subtitle { font-size: 11px; letter-spacing: 3px; font-weight: 600; color: #555; margin-top: 6px; text-transform: uppercase; }
 
-    .sub-save-text {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      color: #555;
-      margin-top: 5px;
-    }
+    /* INVITATION CARD */
+    .invitation-card { width: 100%; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 16px; padding: 35px 22px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 25px; position: relative; backdrop-filter: blur(8px); opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
+    .invitation-card.reveal-active { opacity: 1; transform: translateY(0); }
 
-    .scroll-btn {
-      margin-top: 20px;
-      background: linear-gradient(135deg, #b8860b, #d4af37);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-    }
+    .vine-left, .vine-right { position: absolute; width: 65px; opacity: 0.75; pointer-events: none; }
+    .vine-left { top: 10px; left: 5px; }
+    .vine-right { bottom: 10px; right: 5px; transform: rotate(180deg); }
 
-    /* --- STEP 3: MAIN INVITATION CARD (CLEAN & HD) --- */
-    .card-section {
-      position: relative;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      border: 3px solid #d4af37;
-      border-radius: 12px;
-      padding: 35px 20px;
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-      margin-bottom: 30px;
-      overflow: hidden;
-    }
+    .monogram-small { font-family: 'Great Vibes', cursive; font-size: 32px; color: #b8860b; margin-bottom: 12px; }
+    .parents-header { font-size: 10px; letter-spacing: 1.5px; font-weight: 600; color: #555; line-height: 1.6; }
+    .invited-guest-display { margin: 18px 0; padding: 10px 5px; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+    .guest-label-text { font-size: 9px; letter-spacing: 2px; color: #8b6508; font-weight: 600; }
+    .guest-dynamic-name { font-family: 'Great Vibes', cursive; font-size: 32px; color: #1a1a1a; margin-top: 2px; }
 
-    /* Blooming Floral Side Animations (Subtle & Clean) */
-    .flower-left, .flower-right {
-      position: absolute;
-      width: 70px;
-      opacity: 0;
-      transition: all 1.5s ease;
-      pointer-events: none;
-    }
+    .couple-main-names { font-family: 'Great Vibes', cursive; font-size: 46px; color: #b8860b; margin: 15px 0; }
 
-    .flower-left { top: 15px; left: -50px; transform: rotate(-20deg); }
-    .flower-right { bottom: 15px; right: -50px; transform: rotate(160deg); }
+    .event-details-flex { display: flex; justify-content: space-between; margin: 20px 0; padding: 12px 0; border-top: 1px dashed #d4af37; border-bottom: 1px dashed #d4af37; }
+    .detail-col { flex: 1; font-size: 10px; color: #444; }
+    .detail-col:not(:last-child) { border-right: 1px solid #eee; }
+    .detail-col strong { color: #b8860b; display: block; margin-bottom: 3px; font-size: 11px; }
 
-    .card-section.visible .flower-left { opacity: 0.9; left: -10px; }
-    .card-section.visible .flower-right { opacity: 0.9; right: -10px; }
+    /* CARDS */
+    .timeline-card, .rsvp-card, .timer-card { width: 100%; background: rgba(255, 255, 255, 0.93); border-radius: 16px; padding: 22px; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); backdrop-filter: blur(6px); text-align: center; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; color: #b8860b; margin-bottom: 15px; }
 
-    .logo-wa {
-      font-family: 'Great Vibes', cursive;
-      font-size: 36px;
-      color: #b8860b;
-      border: 2px solid #b8860b;
-      border-radius: 50%;
-      width: 65px;
-      height: 65px;
-      line-height: 60px;
-      margin: 0 auto 15px auto;
-    }
+    .timer-flex { display: flex; justify-content: space-around; margin-top: 10px; }
+    .timer-unit span { font-size: 22px; font-weight: 700; color: #2b2b2b; display: block; }
+    .timer-unit label { font-size: 9px; letter-spacing: 1px; color: #8b6508; text-transform: uppercase; }
 
-    .parents-text {
-      font-size: 11px;
-      font-weight: 600;
-      color: #444;
-      letter-spacing: 1px;
-    }
+    .timeline-node { display: flex; text-align: left; margin-bottom: 14px; align-items: center; }
+    .timeline-time { width: 85px; font-size: 11px; font-weight: 700; color: #b8860b; }
+    .timeline-info { font-size: 12px; color: #444; }
 
-    .guest-box {
-      margin: 15px 0;
-      padding: 10px;
-      background: #fbf9f5;
-      border: 1px dashed #d4af37;
-      border-radius: 6px;
-    }
+    .btn-action { width: 100%; background: linear-gradient(135deg, #b8860b, #d4af37); color: white; border: none; padding: 12px; border-radius: 25px; font-weight: 600; font-size: 12px; letter-spacing: 1px; text-decoration: none; display: block; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); cursor: pointer; }
 
-    .guest-input {
-      border: none;
-      border-bottom: 2px solid #b8860b;
-      background: transparent;
-      text-align: center;
-      font-size: 15px;
-      font-weight: bold;
-      width: 85%;
-      outline: none;
-    }
-
-    .couple-names {
-      font-family: 'Great Vibes', cursive;
-      font-size: 44px;
-      color: #b8860b;
-      margin: 15px 0;
-    }
-
-    .details-grid {
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-      padding: 12px 0;
-      margin: 15px 0;
-      font-size: 11px;
-    }
-
-    .details-col { flex: 1; }
-    .details-col:not(:last-child) { border-right: 1px solid #eee; }
-
-    /* --- STEP 4: COUNTDOWN CLOCK --- */
-    .timer-section {
-      width: 100%;
-      background: #1a1713;
-      color: #d4af37;
-      border: 1px solid #d4af37;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .timer-grid {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 15px;
-    }
-
-    .timer-block span {
-      font-size: 22px;
-      font-weight: bold;
-      display: block;
-      color: #fff;
-    }
-
-    .timer-block label { font-size: 10px; text-transform: uppercase; }
-
-    /* --- STEP 5: WEDDING TIMELINE --- */
-    .timeline-section {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 25px;
-      border: 2px solid #d4af37;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .timeline-title {
-      text-align: center;
-      font-family: 'Cinzel', serif;
-      color: #b8860b;
-      margin-bottom: 20px;
-    }
-
-    .timeline-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .timeline-time {
-      font-weight: bold;
-      color: #b8860b;
-      width: 90px;
-      font-size: 13px;
-    }
-
-    .timeline-desc {
-      font-size: 13px;
-      color: #444;
-    }
-
-    /* --- STEP 6: LOCATION & RSVP --- */
-    .location-btn {
-      width: 100%;
-      background: #b8860b;
-      color: white;
-      text-decoration: none;
-      padding: 12px;
-      border-radius: 8px;
-      display: block;
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 30px;
-    }
-
-    .rsvp-section {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .rsvp-input, .rsvp-select {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+    .rsvp-field { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 12px; outline: none; }
   </style>
 </head>
 <body>
 
-  <!-- Audio -->
+  <div class="bg-fixed-overlay"></div>
+  <div class="bg-dark-layer"></div>
+
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- Envelope -->
-  <div class="envelope-wrapper" id="envelopeWrapper">
-    <div class="envelope" id="envelope" onclick="openEnvelope()">
-      <div class="envelope-flap"></div>
-      <div class="wax-stamp">WA</div>
-      <div class="envelope-text">CLICK TO OPEN INVITATION</div>
+  <!-- OVERLAY REVEAL -->
+  <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
+    <div class="curtain-top"></div>
+    <div class="seal-circle" id="sealCircle">
+      <div class="seal-monogram">WA</div>
+      <div class="seal-text">TAP TO REVEAL</div>
+    </div>
+    <div class="curtain-bottom">
+      <div class="guest-reveal-tag">
+        <div class="guest-reveal-label">KINDLY INVITED:</div>
+        <div class="guest-reveal-name" id="guestNameReveal">Guest Name</div>
+      </div>
     </div>
   </div>
 
-  <!-- Main Container -->
   <div class="main-container">
 
-    <!-- Cover Section -->
-    <div class="cover-section">
+    <!-- COVER -->
+    <div class="cover-card" id="coverCard">
       <img src="1788794486275.png" alt="Wedding Cover" class="cover-img">
-      <div class="save-the-date-title">Wathsala & Anuruddha</div>
-      <div class="sub-save-text">SAVE THE DATE</div>
-      <p style="font-size: 13px; color: #777; margin-top: 5px;">DECEMBER 04, 2026</p>
-      <button class="scroll-btn" onclick="scrollToCard()">SEE THE INVITATION</button>
+      <div class="split-title-container">
+        <div class="split-title-left">Wathsala &nbsp;</div>
+        <div class="split-title-right">& Anuruddha</div>
+      </div>
+      <div class="save-date-subtitle">SAVE THE DATE • 04.12.2026</div>
     </div>
 
-    <!-- Main Card -->
-    <div class="card-section" id="invitationCard">
-      <!-- Clean Side Blooming Flowers -->
-      <svg class="flower-left" viewBox="0 0 100 100" fill="#d4af37">
-        <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
-      </svg>
-      <svg class="flower-right" viewBox="0 0 100 100" fill="#d4af37">
-        <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
-      </svg>
+    <!-- INVITATION CARD -->
+    <div class="invitation-card" id="invitationCard">
+      <svg class="vine-left" viewBox="0 0 100 200" fill="none" stroke="#b8860b" stroke-width="2"><path d="M10 10 Q 50 80 20 150 T 80 190 M 30 50 Q 70 40 50 70 M 20 110 Q 60 100 45 130"/></svg>
+      <svg class="vine-right" viewBox="0 0 100 200" fill="none" stroke="#b8860b" stroke-width="2"><path d="M10 10 Q 50 80 20 150 T 80 190 M 30 50 Q 70 40 50 70 M 20 110 Q 60 100 45 130"/></svg>
 
-      <div class="logo-wa">WA</div>
-
-      <div class="parents-text">MR. & MRS. SARATH SENANAYAKE</div>
-      <div style="font-size: 10px; color: #777; margin: 3px 0;">TOGETHER WITH</div>
-      <div class="parents-text">MR. & MRS. AMARADASA VITHANAGE</div>
-
-      <p style="font-size: 10px; margin-top: 12px; color: #666;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
-
-      <div class="guest-box">
-        <div style="font-size: 10px; font-weight: bold; color: #8b6508;">MR. & MRS. / MISS. / FAMILY</div>
-        <input type="text" class="guest-input" placeholder="Guest Name Here">
+      <div class="monogram-small">WA</div>
+      <div class="parents-header">
+        MR. & MRS. SARATH SENANAYAKE<br>
+        <span style="font-size: 8px; color: #888;">TOGETHER WITH</span><br>
+        MR. & MRS. AMARADASA VITHANAGE
       </div>
 
-      <p style="font-size: 10px; color: #666;">TO GRACE THE OCCASION OF THE MARRIAGE OF THEIR BELOVED CHILDREN</p>
+      <p style="font-size: 9px; letter-spacing: 1px; color: #666; margin-top: 12px;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
 
-      <div class="couple-names">Wathsala & Anuruddha</div>
-
-      <div class="details-grid">
-        <div class="details-col">
-          <div style="color: #8b6508; font-weight: bold;">ON</div>
-          <div>FRIDAY</div>
-          <div style="font-size: 15px; font-weight: bold; color: #b8860b;">04TH</div>
-          <div>DECEMBER 2026</div>
-        </div>
-        <div class="details-col">
-          <div style="color: #8b6508; font-weight: bold;">AT</div>
-          <div style="font-weight: bold;">SAMINRO GRAND PALACE</div>
-          <div style="font-size: 9px; color: #666;">MAKOLA NORTH, MAKOLA</div>
-        </div>
-        <div class="details-col">
-          <div style="color: #8b6508; font-weight: bold;">FROM</div>
-          <div>09.00 A.M.</div>
-          <div style="color: #8b6508; font-weight: bold;">TO</div>
-          <div>4.00 P.M.</div>
-        </div>
+      <div class="invited-guest-display">
+        <div class="guest-label-text">KINDLY INVITED</div>
+        <div class="guest-dynamic-name" id="guestNameMain">Guest Name</div>
       </div>
 
-      <div style="font-size: 10px; color: #555; margin-top: 10px;">(PORUWA CEREMONY AT 10.05 A.M.)</div>
-      <div style="font-size: 11px; font-weight: bold; color: #8b6508; margin-top: 5px;">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
-    </div>
+      <p style="font-size: 9px; letter-spacing: 1px; color: #666;">TO CELEBRATE THE WEDDING OF THEIR BELOVED CHILDREN</p>
+      <div class="couple-main-names">Wathsala & Anuruddha</div>
 
-    <!-- Countdown -->
-    <div class="timer-section">
-      <div style="font-family: 'Cinzel', serif; font-size: 15px;">COUNTDOWN TO OUR BIG DAY</div>
-      <div class="timer-grid">
-        <div class="timer-block"><span id="days">00</span><label>Days</label></div>
-        <div class="timer-block"><span id="hours">00</span><label>Hours</label></div>
-        <div class="timer-block"><span id="minutes">00</span><label>Mins</label></div>
-        <div class="timer-block"><span id="seconds">00</span><label>Secs</label></div>
+      <div class="event-details-flex">
+        <div class="detail-col"><strong>DATE</strong>FRIDAY<br>04TH DEC 2026</div>
+        <div class="detail-col"><strong>VENUE</strong>SAMINRO PALACE<br>MAKOLA</div>
+        <div class="detail-col"><strong>TIME</strong>09.00 AM - 04.00 PM<br>(PORUWA 10.05 AM)</div>
+      </div>
+
+      <div style="font-size: 10px; font-weight: 600; color: #8b6508; margin-top: 8px;">
+        RSVP: ANURUDDHA - 0702661909
       </div>
     </div>
 
-    <!-- Timeline -->
-    <div class="timeline-section">
-      <div class="timeline-title">WEDDING PROGRAM</div>
-      <div class="timeline-item">
-        <div class="timeline-time">09.00 AM</div>
-        <div class="timeline-desc">Arrival of Guests</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">10.05 AM</div>
-        <div class="timeline-desc">Poruwa Ceremony</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">12.30 PM</div>
-        <div class="timeline-desc">Lunch & Celebrations</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">04.00 PM</div>
-        <div class="timeline-desc">Farewell</div>
+    <!-- TIMER -->
+    <div class="timer-card">
+      <div class="section-title">COUNTDOWN TO OUR BIG DAY</div>
+      <div class="timer-flex">
+        <div class="timer-unit"><span id="days">00</span><label>Days</label></div>
+        <div class="timer-unit"><span id="hours">00</span><label>Hours</label></div>
+        <div class="timer-unit"><span id="minutes">00</span><label>Mins</label></div>
+        <div class="timer-unit"><span id="seconds">00</span><label>Secs</label></div>
       </div>
     </div>
 
-    <!-- Location -->
-    <a href="https://maps.google.com/?q=Saminro+Grand+Palace+Makola" target="_blank" class="location-btn">
-      📍 VIEW HOTEL LOCATION ON GOOGLE MAPS
+    <!-- TIMELINE -->
+    <div class="timeline-card">
+      <div class="section-title">WEDDING TIMELINE</div>
+      <div class="timeline-node"><div class="timeline-time">09:00 AM</div><div class="timeline-info">Arrival of Guests</div></div>
+      <div class="timeline-node"><div class="timeline-time">10:05 AM</div><div class="timeline-info">Poruwa Ceremony</div></div>
+      <div class="timeline-node"><div class="timeline-time">12:30 PM</div><div class="timeline-info">Lunch & Celebrations</div></div>
+      <div class="timeline-node"><div class="timeline-time">04:00 PM</div><div class="timeline-info">Farewell</div></div>
+    </div>
+
+    <!-- LOCATION MAP -->
+    <a href="https://maps.google.com/?q=Saminro+Grand+Palace+Makola" target="_blank" class="btn-action" style="margin-bottom: 25px;">
+      📍 VIEW LOCATION ON GOOGLE MAPS
     </a>
 
-    <!-- RSVP -->
-    <div class="rsvp-section">
-      <div style="font-family: 'Cinzel', serif; font-size: 15px; color: #b8860b; margin-bottom: 10px;">ATTENDANCE CONFIRMATION</div>
-      <input type="text" class="rsvp-input" placeholder="Your Name">
-      <select class="rsvp-select">
-        <option>Will Attend</option>
-        <option>Sorry, Cannot Attend</option>
-      </select>
-      <button class="scroll-btn" style="width: 100%; margin-top: 10px;" onclick="alert('Thank you for confirming!')">SUBMIT</button>
+    <!-- RSVP EMAIL FORM (FORMSPREE INTEGRATED) -->
+    <div class="rsvp-card">
+      <div class="section-title">ATTENDANCE CONFIRMATION</div>
+      <!-- Formspree Endpoint එක පහත action="" එකට දමන්න -->
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <input type="text" name="Guest Name" id="rsvpInputName" class="rsvp-field" placeholder="Your Name" required>
+        <select name="Attendance Status" class="rsvp-field" required>
+          <option value="Attending">Will Attend</option>
+          <option value="Not Attending">Sorry, Cannot Attend</option>
+        </select>
+        <input type="number" name="Number of Guests" class="rsvp-field" placeholder="Number of Guests attending" min="1" max="5">
+        <button type="submit" class="btn-action" style="margin-top: 10px;">CONFIRM & SEND RSVP</button>
+      </form>
     </div>
 
   </div>
 
   <script>
-    function openEnvelope() {
-      const env = document.getElementById('envelope');
-      env.classList.add('open');
-      
-      const audio = document.getElementById('bgMusic');
-      if(audio) { audio.play().catch(()=>{}); }
+    function setGuestName() {
+      const urlParams = new URLSearchParams(window.location.search);
+      let guestName = urlParams.get('name');
+      if (!guestName) { guestName = "Honoured Guest"; }
+
+      document.getElementById('guestNameReveal').innerText = guestName;
+      document.getElementById('guestNameMain').innerText = guestName;
+      document.getElementById('rsvpInputName').value = guestName;
+    }
+
+    function triggerReveal() {
+      const overlay = document.getElementById('revealOverlay');
+      const seal = document.getElementById('sealCircle');
+      const cover = document.getElementById('coverCard');
+      const music = document.getElementById('bgMusic');
+
+      seal.style.opacity = '0';
+      overlay.classList.add('open');
+      if(music) { music.play().catch(()=>{}); }
 
       setTimeout(() => {
-        document.getElementById('envelopeWrapper').style.opacity = '0';
+        overlay.style.opacity = '0';
         setTimeout(() => {
-          document.getElementById('envelopeWrapper').style.visibility = 'hidden';
-          document.getElementById('invitationCard').classList.add('visible');
-        }, 800);
-      }, 700);
+          overlay.style.visibility = 'hidden';
+          cover.classList.add('merged');
+          startSoftPetals();
+        }, 600);
+      }, 600);
     }
 
-    function scrollToCard() {
-      document.getElementById('invitationCard').scrollIntoView({ behavior: 'smooth' });
+    function startSoftPetals() {
+      for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+          const petal = document.createElement('div');
+          petal.classList.add('petal');
+          petal.style.left = Math.random() * 100 + 'vw';
+          petal.style.width = Math.random() * 6 + 6 + 'px';
+          petal.style.height = Math.random() * 8 + 8 + 'px';
+          petal.style.animationDuration = Math.random() * 4 + 4 + 's';
+          document.body.appendChild(petal);
+          setTimeout(() => { petal.remove(); }, 8000);
+        }, i * 400);
+      }
     }
+
+    window.addEventListener('scroll', () => {
+      const card = document.getElementById('invitationCard');
+      const cardPos = card.getBoundingClientRect().top;
+      const screenPos = window.innerHeight / 1.2;
+      if(cardPos < screenPos) { card.classList.add('reveal-active'); }
+    });
 
     const weddingDate = new Date("Dec 4, 2026 09:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
       const distance = weddingDate - now;
-
       if (distance > 0) {
         document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
         document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -499,6 +269,8 @@
         document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
       }
     }, 1000);
+
+    window.onload = setGuestName;
   </script>
 
 </body>
