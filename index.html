@@ -16,7 +16,7 @@
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Alex+Brush&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
@@ -107,31 +107,56 @@
     .reveal-overlay.open .split-curtain-left { transform: translateX(-100%); }
     .reveal-overlay.open .split-curtain-right { transform: translateX(100%); }
 
-    /* ELEGANT CAPITAL MONOGRAM LOGO SEAL */
+    /* ELEGANT GOLDEN MONOGRAM LOGO SEAL WITH INTERLOCKING SERIF STYLE */
     .large-wa-seal {
       position: relative;
       z-index: 1001;
       width: 170px; height: 170px;
-      border: 2px solid #d4af37;
+      border: 2px solid #dfb743;
       border-radius: 50%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 25px rgba(212, 175, 55, 0.35), inset 0 0 15px rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.3);
       transition: opacity 0.5s ease;
-      background: rgba(15, 15, 15, 0.92);
+      background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
     }
-    .large-wa-text { 
-      font-family: 'Cinzel', serif; 
-      font-size: 58px; 
-      color: #d4af37; 
-      font-weight: 700;
-      line-height: 1; 
-      letter-spacing: -1px;
-      text-transform: uppercase;
+
+    .monogram-container {
+      position: relative;
+      width: 110px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .tap-text { font-size: 9px; letter-spacing: 3px; font-weight: 700; color: #d4af37; margin-top: 6px; }
+
+    .letter-w {
+      position: absolute;
+      left: 10px;
+      top: 5px;
+      font-family: 'Cinzel', 'Playfair Display', serif;
+      font-size: 68px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .letter-a {
+      position: absolute;
+      right: 12px;
+      bottom: 0px;
+      font-family: 'Cinzel', 'Playfair Display', serif;
+      font-size: 72px;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .tap-text { font-size: 9px; letter-spacing: 3px; font-weight: 700; color: #ffffff; margin-top: 4px; text-shadow: 0 1px 2px rgba(0,0,0,0.4); }
 
     /* DYNAMIC GUEST NAME ON COVER OPENING */
     .guest-opening-box {
@@ -184,7 +209,7 @@
       cursor: pointer; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     }
 
-    /* INVITATION CARD (MATCHED EXACT REVEAL ANIMATION FROM VIDEO) */
+    /* INVITATION CARD */
     .invitation-card {
       width: 100%; background: #fdfbf7;
       border: 2px solid #c5a059; border-radius: 12px;
@@ -206,10 +231,18 @@
     .corner-floral-top { position: absolute; top: 8px; right: 8px; width: 90px; opacity: 0.85; }
     .corner-floral-bottom { position: absolute; bottom: 8px; left: 8px; width: 90px; opacity: 0.85; transform: rotate(180deg); }
 
+    /* CARD MONOGRAM (INTERLOCKING STYLE) */
     .card-monogram {
-      width: 75px; height: 75px; border: 1.5px solid #c5a059; border-radius: 50%;
-      margin: 0 auto 12px auto; display: flex; justify-content: center; align-items: center;
-      font-family: 'Cinzel', serif; font-size: 34px; color: #b8860b; font-weight: 700;
+      width: 85px; height: 85px; 
+      border: 1.5px solid #d4af37; border-radius: 50%;
+      margin: 0 auto 12px auto; 
+      display: flex; justify-content: center; align-items: center;
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      box-shadow: 0 4px 10px rgba(184, 134, 11, 0.3);
+      position: relative;
+    }
+    .card-monogram .monogram-container {
+      transform: scale(0.65);
     }
 
     .card-parents { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; line-height: 1.6; color: #6b5a45; text-transform: uppercase; }
@@ -219,7 +252,7 @@
 
     .card-grace { font-size: 8px; font-weight: 700; letter-spacing: 0.8px; color: #7a6852; margin-top: 10px; text-transform: uppercase; }
 
-    .card-couple { font-family: 'Alex Brush', cursive; font-size: 38px; color: #8c6d3b; margin: 8px 0; text-shadow: 0.5px 0.5px 0px #b8860b; }
+    .card-couple { font-family: 'Great Vibes', 'Alex Brush', cursive; font-size: 42px; color: #8c6d3b; margin: 8px 0; text-shadow: 0.5px 0.5px 0px #b8860b; }
 
     .card-details-row { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; padding: 10px 0; }
     .card-col { flex: 1; font-size: 9px; font-weight: 700; color: #5a4b38; }
@@ -280,7 +313,7 @@
 
     /* HANDWRITTEN CURSIVE MESSAGE */
     .cursive-message {
-      font-family: 'Alex Brush', cursive; font-size: 28px; color: #d4af37;
+      font-family: 'Great Vibes', 'Alex Brush', cursive; font-size: 30px; color: #d4af37;
       text-align: center; margin: 25px 10px; line-height: 1.4;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
@@ -290,18 +323,16 @@
     .rsvp-field { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 12px; }
 
     .wa-direct-box {
-      margin-top: 10px; padding: 15px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; text-align: center;
+      margin-top: 15px; padding: 15px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; text-align: center;
+    }
+    .wa-person-label {
+      font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; color: #15803d; margin-top: 10px; margin-bottom: 4px;
     }
     .wa-btn {
       display: inline-block; background: #25d366; color: white; padding: 10px 18px;
-      border-radius: 20px; font-size: 11px; font-weight: 700; text-decoration: none; margin: 5px 2px;
+      border-radius: 20px; font-size: 11px; font-weight: 700; text-decoration: none; margin-bottom: 12px;
       box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
     }
-
-    /* TIMER */
-    .timer-flex { display: flex; justify-content: space-around; }
-    .timer-unit span { font-size: 22px; font-weight: 700; color: #222; display: block; }
-    .timer-unit label { font-size: 8.5px; letter-spacing: 1px; color: #8b6508; text-transform: uppercase; }
   </style>
 </head>
 <body>
@@ -312,13 +343,16 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- OVERLAY SEAL WITH CAPITAL MONOGRAM & DYNAMIC GUEST NAME -->
+  <!-- OVERLAY SEAL WITH INTERLOCKING MONOGRAM -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
     <div class="split-curtain-left"></div>
     <div class="split-curtain-right"></div>
     
     <div class="large-wa-seal" id="waSeal">
-      <div class="large-wa-text">WA</div>
+      <div class="monogram-container">
+        <span class="letter-w">W</span>
+        <span class="letter-a">A</span>
+      </div>
       <div class="tap-text">TAP TO REVEAL</div>
     </div>
 
@@ -336,7 +370,7 @@
         <div class="cover-half-left"></div>
         <div class="cover-half-right"></div>
       </div>
-      <div style="font-family: 'Great Vibes', cursive; font-size: 38px; color: #d4af37; margin-top: 12px;">Wathsala & Anuruddha</div>
+      <div style="font-family: 'Great Vibes', 'Alex Brush', cursive; font-size: 42px; color: #d4af37; margin-top: 12px;">Wathsala & Anuruddha</div>
       <div style="font-size: 10px; letter-spacing: 3px; font-weight: 600; color: #ddd;">SAVE THE DATE • 04.12.2026</div>
 
       <div class="open-card-btn-wrapper" id="openCardBtnWrapper">
@@ -349,7 +383,13 @@
       <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
       <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
 
-      <div class="card-monogram">WA</div>
+      <!-- CARD MONOGRAM (INTERLOCKING STYLE) -->
+      <div class="card-monogram">
+        <div class="monogram-container">
+          <span class="letter-w">W</span>
+          <span class="letter-a">A</span>
+        </div>
+      </div>
 
       <div class="card-parents">
         MR. & MRS. SARATH SENANAYAKE<br>
@@ -466,7 +506,10 @@
       </select>
 
       <div class="wa-direct-box">
+        <div class="wa-person-label">Wathsala Senanayake</div>
         <a id="waBtn1" href="https://wa.me/94765563393" target="_blank" class="wa-btn">💬 Confirm to Wathsala</a>
+        
+        <div class="wa-person-label">Anuruddha Vithanage</div>
         <a id="waBtn2" href="https://wa.me/94702661909" target="_blank" class="wa-btn">💬 Confirm to Anuruddha</a>
       </div>
     </div>
