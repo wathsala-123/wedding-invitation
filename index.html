@@ -150,7 +150,7 @@
     .guest-opening-name { font-family: 'Cinzel', serif; font-size: 16px; color: #fff; font-weight: 700; margin-top: 2px; }
 
     /* MAIN CONTAINER */
-    .main-container { width: 100%; max-width: 480px; padding: 20px 15px; z-index: 10; display: flex; flex-direction: column; align-items: center; }
+    .main-container { width: 100%; max-width: 480px; padding: 20px 15px; z-index: 10; display: flex; flex-direction: column; align-items: center; perspective: 1000px; }
 
     /* COVER CARD */
     .cover-card {
@@ -184,16 +184,18 @@
       cursor: pointer; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     }
 
-    /* INVITATION CARD (SPARKLE PARTICLE REVEAL ANIMATION) */
+    /* INVITATION CARD (MATCHED EXACT REVEAL ANIMATION FROM VIDEO) */
     .invitation-card {
       width: 100%; background: #fdfbf7;
       border: 2px solid #c5a059; border-radius: 12px;
       padding: 30px 18px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
       margin-bottom: 25px; position: relative; color: #5a4b38;
       opacity: 0; 
-      transform: scale(0.2) rotateX(40deg) translateY(100px);
-      filter: blur(20px) brightness(2);
-      transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: scale(0.65) rotateX(25deg) translateY(60px);
+      filter: blur(16px) brightness(1.8);
+      transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease-out, filter 1.4s ease-out;
+      transform-origin: center center;
+      backface-visibility: hidden;
     }
     .invitation-card.reveal-active { 
       opacity: 1; 
@@ -213,7 +215,7 @@
     .card-parents { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; line-height: 1.6; color: #6b5a45; text-transform: uppercase; }
     .card-request { font-size: 8.5px; font-weight: 700; letter-spacing: 1px; color: #7a6852; margin: 12px 0 8px 0; text-transform: uppercase; }
     .card-guest-box { border-top: 1px solid #dcd1be; border-bottom: 1px solid #dcd1be; padding: 8px 0; margin: 8px 0; }
-    .card-guest-title { font-size: 11px; font-weight: 700; color: #8c7355; letter-spacing: 1px; font-family: 'Cinzel', serif; }
+    .card-guest-title { font-size: 11px; font-weight: 700; color: #8c7355; letter-spacing: 1px; font-family: 'Cinzel', serif; word-wrap: break-word; }
 
     .card-grace { font-size: 8px; font-weight: 700; letter-spacing: 0.8px; color: #7a6852; margin-top: 10px; text-transform: uppercase; }
 
@@ -449,15 +451,23 @@
     <div class="rsvp-card">
       <div class="section-title">CONFIRM YOUR ATTENDANCE</div>
       
-      <div style="font-size: 11px; color: #555; margin-bottom: 15px;">
+      <div style="font-size: 11px; color: #555; margin-bottom: 12px;">
         Please confirm your attendance directly via WhatsApp message:
       </div>
 
-      <input type="text" id="rsvpInputName" class="rsvp-field" placeholder="Enter Your Name Here" oninput="updateWhatsAppLinks()">
+      <input type="text" id="rsvpInputName" class="rsvp-field" placeholder="Enter Your Full Name / Family Name" oninput="updateWhatsAppLinks()">
+
+      <select id="rsvpGuestCount" class="rsvp-field" onchange="updateWhatsAppLinks()">
+        <option value="1 Guest">Number of Guests: 1 Person</option>
+        <option value="2 Guests">Number of Guests: 2 Persons</option>
+        <option value="3 Guests">Number of Guests: 3 Persons</option>
+        <option value="4 Guests">Number of Guests: 4 Persons</option>
+        <option value="5+ Guests (Family)">Number of Guests: 5+ Persons / Family</option>
+      </select>
 
       <div class="wa-direct-box">
-        <a id="waBtn1" href="https://wa.me/94765563393?text=Hi%20Wathsala,%20I%20will%20be%20attending%20your%20wedding!" target="_blank" class="wa-btn">💬 Confirm to Wathsala</a>
-        <a id="waBtn2" href="https://wa.me/94702661909?text=Hi%20Anuruddha,%20I%20will%20be%20attending%20your%20wedding!" target="_blank" class="wa-btn">💬 Confirm to Anuruddha</a>
+        <a id="waBtn1" href="https://wa.me/94765563393" target="_blank" class="wa-btn">💬 Confirm to Wathsala</a>
+        <a id="waBtn2" href="https://wa.me/94702661909" target="_blank" class="wa-btn">💬 Confirm to Anuruddha</a>
       </div>
     </div>
 
@@ -474,15 +484,16 @@
         document.getElementById('guestNameMain').innerText = guestName;
         document.getElementById('guestOpeningName').innerText = guestName;
         document.getElementById('rsvpInputName').value = guestName;
-        updateWhatsAppLinks();
       } else {
         document.getElementById('guestOpeningBox').style.display = 'none';
       }
+      updateWhatsAppLinks();
     }
 
     function updateWhatsAppLinks() {
       const name = document.getElementById('rsvpInputName').value || currentGuestName || "Guest";
-      const text = encodeURIComponent(`Hi, I am ${name}. I confirm my attendance for the wedding! ✨`);
+      const count = document.getElementById('rsvpGuestCount').value || "1 Guest";
+      const text = encodeURIComponent(`Hi, I am ${name}. I confirm my attendance for the wedding (${count})! ✨`);
       document.getElementById('waBtn1').href = `https://wa.me/94765563393?text=${text}`;
       document.getElementById('waBtn2').href = `https://wa.me/94702661909?text=${text}`;
     }
@@ -515,7 +526,7 @@
       const card = document.getElementById('invitationCard');
       setTimeout(() => {
         card.classList.add('reveal-active');
-      }, 300);
+      }, 200);
     }
 
     function launchFireworks() {
