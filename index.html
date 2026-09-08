@@ -10,9 +10,9 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="💌 WEDDING INVITATION | Wathsala & Anuruddha">
   <meta property="og:description" content="We warmly invite you to celebrate our wedding! Tap to open your invitation.">
-  <meta property="og:image" content="https://wathsala-1.github.io/Logo.jpg">
-  <meta property="og:image:secure_url" content="https://wathsala-1.github.io/Logo.jpg">
-  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image" content="https://wathsala-123.github.io/wedding-invitation/1788720805080.png">
+  <meta property="og:image:secure_url" content="https://wathsala-123.github.io/wedding-invitation/1788720805080.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
 
@@ -87,6 +87,7 @@
       width: 100vw; height: 100vh;
       z-index: 1000;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background: #0d0d0d;
@@ -106,22 +107,47 @@
     .reveal-overlay.open .split-curtain-left { transform: translateX(-100%); }
     .reveal-overlay.open .split-curtain-right { transform: translateX(100%); }
 
+    /* ELEGANT CAPITAL MONOGRAM LOGO SEAL */
     .large-wa-seal {
       position: relative;
       z-index: 1001;
-      width: 150px; height: 150px;
-      background: #181818;
-      border: 3px solid #d4af37;
+      width: 170px; height: 170px;
+      border: 2px solid #d4af37;
       border-radius: 50%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.35), inset 0 0 15px rgba(212, 175, 55, 0.2);
+      transition: opacity 0.5s ease;
+      background: rgba(15, 15, 15, 0.92);
+    }
+    .large-wa-text { 
+      font-family: 'Cinzel', serif; 
+      font-size: 58px; 
+      color: #d4af37; 
+      font-weight: 700;
+      line-height: 1; 
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+    .tap-text { font-size: 9px; letter-spacing: 3px; font-weight: 700; color: #d4af37; margin-top: 6px; }
+
+    /* DYNAMIC GUEST NAME ON COVER OPENING */
+    .guest-opening-box {
+      position: absolute;
+      bottom: 60px;
+      z-index: 1001;
+      text-align: center;
+      padding: 10px 22px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      border-radius: 20px;
+      background: rgba(20, 20, 20, 0.88);
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
       transition: opacity 0.5s ease;
     }
-    .large-wa-text { font-family: 'Great Vibes', cursive; font-size: 68px; color: #d4af37; line-height: 1; }
-    .tap-text { font-size: 9px; letter-spacing: 2px; font-weight: 700; color: #d4af37; margin-top: 4px; }
+    .guest-opening-label { font-size: 10px; color: #b8860b; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+    .guest-opening-name { font-family: 'Cinzel', serif; font-size: 16px; color: #fff; font-weight: 700; margin-top: 2px; }
 
     /* MAIN CONTAINER */
     .main-container { width: 100%; max-width: 480px; padding: 20px 15px; z-index: 10; display: flex; flex-direction: column; align-items: center; }
@@ -158,36 +184,36 @@
       cursor: pointer; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     }
 
-    /* INVITATION CARD (PARTICLE ASSEMBLE ANIMATION ADDED HERE) */
+    /* INVITATION CARD (SPARKLE PARTICLE REVEAL ANIMATION) */
     .invitation-card {
       width: 100%; background: #fdfbf7;
       border: 2px solid #c5a059; border-radius: 12px;
       padding: 30px 18px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
       margin-bottom: 25px; position: relative; color: #5a4b38;
       opacity: 0; 
-      transform: scale(0.3) rotate(-15deg);
-      filter: blur(10px);
-      transition: all 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: scale(0.2) rotateX(40deg) translateY(100px);
+      filter: blur(20px) brightness(2);
+      transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
     }
     .invitation-card.reveal-active { 
       opacity: 1; 
-      transform: scale(1) rotate(0deg);
-      filter: blur(0px);
+      transform: scale(1) rotateX(0deg) translateY(0);
+      filter: blur(0px) brightness(1);
     }
 
     .corner-floral-top { position: absolute; top: 8px; right: 8px; width: 90px; opacity: 0.85; }
     .corner-floral-bottom { position: absolute; bottom: 8px; left: 8px; width: 90px; opacity: 0.85; transform: rotate(180deg); }
 
     .card-monogram {
-      width: 80px; height: 80px; border: 1.5px dashed #c5a059; border-radius: 50%;
+      width: 75px; height: 75px; border: 1.5px solid #c5a059; border-radius: 50%;
       margin: 0 auto 12px auto; display: flex; justify-content: center; align-items: center;
-      font-family: 'Great Vibes', cursive; font-size: 42px; color: #b8860b;
+      font-family: 'Cinzel', serif; font-size: 34px; color: #b8860b; font-weight: 700;
     }
 
     .card-parents { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; line-height: 1.6; color: #6b5a45; text-transform: uppercase; }
     .card-request { font-size: 8.5px; font-weight: 700; letter-spacing: 1px; color: #7a6852; margin: 12px 0 8px 0; text-transform: uppercase; }
-    .card-guest-box { border-top: 1px solid #dcd1be; border-bottom: 1px solid #dcd1be; padding: 6px 0; margin: 8px 0; }
-    .card-guest-title { font-size: 9px; font-weight: 700; color: #8c7355; letter-spacing: 1px; }
+    .card-guest-box { border-top: 1px solid #dcd1be; border-bottom: 1px solid #dcd1be; padding: 8px 0; margin: 8px 0; }
+    .card-guest-title { font-size: 11px; font-weight: 700; color: #8c7355; letter-spacing: 1px; font-family: 'Cinzel', serif; }
 
     .card-grace { font-size: 8px; font-weight: 700; letter-spacing: 0.8px; color: #7a6852; margin-top: 10px; text-transform: uppercase; }
 
@@ -209,7 +235,7 @@
       cursor: pointer; text-align: center; margin-bottom: 25px;
     }
 
-    /* CHEERS WINE GLASSES ANIMATION SECTION */
+    /* CHEERS ANIMATION SECTION */
     .cheers-section {
       width: 100%; text-align: center; margin: 30px 0; opacity: 0;
       transform: translateY(30px); transition: all 1s ease;
@@ -244,7 +270,6 @@
     }
     .timeline-item.left-item { transform: translateX(-50px); }
     .timeline-item.right-item { transform: translateX(50px); }
-
     .timeline-item.show { opacity: 1; transform: translateX(0); }
 
     .timeline-left { width: 44%; text-align: right; font-size: 12px; font-weight: 700; color: #b8860b; }
@@ -263,11 +288,12 @@
     .rsvp-field { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 12px; }
 
     .wa-direct-box {
-      margin-top: 15px; padding: 12px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px;
+      margin-top: 10px; padding: 15px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; text-align: center;
     }
     .wa-btn {
-      display: inline-block; background: #25d366; color: white; padding: 8px 14px;
-      border-radius: 20px; font-size: 11px; font-weight: 700; text-decoration: none; margin: 4px;
+      display: inline-block; background: #25d366; color: white; padding: 10px 18px;
+      border-radius: 20px; font-size: 11px; font-weight: 700; text-decoration: none; margin: 5px 2px;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
     }
 
     /* TIMER */
@@ -284,13 +310,19 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- OVERLAY SEAL -->
+  <!-- OVERLAY SEAL WITH CAPITAL MONOGRAM & DYNAMIC GUEST NAME -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
     <div class="split-curtain-left"></div>
     <div class="split-curtain-right"></div>
+    
     <div class="large-wa-seal" id="waSeal">
       <div class="large-wa-text">WA</div>
       <div class="tap-text">TAP TO REVEAL</div>
+    </div>
+
+    <div class="guest-opening-box" id="guestOpeningBox">
+      <div class="guest-opening-label">Special Invitation For</div>
+      <div class="guest-opening-name" id="guestOpeningName">Honored Guest</div>
     </div>
   </div>
 
@@ -413,48 +445,57 @@
       We warmly look forward to your gracious presence on our special day! ❤️
     </div>
 
-    <!-- RSVP FORM SECTION -->
+    <!-- DIRECT WHATSAPP CONFIRMATION SECTION -->
     <div class="rsvp-card">
-      <div class="section-title">ATTENDANCE CONFIRMATION</div>
-      <form id="rsvpForm" action="https://formspree.io/f/xbldqzwv" method="POST" onsubmit="submitRSVP(event)">
-        <input type="text" name="Guest Name" id="rsvpInputName" class="rsvp-field" placeholder="Your Name" required>
-        <select name="Attendance Status" class="rsvp-field" required>
-          <option value="Attending">Will Attend</option>
-          <option value="Not Attending">Sorry, Cannot Attend</option>
-        </select>
-        <input type="number" name="Guests Count" class="rsvp-field" placeholder="Number of Guests" min="1" max="5">
-        <button type="submit" id="rsvpBtn" class="btn-action" style="margin-top:10px; margin-bottom:0;">CONFIRM & SEND RSVP</button>
-      </form>
-      <div id="rsvpStatus" style="display:none; margin-top:12px; font-size:12px; font-weight:600; color:#b8860b;">
-        🎉 Thank you! Your response has been submitted successfully.
+      <div class="section-title">CONFIRM YOUR ATTENDANCE</div>
+      
+      <div style="font-size: 11px; color: #555; margin-bottom: 15px;">
+        Please confirm your attendance directly via WhatsApp message:
       </div>
 
+      <input type="text" id="rsvpInputName" class="rsvp-field" placeholder="Enter Your Name Here" oninput="updateWhatsAppLinks()">
+
       <div class="wa-direct-box">
-        <div style="font-size: 10px; font-weight:700; color:#15803d; margin-bottom: 5px;">OR CONFIRM VIA WHATSAPP DIRECTLY:</div>
-        <a id="waBtn1" href="https://wa.me/94765563393?text=Hi%20Wathsala,%20I%20confirm%20my%20attendance!" target="_blank" class="wa-btn">💬 WhatsApp Wathsala</a>
-        <a id="waBtn2" href="https://wa.me/94702661909?text=Hi%20Anuruddha,%20I%20confirm%20my%20attendance!" target="_blank" class="wa-btn">💬 WhatsApp Anuruddha</a>
+        <a id="waBtn1" href="https://wa.me/94765563393?text=Hi%20Wathsala,%20I%20will%20be%20attending%20your%20wedding!" target="_blank" class="wa-btn">💬 Confirm to Wathsala</a>
+        <a id="waBtn2" href="https://wa.me/94702661909?text=Hi%20Anuruddha,%20I%20will%20be%20attending%20your%20wedding!" target="_blank" class="wa-btn">💬 Confirm to Anuruddha</a>
       </div>
     </div>
 
   </div>
 
   <script>
+    let currentGuestName = "";
+
     function setGuestName() {
       const urlParams = new URLSearchParams(window.location.search);
       let guestName = urlParams.get('name');
       if (guestName) {
+        currentGuestName = guestName;
         document.getElementById('guestNameMain').innerText = guestName;
+        document.getElementById('guestOpeningName').innerText = guestName;
         document.getElementById('rsvpInputName').value = guestName;
+        updateWhatsAppLinks();
+      } else {
+        document.getElementById('guestOpeningBox').style.display = 'none';
       }
+    }
+
+    function updateWhatsAppLinks() {
+      const name = document.getElementById('rsvpInputName').value || currentGuestName || "Guest";
+      const text = encodeURIComponent(`Hi, I am ${name}. I confirm my attendance for the wedding! ✨`);
+      document.getElementById('waBtn1').href = `https://wa.me/94765563393?text=${text}`;
+      document.getElementById('waBtn2').href = `https://wa.me/94702661909?text=${text}`;
     }
 
     function triggerReveal() {
       const overlay = document.getElementById('revealOverlay');
       const seal = document.getElementById('waSeal');
+      const guestBox = document.getElementById('guestOpeningBox');
       const cover = document.getElementById('coverCard');
       const music = document.getElementById('bgMusic');
 
       seal.style.opacity = '0';
+      guestBox.style.opacity = '0';
       overlay.classList.add('open');
       if(music) { music.play().catch(()=>{}); }
 
@@ -486,10 +527,10 @@
       let particles = [];
       const colors = ['#d4af37', '#ffffff', '#ffdf00', '#ff4500', '#ffd700'];
 
-      for (let i = 0; i < 90; i++) {
+      for (let i = 0; i < 120; i++) {
         particles.push({
           x: canvas.width / 2, y: canvas.height / 2,
-          dx: (Math.random() - 0.5) * 14, dy: (Math.random() - 0.5) * 14,
+          dx: (Math.random() - 0.5) * 16, dy: (Math.random() - 0.5) * 16,
           color: colors[Math.floor(Math.random() * colors.length)],
           size: Math.random() * 4 + 2, alpha: 1
         });
@@ -498,7 +539,7 @@
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach((p, index) => {
-          p.x += p.dx; p.y += p.dy; p.alpha -= 0.015;
+          p.x += p.dx; p.y += p.dy; p.alpha -= 0.012;
           ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(p.alpha, 0); ctx.fill();
           if (p.alpha <= 0) particles.splice(index, 1);
@@ -549,31 +590,6 @@
         link.download = 'Wathsala_Anuruddha_Wedding_Card.png';
         link.href = canvas.toDataURL();
         link.click();
-      });
-    }
-
-    function submitRSVP(event) {
-      event.preventDefault();
-      const form = document.getElementById('rsvpForm');
-      const btn = document.getElementById('rsvpBtn');
-      const status = document.getElementById('rsvpStatus');
-
-      btn.innerText = "SENDING...";
-      btn.disabled = true;
-
-      const formData = new FormData(form);
-      formData.append("_replyto", "sewwandiwe996@gmail.com");
-
-      fetch("https://formspree.io/f/xbldqzwv", {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        form.style.display = 'none';
-        status.style.display = 'block';
-      }).catch(error => {
-        form.style.display = 'none';
-        status.style.display = 'block';
       });
     }
 
