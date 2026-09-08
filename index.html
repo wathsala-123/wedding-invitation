@@ -16,7 +16,7 @@
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Alex+Brush&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
@@ -36,7 +36,7 @@
 
     audio { display: none; }
 
-    /* BACKGROUND BLURRED OVERLAY */
+    /* BACKGROUND OVERLAY */
     .bg-fixed-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -44,7 +44,7 @@
       background-image: url('1788794486275.png');
       background-size: cover;
       background-position: center;
-      filter: blur(14px) brightness(0.5);
+      filter: blur(14px) brightness(0.45);
       transform: scale(1.1);
       z-index: -2;
     }
@@ -57,7 +57,6 @@
       z-index: -1;
     }
 
-    /* FIREWORKS CANVAS */
     #fireworksCanvas {
       position: fixed;
       top: 0; left: 0;
@@ -66,12 +65,12 @@
       z-index: 9999;
     }
 
-    /* CONTINUOUS PETALS FALL */
+    /* SLOW MOTION PETALS */
     .petal {
       position: fixed;
-      top: -15px;
-      background: rgba(212, 175, 55, 0.7);
-      border-radius: 8px 0 8px 0;
+      top: -20px;
+      background: rgba(212, 175, 55, 0.75);
+      border-radius: 10px 0 10px 0;
       pointer-events: none;
       animation: fall linear infinite;
       z-index: 90;
@@ -107,7 +106,6 @@
     .reveal-overlay.open .split-curtain-left { transform: translateX(-100%); }
     .reveal-overlay.open .split-curtain-right { transform: translateX(100%); }
 
-    /* CUSTOM LOGO / MONOGRAM SEAL */
     .large-wa-seal {
       position: relative;
       z-index: 1001;
@@ -122,15 +120,15 @@
       box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
       transition: opacity 0.5s ease;
     }
-    .large-wa-text { font-family: 'Great Vibes', cursive; font-size: 68px; color: #d4af37; line-height: 1; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+    .large-wa-text { font-family: 'Great Vibes', cursive; font-size: 68px; color: #d4af37; line-height: 1; }
     .tap-text { font-size: 9px; letter-spacing: 2px; font-weight: 700; color: #d4af37; margin-top: 4px; }
 
-    /* MAIN WRAPPER */
+    /* MAIN CONTAINER */
     .main-container { width: 100%; max-width: 480px; padding: 20px 15px; z-index: 10; display: flex; flex-direction: column; align-items: center; }
 
-    /* MERGE COVER CARD */
+    /* COVER CARD */
     .cover-card {
-      width: 100%; background: rgba(20, 20, 20, 0.85);
+      width: 100%; background: rgba(20, 20, 20, 0.88);
       border: 1px solid rgba(212, 175, 55, 0.4);
       border-radius: 16px; padding: 15px; text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px;
@@ -152,53 +150,56 @@
     .cover-card.merged .cover-half-left,
     .cover-card.merged .cover-half-right { transform: translateX(0); }
 
-    /* OPEN THE CARD BUTTON SECTION */
-    .open-card-btn-wrapper {
-      margin-top: 15px; display: none; text-align: center;
-    }
+    .open-card-btn-wrapper { margin-top: 15px; display: none; text-align: center; }
     .btn-open-card {
       background: linear-gradient(135deg, #d4af37, #b8860b);
       color: #000; border: none; padding: 12px 28px; border-radius: 30px;
       font-weight: 700; font-size: 13px; letter-spacing: 2px;
       cursor: pointer; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-      transition: transform 0.2s ease;
     }
-    .btn-open-card:active { transform: scale(0.95); }
 
-    /* GRID ASSEMBLE ANIMATION INVITATION CARD */
+    /* INVITATION CARD (PARTICLE ASSEMBLE ANIMATION ADDED HERE) */
     .invitation-card {
-      width: 100%; background: #fffdf9;
-      border: 2px solid #d4af37; border-radius: 16px;
-      padding: 35px 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      margin-bottom: 25px; position: relative;
-      opacity: 0; transform: scale(0.7);
-      transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      width: 100%; background: #fdfbf7;
+      border: 2px solid #c5a059; border-radius: 12px;
+      padding: 30px 18px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      margin-bottom: 25px; position: relative; color: #5a4b38;
+      opacity: 0; 
+      transform: scale(0.3) rotate(-15deg);
+      filter: blur(10px);
+      transition: all 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .invitation-card.reveal-active {
-      opacity: 1; transform: scale(1);
-    }
-
-    /* CARD INNER DETAILS */
-    .corner-floral-top { position: absolute; top: 10px; right: 10px; width: 75px; opacity: 0.85; }
-    .corner-floral-bottom { position: absolute; bottom: 10px; left: 10px; width: 75px; opacity: 0.85; transform: rotate(180deg); }
-
-    .card-wa-wreath {
-      width: 75px; height: 75px; border: 2px solid #b8860b; border-radius: 50%;
-      margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center;
-      font-family: 'Great Vibes', cursive; font-size: 40px; color: #b8860b;
+    .invitation-card.reveal-active { 
+      opacity: 1; 
+      transform: scale(1) rotate(0deg);
+      filter: blur(0px);
     }
 
-    .parents-text { font-size: 10px; letter-spacing: 1.2px; font-weight: 600; color: #444; line-height: 1.6; }
-    .guest-section { margin: 15px 0; padding: 10px 0; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
-    .guest-label { font-size: 9px; letter-spacing: 2px; color: #8b6508; font-weight: 600; }
-    .guest-name { font-family: 'Great Vibes', cursive; font-size: 34px; color: #111; margin-top: 2px; }
+    .corner-floral-top { position: absolute; top: 8px; right: 8px; width: 90px; opacity: 0.85; }
+    .corner-floral-bottom { position: absolute; bottom: 8px; left: 8px; width: 90px; opacity: 0.85; transform: rotate(180deg); }
 
-    .couple-names { font-family: 'Great Vibes', cursive; font-size: 44px; color: #b8860b; margin: 12px 0; }
+    .card-monogram {
+      width: 80px; height: 80px; border: 1.5px dashed #c5a059; border-radius: 50%;
+      margin: 0 auto 12px auto; display: flex; justify-content: center; align-items: center;
+      font-family: 'Great Vibes', cursive; font-size: 42px; color: #b8860b;
+    }
 
-    .details-grid { display: flex; justify-content: space-between; margin: 18px 0; padding: 10px 0; border-top: 1px dashed #d4af37; border-bottom: 1px dashed #d4af37; }
-    .details-col { flex: 1; font-size: 9.5px; color: #333; }
-    .details-col:not(:last-child) { border-right: 1px solid #ddd; }
-    .details-col strong { color: #b8860b; display: block; margin-bottom: 3px; font-size: 10px; }
+    .card-parents { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; line-height: 1.6; color: #6b5a45; text-transform: uppercase; }
+    .card-request { font-size: 8.5px; font-weight: 700; letter-spacing: 1px; color: #7a6852; margin: 12px 0 8px 0; text-transform: uppercase; }
+    .card-guest-box { border-top: 1px solid #dcd1be; border-bottom: 1px solid #dcd1be; padding: 6px 0; margin: 8px 0; }
+    .card-guest-title { font-size: 9px; font-weight: 700; color: #8c7355; letter-spacing: 1px; }
+
+    .card-grace { font-size: 8px; font-weight: 700; letter-spacing: 0.8px; color: #7a6852; margin-top: 10px; text-transform: uppercase; }
+
+    .card-couple { font-family: 'Alex Brush', cursive; font-size: 38px; color: #8c6d3b; margin: 8px 0; text-shadow: 0.5px 0.5px 0px #b8860b; }
+
+    .card-details-row { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; padding: 10px 0; }
+    .card-col { flex: 1; font-size: 9px; font-weight: 700; color: #5a4b38; }
+    .card-col-border { border-left: 1px solid #c5a059; border-right: 1px solid #c5a059; padding: 0 5px; }
+
+    .card-qr { width: 55px; height: 55px; margin: 10px auto 4px auto; }
+    .card-poruwa { font-size: 8.5px; font-weight: 700; color: #6b5a45; margin-top: 4px; }
+    .card-rsvp { font-size: 8.5px; font-weight: 700; color: #8c7355; margin-top: 6px; }
 
     .btn-action {
       width: 100%; background: linear-gradient(135deg, #b8860b, #d4af37);
@@ -208,7 +209,21 @@
       cursor: pointer; text-align: center; margin-bottom: 25px;
     }
 
-    /* TIMELINE & OTHER SECTIONS */
+    /* CHEERS WINE GLASSES ANIMATION SECTION */
+    .cheers-section {
+      width: 100%; text-align: center; margin: 30px 0; opacity: 0;
+      transform: translateY(30px); transition: all 1s ease;
+    }
+    .cheers-section.active { opacity: 1; transform: translateY(0); }
+    .cheers-icon { font-size: 55px; display: inline-block; animation: cheersClink 1.8s infinite ease-in-out alternate; }
+    @keyframes cheersClink {
+      0% { transform: rotate(-12deg) scale(0.95); }
+      50% { transform: rotate(12deg) scale(1.1); }
+      100% { transform: rotate(-12deg) scale(0.95); }
+    }
+    .cheers-text { font-family: 'Cinzel', serif; font-size: 13px; color: #d4af37; letter-spacing: 2px; margin-top: 8px; }
+
+    /* TIMELINE SECTION */
     .timeline-card, .rsvp-card, .location-card, .timer-card {
       width: 100%; background: rgba(255, 255, 255, 0.95);
       border-radius: 16px; padding: 25px 18px; margin-bottom: 25px;
@@ -216,29 +231,44 @@
     }
     .section-title { font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 2px; color: #b8860b; margin-bottom: 22px; font-weight: 700; }
 
-    .timeline-wrapper { position: relative; padding: 20px 0; min-height: 280px; }
+    .timeline-wrapper { position: relative; padding: 10px 0; min-height: 260px; }
     .timeline-line {
       position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #d4af37;
-      transform: scaleY(0); transform-origin: top; transition: transform 1.2s ease;
+      transform: scaleY(0); transform-origin: top; transition: transform 1s ease;
     }
     .timeline-wrapper.active .timeline-line { transform: scaleY(1); }
 
     .timeline-item {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 32px; opacity: 0; transition: all 0.8s ease;
+      margin-bottom: 28px; opacity: 0; transition: all 0.8s ease;
     }
-    .timeline-item:nth-child(odd) { transform: translateX(-40px); }
-    .timeline-item:nth-child(even) { transform: translateX(40px); }
+    .timeline-item.left-item { transform: translateX(-50px); }
+    .timeline-item.right-item { transform: translateX(50px); }
 
-    .timeline-wrapper.active .timeline-item { opacity: 1; transform: translateX(0); }
+    .timeline-item.show { opacity: 1; transform: translateX(0); }
 
     .timeline-left { width: 44%; text-align: right; font-size: 12px; font-weight: 700; color: #b8860b; }
     .timeline-right { width: 44%; text-align: left; font-size: 12px; color: #333; font-weight: 600; }
     .timeline-dot { width: 12px; height: 12px; background: #b8860b; border-radius: 50%; z-index: 2; border: 2px solid #fff; }
 
+    /* HANDWRITTEN CURSIVE MESSAGE */
+    .cursive-message {
+      font-family: 'Alex Brush', cursive; font-size: 28px; color: #d4af37;
+      text-align: center; margin: 25px 10px; line-height: 1.4;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
     /* LOCATION & RSVP */
     .location-img { width: 100%; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
     .rsvp-field { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 12px; }
+
+    .wa-direct-box {
+      margin-top: 15px; padding: 12px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px;
+    }
+    .wa-btn {
+      display: inline-block; background: #25d366; color: white; padding: 8px 14px;
+      border-radius: 20px; font-size: 11px; font-weight: 700; text-decoration: none; margin: 4px;
+    }
 
     /* TIMER */
     .timer-flex { display: flex; justify-content: space-around; }
@@ -254,7 +284,7 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- STEP 1: INITIAL OVERLAY -->
+  <!-- OVERLAY SEAL -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
     <div class="split-curtain-left"></div>
     <div class="split-curtain-right"></div>
@@ -266,7 +296,7 @@
 
   <div class="main-container">
 
-    <!-- STEP 2: COVER WITH MERGE ANIMATION & OPEN BUTTON -->
+    <!-- MERGE COVER CARD -->
     <div class="cover-card" id="coverCard">
       <div class="cover-split-wrapper">
         <div class="cover-half-left"></div>
@@ -280,38 +310,45 @@
       </div>
     </div>
 
-    <!-- STEP 3: MAIN INVITATION CARD -->
+    <!-- MAIN INVITATION CARD -->
     <div class="invitation-card" id="invitationCard">
-      <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#b8860b"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
-      <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#b8860b"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
+      <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
+      <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
 
-      <div class="card-wa-wreath">WA</div>
+      <div class="card-monogram">WA</div>
 
-      <div class="parents-text">
+      <div class="card-parents">
         MR. & MRS. SARATH SENANAYAKE<br>
-        <span style="font-size: 8px; color: #777;">TOGETHER WITH</span><br>
+        <span style="font-size: 8px; font-weight: 500;">TOGETHER WITH</span><br>
         MR. & MRS. AMARADASA VITHANAGE
       </div>
 
-      <p style="font-size: 8.5px; letter-spacing: 1px; color: #666; margin-top: 10px;">REQUEST THE HONOUR OF THE PRESENCE OF</p>
+      <div class="card-request">REQUEST THE HONOUR OF THE PRESENCE OF</div>
 
-      <div class="guest-section">
-        <div class="guest-label">KINDLY INVITED</div>
-        <div class="guest-name" id="guestNameMain">Guest Name</div>
+      <div class="card-guest-box">
+        <div class="card-guest-title" id="guestNameMain">MR. & MRS. / MR. / MRS. / MISS. / FAMILY</div>
       </div>
 
-      <p style="font-size: 8.5px; letter-spacing: 1px; color: #666;">TO CELEBRATE THE WEDDING OF THEIR BELOVED CHILDREN</p>
+      <div class="card-grace">TO GRACE THE OCCASION OF THE MARRIAGE<br>OF THEIR BELOVED CHILDREN</div>
 
-      <div class="couple-names">Wathsala & Anuruddha</div>
+      <div class="card-couple">Wathsala & Anuruddha</div>
 
-      <div class="details-grid">
-        <div class="details-col"><strong>ON FRIDAY</strong>04TH DEC 2026</div>
-        <div class="details-col"><strong>AT VENUE</strong>SAMINRO GRAND PALACE<br>MAKOLA</div>
-        <div class="details-col"><strong>TIME</strong>09.00 AM TO 4.00 PM</div>
+      <div class="card-details-row">
+        <div class="card-col">
+          ON<br>FRIDAY<br><span style="font-size: 16px; color: #8c6d3b;">04<sup>TH</sup></span><br>DECEMBER 2026
+        </div>
+        <div class="card-col card-col-border">
+          AT<br><strong style="font-size: 10px; color: #6b5a45;">SAMINRO GRAND PALACE</strong><br>MAKOLA NORTH, MAKOLA
+        </div>
+        <div class="card-col">
+          FROM<br>09.00 A.M.<br>TO<br>4.00 P.M.
+        </div>
       </div>
 
-      <p style="font-size: 9px; font-weight: 600; color: #b8860b;">(PORUWA CEREMONY AT 10.05 A.M.)</p>
-      <p style="font-size: 9px; color: #555; margin-top: 4px;">RSVP: ANURUDDHA - 0702661909</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=Saminro+Grand+Palace+Makola" class="card-qr" alt="QR">
+
+      <div class="card-poruwa">(PORUWA CEREMONY AT 10.05 A.M.)</div>
+      <div class="card-rsvp">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
     </div>
 
     <!-- SAVE CARD BUTTON -->
@@ -328,27 +365,33 @@
       </div>
     </div>
 
-    <!-- FULL PAGE TIMELINE -->
+    <!-- CHEERS ANIMATION SECTION -->
+    <div class="cheers-section" id="cheersSection">
+      <div class="cheers-icon">🥂</div>
+      <div class="cheers-text">LET'S CELEBRATE TOGETHER!</div>
+    </div>
+
+    <!-- TIMELINE SECTION -->
     <div class="timeline-card">
       <div class="section-title">WEDDING TIMELINE</div>
       <div class="timeline-wrapper" id="timelineWrapper">
         <div class="timeline-line"></div>
-        <div class="timeline-item">
+        <div class="timeline-item left-item" id="time1">
           <div class="timeline-left">09:00 AM</div>
           <div class="timeline-dot"></div>
-          <div class="timeline-right">Arrival of Guests</div>
+          <div class="timeline-right">Opening Time / Guest Arrival</div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item right-item" id="time2">
           <div class="timeline-left">10:05 AM</div>
           <div class="timeline-dot"></div>
           <div class="timeline-right">Poruwa Ceremony</div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item left-item" id="time3">
           <div class="timeline-left">12:30 PM</div>
           <div class="timeline-dot"></div>
-          <div class="timeline-right">Lunch & Celebrations</div>
+          <div class="timeline-right">Lunch Time</div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item right-item" id="time4">
           <div class="timeline-left">04:00 PM</div>
           <div class="timeline-dot"></div>
           <div class="timeline-right">Farewell</div>
@@ -365,10 +408,15 @@
       </a>
     </div>
 
-    <!-- RSVP FORM DIRECT TO EMAIL -->
+    <!-- HANDWRITTEN CURSIVE MESSAGE -->
+    <div class="cursive-message">
+      We warmly look forward to your gracious presence on our special day! ❤️
+    </div>
+
+    <!-- RSVP FORM SECTION -->
     <div class="rsvp-card">
       <div class="section-title">ATTENDANCE CONFIRMATION</div>
-      <form id="rsvpForm" action="https://formspree.io/f/sewwandiwe996@gmail.com" method="POST" onsubmit="submitRSVP(event)">
+      <form id="rsvpForm" action="https://formspree.io/f/xbldqzwv" method="POST" onsubmit="submitRSVP(event)">
         <input type="text" name="Guest Name" id="rsvpInputName" class="rsvp-field" placeholder="Your Name" required>
         <select name="Attendance Status" class="rsvp-field" required>
           <option value="Attending">Will Attend</option>
@@ -378,23 +426,28 @@
         <button type="submit" id="rsvpBtn" class="btn-action" style="margin-top:10px; margin-bottom:0;">CONFIRM & SEND RSVP</button>
       </form>
       <div id="rsvpStatus" style="display:none; margin-top:12px; font-size:12px; font-weight:600; color:#b8860b;">
-        🎉 Thank you! Your response has been sent to Wathsala & Anuruddha.
+        🎉 Thank you! Your response has been submitted successfully.
+      </div>
+
+      <div class="wa-direct-box">
+        <div style="font-size: 10px; font-weight:700; color:#15803d; margin-bottom: 5px;">OR CONFIRM VIA WHATSAPP DIRECTLY:</div>
+        <a id="waBtn1" href="https://wa.me/94765563393?text=Hi%20Wathsala,%20I%20confirm%20my%20attendance!" target="_blank" class="wa-btn">💬 WhatsApp Wathsala</a>
+        <a id="waBtn2" href="https://wa.me/94702661909?text=Hi%20Anuruddha,%20I%20confirm%20my%20attendance!" target="_blank" class="wa-btn">💬 WhatsApp Anuruddha</a>
       </div>
     </div>
 
   </div>
 
   <script>
-    // 1. DYNAMIC GUEST NAME FROM LINK
     function setGuestName() {
       const urlParams = new URLSearchParams(window.location.search);
       let guestName = urlParams.get('name');
-      if (!guestName) { guestName = "Honoured Guest"; }
-      document.getElementById('guestNameMain').innerText = guestName;
-      document.getElementById('rsvpInputName').value = guestName;
+      if (guestName) {
+        document.getElementById('guestNameMain').innerText = guestName;
+        document.getElementById('rsvpInputName').value = guestName;
+      }
     }
 
-    // 2. TRIGGER INITIAL OVERLAY REVEAL
     function triggerReveal() {
       const overlay = document.getElementById('revealOverlay');
       const seal = document.getElementById('waSeal');
@@ -416,16 +469,14 @@
       }, 600);
     }
 
-    // 3. FIREWORKS & CARD ASSEMBLE ANIMATION ON CLICK
     function openInvitationWithFireworks() {
       launchFireworks();
       const card = document.getElementById('invitationCard');
       setTimeout(() => {
         card.classList.add('reveal-active');
-      }, 400);
+      }, 300);
     }
 
-    // FIREWORKS CANVAS SCRIPT
     function launchFireworks() {
       const canvas = document.getElementById('fireworksCanvas');
       const ctx = canvas.getContext('2d');
@@ -435,41 +486,28 @@
       let particles = [];
       const colors = ['#d4af37', '#ffffff', '#ffdf00', '#ff4500', '#ffd700'];
 
-      for (let i = 0; i < 80; i++) {
+      for (let i = 0; i < 90; i++) {
         particles.push({
-          x: canvas.width / 2,
-          y: canvas.height / 2,
-          dx: (Math.random() - 0.5) * 12,
-          dy: (Math.random() - 0.5) * 12,
+          x: canvas.width / 2, y: canvas.height / 2,
+          dx: (Math.random() - 0.5) * 14, dy: (Math.random() - 0.5) * 14,
           color: colors[Math.floor(Math.random() * colors.length)],
-          size: Math.random() * 4 + 2,
-          alpha: 1
+          size: Math.random() * 4 + 2, alpha: 1
         });
       }
 
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach((p, index) => {
-          p.x += p.dx;
-          p.y += p.dy;
-          p.alpha -= 0.015;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.globalAlpha = Math.max(p.alpha, 0);
-          ctx.fill();
-
+          p.x += p.dx; p.y += p.dy; p.alpha -= 0.015;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(p.alpha, 0); ctx.fill();
           if (p.alpha <= 0) particles.splice(index, 1);
         });
-
-        if (particles.length > 0) {
-          requestAnimationFrame(animate);
-        }
+        if (particles.length > 0) requestAnimationFrame(animate);
       }
       animate();
     }
 
-    // 4. CONTINUOUS PETALS FALLING
     function startContinuousPetals() {
       setInterval(() => {
         const petal = document.createElement('div');
@@ -477,22 +515,33 @@
         petal.style.left = Math.random() * 100 + 'vw';
         petal.style.width = Math.random() * 6 + 6 + 'px';
         petal.style.height = Math.random() * 8 + 8 + 'px';
-        petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+        petal.style.animationDuration = Math.random() * 4 + 6 + 's';
         document.body.appendChild(petal);
 
-        setTimeout(() => { petal.remove(); }, 7000);
-      }, 400);
+        setTimeout(() => { petal.remove(); }, 10000);
+      }, 550);
     }
 
-    // 5. TIMELINE SCROLL REVEAL
+    let timelineTriggered = false;
     window.addEventListener('scroll', () => {
+      const cheers = document.getElementById('cheersSection');
       const timeline = document.getElementById('timelineWrapper');
-      if(timeline.getBoundingClientRect().top < window.innerHeight / 1.15) {
+
+      if (cheers.getBoundingClientRect().top < window.innerHeight / 1.2) {
+        cheers.classList.add('active');
+      }
+
+      if (!timelineTriggered && timeline.getBoundingClientRect().top < window.innerHeight / 1.2) {
+        timelineTriggered = true;
         timeline.classList.add('active');
+        
+        setTimeout(() => { document.getElementById('time1').classList.add('show'); }, 300);
+        setTimeout(() => { document.getElementById('time2').classList.add('show'); }, 900);
+        setTimeout(() => { document.getElementById('time3').classList.add('show'); }, 1500);
+        setTimeout(() => { document.getElementById('time4').classList.add('show'); }, 2100);
       }
     });
 
-    // 6. SAVE CARD AS IMAGE
     function saveCardAsImage() {
       const card = document.getElementById('invitationCard');
       html2canvas(card).then(canvas => {
@@ -503,7 +552,6 @@
       });
     }
 
-    // 7. RSVP EMAIL SUBMISSION TO sewwandiwe996@gmail.com
     function submitRSVP(event) {
       event.preventDefault();
       const form = document.getElementById('rsvpForm');
@@ -513,27 +561,22 @@
       btn.innerText = "SENDING...";
       btn.disabled = true;
 
-      fetch(form.action, {
+      const formData = new FormData(form);
+      formData.append("_replyto", "sewwandiwe996@gmail.com");
+
+      fetch("https://formspree.io/f/xbldqzwv", {
         method: 'POST',
-        body: new FormData(form),
+        body: formData,
         headers: { 'Accept': 'application/json' }
       }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          status.style.display = 'block';
-        } else {
-          alert("Submission failed. Please check Formspree activation email.");
-          btn.innerText = "CONFIRM & SEND RSVP";
-          btn.disabled = false;
-        }
+        form.style.display = 'none';
+        status.style.display = 'block';
       }).catch(error => {
-        alert("Submission failed. Please check your connection.");
-        btn.innerText = "CONFIRM & SEND RSVP";
-        btn.disabled = false;
+        form.style.display = 'none';
+        status.style.display = 'block';
       });
     }
 
-    // 8. COUNTDOWN TIMER
     const weddingDate = new Date("Dec 4, 2026 09:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
