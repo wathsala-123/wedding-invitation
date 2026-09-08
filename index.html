@@ -123,13 +123,14 @@
       background: #d4af37;
       padding: 10px;
     }
-    .tap-text { font-size: 9px; letter-spacing: 3px; font-weight: 700; color: #ffffff; margin-top: 2px; }
 
-    /* SVG MONOGRAM STYLES */
-    .wa-monogram-svg {
-      width: 110px;
-      height: 90px;
+    .wa-monogram-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
     }
+
+    .tap-text { font-size: 9px; letter-spacing: 3px; font-weight: 700; color: #ffffff; margin-top: 4px; }
 
     /* GUEST NAME ON COVER */
     .guest-opening-box {
@@ -175,15 +176,12 @@
     .cover-card.merged .cover-half-right { transform: translateX(0); }
 
     .cover-title-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      margin-top: 12px;
       font-family: 'Cinzel', serif;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
       color: #d4af37;
+      margin-top: 14px;
+      letter-spacing: 1.5px;
     }
 
     .open-card-btn-wrapper { margin-top: 15px; display: none; text-align: center; }
@@ -230,14 +228,10 @@
     .card-grace { font-size: 8px; font-weight: 700; letter-spacing: 0.8px; color: #7a6852; margin-top: 10px; text-transform: uppercase; }
 
     .card-couple {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      margin: 10px 0;
       font-family: 'Great Vibes', cursive;
-      font-size: 34px;
+      font-size: 36px;
       color: #8c6d3b;
+      margin: 10px 0;
     }
 
     .card-details-row { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; padding: 10px 0; }
@@ -328,21 +322,13 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- OVERLAY SEAL WITH INTERTWINED CAPITAL WA FLOURISH MONOGRAM -->
+  <!-- OVERLAY SEAL WITH EXACT WA MONOGRAM IMAGE -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
     <div class="split-curtain-left"></div>
     <div class="split-curtain-right"></div>
     
     <div class="large-wa-seal" id="waSeal">
-      <!-- VECTOR MONOGRAM DRAWING (W & A) -->
-      <svg class="wa-monogram-svg" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- SWIRL FLOURISHES -->
-        <path d="M 20 60 C 5 20, 50 10, 65 40 Q 60 70, 45 100 Q 110 170, 160 130 C 180 110, 150 70, 120 100" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/>
-        <!-- CAPITAL W -->
-        <path d="M 45 40 L 62 110 L 85 55 L 105 110 L 125 40" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- CAPITAL A -->
-        <path d="M 115 110 L 148 40 L 180 110 M 128 82 L 168 82" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
+      <img src="1000116604_3.jpg" class="wa-monogram-img" alt="WA Monogram">
       <div class="tap-text">TAP TO REVEAL</div>
     </div>
 
@@ -354,23 +340,14 @@
 
   <div class="main-container">
 
-    <!-- COVER CARD WITH MONOGRAM & CAPITAL NAMES -->
+    <!-- COVER CARD WITH CLEAR CAPITAL NAMES -->
     <div class="cover-card" id="coverCard">
       <div class="cover-split-wrapper">
         <div class="cover-half-left"></div>
         <div class="cover-half-right"></div>
       </div>
       
-      <div class="cover-title-row">
-        <span>Wathsala</span>
-        <!-- MINI EMBEDDED MONOGRAM -->
-        <svg style="width: 32px; height: 26px;" viewBox="0 0 200 160" fill="none">
-          <path d="M 20 60 C 5 20, 50 10, 65 40 Q 60 70, 45 100 Q 110 170, 160 130 C 180 110, 150 70, 120 100" stroke="#d4af37" stroke-width="5" fill="none"/>
-          <path d="M 45 40 L 62 110 L 85 55 L 105 110 L 125 40" stroke="#d4af37" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M 115 110 L 148 40 L 180 110 M 128 82 L 168 82" stroke="#d4af37" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span>Anuruddha</span>
-      </div>
+      <div class="cover-title-row">WATHSALA & ANURUDDHA</div>
 
       <div style="font-size: 10px; letter-spacing: 3px; font-weight: 600; color: #ddd; margin-top: 6px;">SAVE THE DATE • 04.12.2026</div>
 
@@ -384,13 +361,9 @@
       <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
       <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
 
-      <!-- MONOGRAM CIRCLE IN CARD -->
+      <!-- MONOGRAM CIRCLE IN CARD USING THE EXACT IMAGE -->
       <div class="card-monogram">
-        <svg style="width: 55px; height: 45px;" viewBox="0 0 200 160" fill="none">
-          <path d="M 20 60 C 5 20, 50 10, 65 40 Q 60 70, 45 100 Q 110 170, 160 130 C 180 110, 150 70, 120 100" stroke="#b8860b" stroke-width="5" fill="none"/>
-          <path d="M 45 40 L 62 110 L 85 55 L 105 110 L 125 40" stroke="#b8860b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M 115 110 L 148 40 L 180 110 M 128 82 L 168 82" stroke="#b8860b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
+        <img src="1000116604_3.jpg" style="width: 55px; height: 55px; object-fit: contain;" alt="WA Monogram">
       </div>
 
       <div class="card-parents">
@@ -407,11 +380,7 @@
 
       <div class="card-grace">TO GRACE THE OCCASION OF THE MARRIAGE<br>OF THEIR BELOVED CHILDREN</div>
 
-      <div class="card-couple">
-        <span>Wathsala</span>
-        <span style="font-size: 26px; color: #b8860b;">&</span>
-        <span>Anuruddha</span>
-      </div>
+      <div class="card-couple">Wathsala & Anuruddha</div>
 
       <div class="card-details-row">
         <div class="card-col">
