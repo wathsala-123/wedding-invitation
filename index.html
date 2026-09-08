@@ -6,7 +6,6 @@
   
   <title>Wedding Invitation | Wathsala & Anuruddha</title>
 
-  <!-- WHATSAPP PREVIEW META TAGS -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="💌 WEDDING INVITATION | Wathsala & Anuruddha">
   <meta property="og:description" content="We warmly invite you to celebrate our wedding! Tap to open your invitation.">
@@ -16,7 +15,7 @@
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Alex+Brush&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
@@ -107,7 +106,7 @@
     .reveal-overlay.open .split-curtain-left { transform: translateX(-100%); }
     .reveal-overlay.open .split-curtain-right { transform: translateX(100%); }
 
-    /* ELEGANT GOLDEN MONOGRAM LOGO SEAL WITH INTERLOCKING SERIF STYLE */
+    /* ELEGANT GOLDEN MONOGRAM LOGO SEAL WITH WHITE CAPITAL CURSIVE LETTERS */
     .large-wa-seal {
       position: relative;
       z-index: 1001;
@@ -122,40 +121,15 @@
       transition: opacity 0.5s ease;
       background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
     }
-
-    .monogram-container {
-      position: relative;
-      width: 110px;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .large-wa-text { 
+      font-family: 'Great Vibes', 'Alex Brush', cursive; 
+      font-size: 64px; 
+      color: #ffffff; 
+      font-weight: 700;
+      line-height: 1; 
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-
-    .letter-w {
-      position: absolute;
-      left: 10px;
-      top: 5px;
-      font-family: 'Cinzel', 'Playfair Display', serif;
-      font-size: 68px;
-      font-weight: 600;
-      color: #ffffff;
-      line-height: 1;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
-
-    .letter-a {
-      position: absolute;
-      right: 12px;
-      bottom: 0px;
-      font-family: 'Cinzel', 'Playfair Display', serif;
-      font-size: 72px;
-      font-weight: 500;
-      color: #ffffff;
-      line-height: 1;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
-
     .tap-text { font-size: 9px; letter-spacing: 3px; font-weight: 700; color: #ffffff; margin-top: 4px; text-shadow: 0 1px 2px rgba(0,0,0,0.4); }
 
     /* DYNAMIC GUEST NAME ON COVER OPENING */
@@ -231,18 +205,14 @@
     .corner-floral-top { position: absolute; top: 8px; right: 8px; width: 90px; opacity: 0.85; }
     .corner-floral-bottom { position: absolute; bottom: 8px; left: 8px; width: 90px; opacity: 0.85; transform: rotate(180deg); }
 
-    /* CARD MONOGRAM (INTERLOCKING STYLE) */
+    /* CARD MONOGRAM (FULL GOLD CIRCLE WITH WHITE CURSIVE CAPITAL LETTERS) */
     .card-monogram {
-      width: 85px; height: 85px; 
+      width: 75px; height: 75px; 
       border: 1.5px solid #d4af37; border-radius: 50%;
-      margin: 0 auto 12px auto; 
-      display: flex; justify-content: center; align-items: center;
+      margin: 0 auto 12px auto; display: flex; justify-content: center; align-items: center;
+      font-family: 'Great Vibes', 'Alex Brush', cursive; font-size: 38px; color: #ffffff; font-weight: 700;
       background: linear-gradient(135deg, #d4af37, #b8860b);
       box-shadow: 0 4px 10px rgba(184, 134, 11, 0.3);
-      position: relative;
-    }
-    .card-monogram .monogram-container {
-      transform: scale(0.65);
     }
 
     .card-parents { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; line-height: 1.6; color: #6b5a45; text-transform: uppercase; }
@@ -343,16 +313,12 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- OVERLAY SEAL WITH INTERLOCKING MONOGRAM -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
     <div class="split-curtain-left"></div>
     <div class="split-curtain-right"></div>
     
     <div class="large-wa-seal" id="waSeal">
-      <div class="monogram-container">
-        <span class="letter-w">W</span>
-        <span class="letter-a">A</span>
-      </div>
+      <div class="large-wa-text">WA</div>
       <div class="tap-text">TAP TO REVEAL</div>
     </div>
 
@@ -364,7 +330,6 @@
 
   <div class="main-container">
 
-    <!-- MERGE COVER CARD -->
     <div class="cover-card" id="coverCard">
       <div class="cover-split-wrapper">
         <div class="cover-half-left"></div>
@@ -378,18 +343,11 @@
       </div>
     </div>
 
-    <!-- MAIN INVITATION CARD -->
     <div class="invitation-card" id="invitationCard">
       <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
       <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
 
-      <!-- CARD MONOGRAM (INTERLOCKING STYLE) -->
-      <div class="card-monogram">
-        <div class="monogram-container">
-          <span class="letter-w">W</span>
-          <span class="letter-a">A</span>
-        </div>
-      </div>
+      <div class="card-monogram">WA</div>
 
       <div class="card-parents">
         MR. & MRS. SARATH SENANAYAKE<br>
@@ -425,10 +383,8 @@
       <div class="card-rsvp">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
     </div>
 
-    <!-- SAVE CARD BUTTON -->
     <button class="btn-action" onclick="saveCardAsImage()">💾 SAVE INVITATION CARD</button>
 
-    <!-- COUNTDOWN CLOCK -->
     <div class="timer-card">
       <div class="section-title">COUNTDOWN TO OUR BIG DAY</div>
       <div class="timer-flex">
@@ -439,13 +395,11 @@
       </div>
     </div>
 
-    <!-- CHEERS ANIMATION SECTION -->
     <div class="cheers-section" id="cheersSection">
       <div class="cheers-icon">🥂</div>
       <div class="cheers-text">LET'S CELEBRATE TOGETHER!</div>
     </div>
 
-    <!-- TIMELINE SECTION -->
     <div class="timeline-card">
       <div class="section-title">WEDDING TIMELINE</div>
       <div class="timeline-wrapper" id="timelineWrapper">
@@ -473,7 +427,6 @@
       </div>
     </div>
 
-    <!-- LOCATION SECTION -->
     <div class="location-card">
       <div class="section-title">WEDDING VENUE</div>
       <img src="unnamed (1).jpg" alt="Saminro Grand Palace" class="location-img">
@@ -482,12 +435,10 @@
       </a>
     </div>
 
-    <!-- HANDWRITTEN CURSIVE MESSAGE -->
     <div class="cursive-message">
       We warmly look forward to your gracious presence on our special day! ❤️
     </div>
 
-    <!-- DIRECT WHATSAPP CONFIRMATION SECTION -->
     <div class="rsvp-card">
       <div class="section-title">CONFIRM YOUR ATTENDANCE</div>
       
