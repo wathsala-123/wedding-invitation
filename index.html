@@ -107,11 +107,11 @@
     .reveal-overlay.open .split-curtain-left { transform: translateX(-100%); }
     .reveal-overlay.open .split-curtain-right { transform: translateX(100%); }
 
-    /* YELLOW BACKGROUND ENVELOPE SEAL WITH CALLIGRAPHY WA MONOGRAM */
+    /* YELLOW BACKGROUND ENVELOPE SEAL WITH NORMAL CAPITAL WA MONOGRAM */
     .large-wa-seal {
       position: relative;
       z-index: 1001;
-      width: 170px; height: 170px;
+      width: 160px; height: 160px;
       border: 2px solid #d4af37;
       border-radius: 50%;
       display: flex;
@@ -124,10 +124,15 @@
       padding: 10px;
     }
 
-    .custom-wa-svg {
-      width: 100px;
-      height: 75px;
+    .normal-wa-text {
+      font-family: 'Cinzel', serif;
+      font-size: 65px;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
       margin-bottom: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .tap-text { 
@@ -135,7 +140,7 @@
       letter-spacing: 3px; 
       font-weight: 700; 
       color: #ffffff; 
-      margin-top: 2px; 
+      margin-top: 4px; 
     }
 
     /* DYNAMIC GUEST NAME ON COVER OPENING */
@@ -326,21 +331,13 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- OVERLAY SEAL WITH SOLID YELLOW BG AND EXACT CALLIGRAPHY MONOGRAM -->
+  <!-- OVERLAY SEAL WITH SOLID YELLOW BG AND NORMAL CAPITAL WA MONOGRAM -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
     <div class="split-curtain-left"></div>
     <div class="split-curtain-right"></div>
     
     <div class="large-wa-seal" id="waSeal">
-      <!-- EXACT CURVED CALLIGRAPHY MONOGRAM SVG -->
-      <svg class="custom-wa-svg" viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 25 50 C 15 20, 50 15, 65 35 L 105 130 C 112 148, 128 152, 142 142 C 160 130, 162 100, 140 90 C 118 80, 105 105, 125 125 C 145 145, 170 120, 160 100" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-        <path d="M 55 42 L 80 115 L 105 48 L 128 115 L 150 42" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M 38 42 C 48 42, 55 42, 55 42" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
-        <path d="M 130 118 L 165 38 L 202 118" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M 148 82 Q 170 72, 192 82" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" fill="none"/>
-        <path d="M 165 38 C 165 15, 205 10, 205 28 C 205 45, 175 48, 150 78" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
-      </svg>
+      <div class="normal-wa-text">WA</div>
       <div class="tap-text">TAP TO REVEAL</div>
     </div>
 
