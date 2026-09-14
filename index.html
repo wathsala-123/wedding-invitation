@@ -6,7 +6,6 @@
   
   <title>Wedding Invitation | Wathsala & Anuruddha</title>
 
-  <!-- WHATSAPP PREVIEW META TAGS -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="💌 WEDDING INVITATION | Wathsala & Anuruddha">
   <meta property="og:description" content="We warmly invite you to celebrate our wedding! Tap to open your invitation.">
@@ -107,7 +106,7 @@
     .reveal-overlay.open .split-curtain-left { transform: translateX(-100%); }
     .reveal-overlay.open .split-curtain-right { transform: translateX(100%); }
 
-    /* YELLOW BACKGROUND ENVELOPE SEAL WITH NORMAL CAPITAL WA MONOGRAM */
+    /* YELLOW SEAL WITH NORMAL CAPITAL WA MONOGRAM */
     .large-wa-seal {
       position: relative;
       z-index: 1001;
@@ -162,7 +161,7 @@
     /* MAIN CONTAINER */
     .main-container { width: 100%; max-width: 480px; padding: 20px 15px; z-index: 10; display: flex; flex-direction: column; align-items: center; perspective: 1000px; }
 
-    /* COVER CARD WITH VIDEO ANIMATION */
+    /* COVER CARD WITH NEW VIDEO */
     .cover-card {
       width: 100%; background: rgba(20, 20, 20, 0.88);
       border: 1px solid rgba(212, 175, 55, 0.4);
@@ -331,7 +330,6 @@
 
   <audio id="bgMusic" src="AUD-20260907-WA0042.mp3" loop></audio>
 
-  <!-- OVERLAY SEAL WITH SOLID YELLOW BG AND NORMAL CAPITAL WA MONOGRAM -->
   <div class="reveal-overlay" id="revealOverlay" onclick="triggerReveal()">
     <div class="split-curtain-left"></div>
     <div class="split-curtain-right"></div>
@@ -349,11 +347,10 @@
 
   <div class="main-container">
 
-    <!-- COVER CARD WITH VIDEO ANIMATION -->
     <div class="cover-card" id="coverCard">
       <div class="cover-video-wrapper">
         <video id="coupleVideo" class="cover-video" playsinline muted loop poster="1788794486275.png">
-          <source src="VID_20260914_095020.mp4" type="video/mp4">
+          <source src="365385f4d496c4e702f9f4b4d2c284f5.mp4" type="video/mp4">
         </video>
       </div>
       <div style="font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: #d4af37; margin-top: 15px; letter-spacing: 2px;">WATHSALA & ANURUDDHA</div>
@@ -364,7 +361,6 @@
       </div>
     </div>
 
-    <!-- MAIN INVITATION CARD -->
     <div class="invitation-card" id="invitationCard">
       <svg class="corner-floral-top" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
       <svg class="corner-floral-bottom" viewBox="0 0 100 100" fill="#c5a059"><path d="M10 10 Q 50 10 90 90 Q 10 50 10 10 Z"/></svg>
@@ -405,10 +401,8 @@
       <div class="card-rsvp">RSVP (REGRETS ONLY)<br>ANURUDDHA : 0702661909</div>
     </div>
 
-    <!-- SAVE CARD BUTTON -->
     <button class="btn-action" onclick="saveCardAsImage()">💾 SAVE INVITATION CARD</button>
 
-    <!-- COUNTDOWN CLOCK -->
     <div class="timer-card">
       <div class="section-title">COUNTDOWN TO OUR BIG DAY</div>
       <div class="timer-flex">
@@ -419,13 +413,11 @@
       </div>
     </div>
 
-    <!-- CHEERS ANIMATION SECTION -->
     <div class="cheers-section" id="cheersSection">
       <div class="cheers-icon">🥂</div>
       <div class="cheers-text">LET'S CELEBRATE TOGETHER!</div>
     </div>
 
-    <!-- TIMELINE SECTION -->
     <div class="timeline-card">
       <div class="section-title">WEDDING TIMELINE</div>
       <div class="timeline-wrapper" id="timelineWrapper">
@@ -453,7 +445,6 @@
       </div>
     </div>
 
-    <!-- LOCATION SECTION -->
     <div class="location-card">
       <div class="section-title">WEDDING VENUE</div>
       <img src="unnamed (1).jpg" alt="Saminro Grand Palace" class="location-img">
@@ -462,12 +453,10 @@
       </a>
     </div>
 
-    <!-- HANDWRITTEN CURSIVE MESSAGE -->
     <div class="cursive-message">
       We warmly look forward to your gracious presence on our special day! ❤️
     </div>
 
-    <!-- DIRECT WHATSAPP CONFIRMATION SECTION -->
     <div class="rsvp-card">
       <div class="section-title">CONFIRM YOUR ATTENDANCE</div>
       
