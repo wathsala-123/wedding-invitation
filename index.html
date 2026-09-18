@@ -505,7 +505,10 @@
     function updateWhatsAppLinks() {
       const name = document.getElementById('rsvpInputName').value || currentGuestName || "Guest";
       const count = document.getElementById('rsvpGuestCount').value || "1 Guest";
-      const text = encodeURIComponent(`Hi, I am ${name}. I confirm my attendance for the wedding (${count})! ✨`);
+      
+      // හැම Phone එකකටම කිසිම ප්‍රශ්නයක් නැතුව Support කරන Flower Emojis (🌸 💐) යොදා ඇත
+      const text = encodeURIComponent(`Hi, I am ${name}. I confirm my attendance for the wedding (${count})! 🌸💐`);
+      
       document.getElementById('waBtn1').href = `https://wa.me/94765563393?text=${text}`;
       document.getElementById('waBtn2').href = `https://wa.me/94702661909?text=${text}`;
     }
